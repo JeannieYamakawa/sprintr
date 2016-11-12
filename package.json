@@ -17,8 +17,15 @@
   },
   "homepage": "https://github.com/timothyrchew/chrome-time-tracker#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
     "knex": "^0.12.6",
     "pg": "^6.1.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.5.2",
+    "protractor": "^4.0.11"
   }
 }
