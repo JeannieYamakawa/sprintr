@@ -31,10 +31,15 @@ app.get('/', function (req, res) {
 });
 
 app.get('/test', function (req, res) {
-  knex('users').then((user) => {
-    console.log(users);
-    res.send("thats a bingo!!!");
+  knex('users').then((users) => {
+    res.send(users);
   });
+});
+
+app.get('/login', function (req, res) {
+    console.log(req.body);
+    console.log("booooayyyyhhh");
+    res.send("boom!");
 });
 
 
