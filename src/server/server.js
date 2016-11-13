@@ -19,11 +19,9 @@ var port = process.env.NODE_ENV || 8000;
 
 //MIDLEWARE=-=-=-=-=-=-=-=-=-=
 
-
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
-
 
 
 //ROUTES-=-=-=-=-=-=-=-=-=-==-
@@ -38,8 +36,6 @@ app.get('/test', function (req, res) {
     res.send("thats a bingo!!!");
   });
 });
-
-
 
 
 //RUN SERVER=-=-=-=-=-=-=-=-=-=-=-=-

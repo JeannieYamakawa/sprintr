@@ -6,10 +6,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script src="js/main.js" charset="utf-8"></script>
+    <script src="
+https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js" charset="utf-8"></script>
+    <script src="js/main.js" charset="utf-8"></script>
+    <script src="js/controllers.js" charset="utf-8"></script>
   </head>
-  <body>
+  <body ng-app="timeTracker">
+
+  <h1>{{1 + 1}}</h1>
+
+  <a href="" ui-sref="home">Home</a>
+
+  <ui-view></ui-view>
 
   </body>
 </html>
