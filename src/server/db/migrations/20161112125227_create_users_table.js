@@ -14,12 +14,9 @@ exports.up = function(knex, Promise) {
     table.string('email')
       .notNullable()
       .defaultTo('');
-    table.boolean('admin')
-      .defaultTo(false);
-    table.timestamps(true, true);
-  });
+    });
 };
 
 exports.down = function(knex, Promise) {
-
+  return knex.schema.dropTableIfExists('users');
 };
