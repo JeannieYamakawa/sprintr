@@ -17,24 +17,30 @@ const bcrypt = require( 'bcrypt' );
 // });
 
 //issue the user a token if they have valid login credentials
-router.post('/login', function (req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-  if (!username || !password){
-    res.send('username or password cannot be empty');
-  } else {
-    knex('players').where({username: username}).first().then(function(player){
-      if (player){
-        console.log("player", player);
-        if (player.password === password){
-          var token = jwt.sign({ id: player.id }, process.env.JWT_SECRET);
-          res.json({token: token});
-        }
-      } else {
-        res.send('wrong username or password');
-      }
-    })
-  }
+router.post( '/login', function( req, res ) {
+    var username = req.body.username;
+    var password = req.body.password;
+    if ( !username || !password ) {
+        res.send( 'username or password cannot be empty' );
+    } else {
+        knex( 'players' ).where( {
+            username: username
+        } ).first().then( function( player ) {
+            if ( player ) {
+                console.log( "player", player );
+                if ( player.password === password ) {
+                    var token = jwt.sign( {
+                        id: player.id
+                    }, ( process.env.JWT_SECRET ) );
+                    res.json( {
+                        token: token
+                    } );
+                }
+            } else {
+                res.send( 'wrong username or password' );
+            }
+        } )
+    }
 
 } );
 
@@ -77,8 +83,8 @@ router.post( '/signup', function( req, res ) {
                             const user = users[ 0 ];
                             const token = jwt.sign( {
                                 id: user.id
-                            }, 'process.env.JWT_SECRET' );
-                            console.log( token, 'token' );
+                            }, ( process.env.JWT_SECRET ) );
+                            console.log( token, 'token from post /signup route' );
                             res.json( {
                                 id: user.id,
                                 email: user.email,
@@ -105,26 +111,29 @@ router.post( '/signup', function( req, res ) {
 router.get( '/verify', function( req, res ) {
     if ( req.headers.authorization ) {
         const token = req.headers.authorization.split( ' ' )[ 1 ];
-
+        console.log( token, 'token from /verify route' );
         // IF it was expired - verify would actually throw an exception
         // we'd have to catch in a try/catch
-        const payload = jwt.verify( token, process.env.JWT_SECRET );
-
+        const payload = jwt.verify( token, ( process.env.JWT_SECRET ) );
+        console.log( payload, 'payload from /verify route' );
         // payload is {id: 56}
         knex( 'players' ).where( {
             id: payload.id
         } ).first().then( function( user ) {
-            console.log( "user", user );
             if ( user ) {
                 res.json( {
                     id: user.id,
-                    name: user.username
+                    username: user.username
                 } )
             } else {
                 res.status( 403 ).json( {
                     error: "Invalid ID"
                 } )
             }
+        } )
+    } else {
+        res.status( 403 ).json( {
+            error: "No token"
         } )
     }
 } );
