@@ -12,26 +12,7 @@ app.config(function($routeProvider) {
             resolve: {
                 currentUser: function($http) {
 
-                    chrome.storage.local.get('token', function(token) {
-                        if (token.hasOwnProperty("token")) {
 
-                            const config = {
-                                headers: {
-                                    'Authorization': 'Bearer ' + token.token
-                                }
-                            };
-                            return $http.get('http://localhost:8000/verify', config)
-                                .then(function(response) {
-                                    console.log("confirmed valid token");
-                                    console.log(response.data);
-                                    return response.data;
-                                })
-                                .catch(function(response) {
-                                    console.log("resolve error");
-                                    return null;
-                                });
-                        }
-                    });
                 }
             },
         });
@@ -84,8 +65,28 @@ app.controller('dashboardController', ['$scope', '$http', '$location', 'currentU
 
     $scope.view = {};
 
+    $scope.view.currentUser = false;
 
-    console.log("currentUser", currentUser);
+    chrome.storage.local.get('token', function(token) {
+        if (token.hasOwnProperty("token")) {
+
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + token.token
+                }
+            };
+            $http.get('http://localhost:8000/verify', config)
+                .then(function(response) {
+                    console.log("confirmed valid token");
+                    console.log(response.data);
+                    $scope.view.currentUser = response.data;
+                })
+                .catch(function(response) {
+                    console.log("resolve error");
+                });
+        }
+    });
+
 
     $scope.logout = function() {
         chrome.storage.local.clear();
