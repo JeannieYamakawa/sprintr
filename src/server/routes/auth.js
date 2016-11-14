@@ -8,14 +8,6 @@ const knex = require('knex')(knexConfig);
 const jwt = require('jsonwebtoken');
 
 
-// router.get('/test', function (req, res) {
-//   console.log("boom");
-//   knex('users').then((users) => {
-//     res.send(users);
-//   });
-// });
-
-
 //issue the user a token if they have valid login credentials
 router.post('/login', function (req, res) {
   var username = req.body.username;
@@ -23,11 +15,11 @@ router.post('/login', function (req, res) {
   if (!username || !password){
     res.send('username or password cannot be empty');
   } else {
-    knex('users').where({username: username}).first().then(function(user){
-      if (user){
-        console.log("user", user);
-        if (user.password === password){
-          var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+    knex('players').where({username: username}).first().then(function(player){
+      if (player){
+        console.log("player", player);
+        if (player.password === password){
+          var token = jwt.sign({ id: player.id }, process.env.JWT_SECRET);
           res.json({token: token});
         }
       } else {
@@ -53,10 +45,10 @@ router.get('/verify', function(req, res){
       const payload = jwt.verify(token, process.env.JWT_SECRET);
 
       // payload is {id: 56}
-      knex('users').where({id: payload.id}).first().then(function (user) {
-        console.log("user", user);
-        if (user) {
-          res.json({id: user.id, name: user.username})
+      knex('players').where({id: payload.id}).first().then(function (player) {
+        console.log("player", player);
+        if (player) {
+          res.json({id: player.id, name: player.username})
         } else {
           res.status(403).json({
             error: "Invalid ID"
