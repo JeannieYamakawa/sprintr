@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router({
+const express = require('express');
+const router = express.Router({
     mergeParams: true
 });
-var environment = process.env.NODE_ENV || "development";
-var knexConfig = require('../../../knexfile')[environment];
-var knex = require('knex')(knexConfig);
-var jwt = require('jsonwebtoken');
+const environment = process.env.NODE_ENV || "development";
+const knexConfig = require('../../../knexfile')[environment];
+const knex = require('knex')(knexConfig);
+const jwt = require('jsonwebtoken');
 
 
 router.get('/test', function (req, res) {

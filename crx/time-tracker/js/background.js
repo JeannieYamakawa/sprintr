@@ -34,8 +34,8 @@
 //     }
 // });
 
-setTimeout(function(){
-  chrome.storage.local.get("test", function(item){
-    console.log("here is the storage item", item);
-  });
-}, 5000)
+// setTimeout(function(){
+//   chrome.storage.local.get("test", function(item){
+//     console.log("here is the storage item", item);
+//   });
+// }, 5000)

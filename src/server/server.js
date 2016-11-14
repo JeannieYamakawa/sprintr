@@ -1,13 +1,13 @@
 'use strict';
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var path = require('path');
+const path = require('path');
 
 require('dotenv').config();
-var bodyParser = require('body-parser');
-var port = process.env.NODE_ENV || 8000;
+const bodyParser = require('body-parser');
+const port = process.env.NODE_ENV || 8000;
 
 
 //MIDLEWARE=-=-=-=-=-=-=-=-=-=

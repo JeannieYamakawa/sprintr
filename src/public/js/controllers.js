@@ -2,7 +2,7 @@ app.controller('homeController', ['$scope', '$http', '$location', '$window', fun
 
   $scope.view = {}
 
-  $scope.view.test = "Angularzzzzz Router wokksss";
+  $scope.view.test = "Greetings earthling";
 
   $scope.login = function(){
     var data = {username: $scope.view.username, password: $scope.view.password};
@@ -21,7 +21,7 @@ app.controller('dashboardController', ['$scope', '$http', '$location', '$window'
 
   //only render this part of the page if the user is using a valid token
   if (currentUser){
-    $scope.view.hi = "You can only see this if you have a valid token";
+    $scope.view.hi = "You have a valid token";
   } else {
     $location.path('/')
   }
