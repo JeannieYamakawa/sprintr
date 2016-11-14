@@ -1,0 +1,53 @@
+<div class="bigContainer">
+  <div class="smallContainer">
+    <h3>Sign Up Page</h3>
+    <form class="ui form" action="#" name="signupForm" ng-submit="signupForm.$valid && submitSignupForm($event)">
+      <div class="field">
+        <input
+        type="text"
+        name="firstname"
+        ng-model="view.signupFormInfo.firstname"
+        placeholder="First Name"
+        required
+        >
+      </div>
+      <div class="field">
+        <input
+        type="text"
+        name="lastname"
+        ng-model="view.signupFormInfo.lastname"
+        placeholder="Last Name"
+        required
+        >
+      </div>
+      <div class="field">
+        <input
+        type="text"
+        name="username"
+        ng-model="view.signupFormInfo.username"
+        placeholder="Username"
+        required
+        >
+      </div>
+      <div class="field">
+        <input
+        type="password"
+        name="password"
+        ng-model="view.signupFormInfo.password"
+        placeholder="Password"
+        required
+        >
+      </div>
+      <div class="field">
+        <input
+        type="text"
+        name="email"
+        ng-model="view.signupFormInfo.email"
+        placeholder="Email"
+        required
+        >
+      </div>
+      <button class="ui primary button" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
