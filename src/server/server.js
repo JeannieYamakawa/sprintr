@@ -25,7 +25,7 @@ const games = require('./routes/games');
 
 app.use(auth);
 app.use('/users/:user_id/time/', timeTracking);
-app.use('/users/:user_id/', games);
+app.use('/users/:user_id/games/', games);
 
 
 //RUN SERVER=-=-=-=-=-=-=-=-=-=-=-=-

@@ -8,13 +8,15 @@ const knex = require('knex')(knexConfig);
 const jwt = require('jsonwebtoken');
 
 
-router.get('/test', function (req, res) {
-  console.log("boom");
-  knex('users').then((users) => {
-    res.send(users);
-  });
-});
+// router.get('/test', function (req, res) {
+//   console.log("boom");
+//   knex('users').then((users) => {
+//     res.send(users);
+//   });
+// });
 
+
+//issue the user a token if they have valid login credentials
 router.post('/login', function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
@@ -36,10 +38,12 @@ router.post('/login', function (req, res) {
 
 });
 
+//create a new user account and issue a token
 router.post('/signup', function(req, res){
 
 });
 
+//check the validity of user token, send user ID if it is valid
 router.get('/verify', function(req, res){
   if (req.headers.authorization) {
       const token = req.headers.authorization.split(' ')[1];
@@ -66,10 +70,8 @@ router.get('/verify', function(req, res){
     }
 });
 
-
-
+//redirect to home angular
 router.get('/', function (req, res) {
-  console.log("boom");
   res.redirect('/index.html');
 });
 
