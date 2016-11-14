@@ -6,9 +6,9 @@ app.config(function($routeProvider) {
             templateUrl: 'partials/home.html',
             controller: 'homeController',
         })
-        .when('/secured', {
-            templateUrl: 'partials/secured.html',
-            controller: 'securedController',
+        .when('/dashboard', {
+            templateUrl: 'partials/dashboard.html',
+            controller: 'dashboardController',
             resolve: {
                 currentUser: function($http) {
                     if (localStorage.getItem('token')) {

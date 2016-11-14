@@ -2,28 +2,28 @@ app.controller('homeController', ['$scope', '$http', '$location', '$window', fun
 
   $scope.view = {}
 
-  $scope.view.hi = "Angularzzzzz Router wokksss";
+  $scope.view.test = "Angularzzzzz Router wokksss";
 
   $scope.login = function(){
     var data = {username: $scope.view.username, password: $scope.view.password};
     $http.post('/login', data).then(function successCallback(response) {
         console.log('response', response);
         $window.localStorage.setItem('token', response.data.token);
-        $location.path('/secured');
+        $location.path('/dashboard');
     });
   }
 
 }]);
 
-app.controller('securedController', ['$scope', '$http', '$location', '$window', 'currentUser', function($scope, $http, $location, $window, currentUser){
+app.controller('dashboardController', ['$scope', '$http', '$location', '$window', 'currentUser', function($scope, $http, $location, $window, currentUser){
 
   $scope.view = {}
 
-  console.log(currentUser);
-
-
+  //only render this part of the page if the user is using a valid token
   if (currentUser){
     $scope.view.hi = "You can only see this if you have a valid token";
+  } else {
+    $location.path('/')
   }
 
 }]);
