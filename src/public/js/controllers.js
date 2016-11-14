@@ -1,7 +1,7 @@
 app.controller('homeController', ['$scope', '$http', '$location', '$window',
   function($scope, $http, $location, $window) {
 
-    $scope.view = {}
+    $scope.view = {};
 
     // $scope.login = function() {
     //   var data = {
@@ -32,7 +32,6 @@ app.controller('signupController', ['$scope', '$http', '$location', '$window',
 
     $scope.submitSignupForm = function(event) {
       event.preventDefault();
-      $scope.signupForm.$setUntouched();
       console.log($scope.view.signupFormInfo);
     };
 
@@ -42,7 +41,7 @@ app.controller('signupController', ['$scope', '$http', '$location', '$window',
 app.controller('loginController', ['$scope', '$http', '$location', '$window',
   function($scope, $http, $location, $window) {
 
-    $scope.view = {}
+    $scope.view = {};
 
     $scope.view.loginFormInfo = {
       username: "",
@@ -57,15 +56,18 @@ app.controller('loginController', ['$scope', '$http', '$location', '$window',
   }
 ]);
 
-// app.controller('dashboardController', ['$scope', '$http', '$location', '$window', 'currentUser', function($scope, $http, $location, $window, currentUser){
-//
-//   $scope.view = {}
-//
-//   //only render this part of the page if the user is using a valid token
-//   if (currentUser){
-//     $scope.view.hi = "You have a valid token";
-//   } else {
-//     $location.path('/')
-//   }
-//
-// }]);
+app.controller('dashboardController', ['$scope', '$http', '$location',
+  '$window', 'currentUser',
+  function($scope, $http, $location, $window, currentUser) {
+
+    $scope.view = {};
+
+    //only render this part of the page if the user is using a valid token
+    // if (currentUser){
+    //   $scope.view.hi = "You have a valid token";
+    // } else {
+    //   $location.path('/')
+    // }
+
+  }
+]);

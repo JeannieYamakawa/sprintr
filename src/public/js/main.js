@@ -1,4 +1,4 @@
-var app = angular.module("timeTracker", ['ngRoute']);
+var app = angular.module("timeTracker", ['ngMessages', 'ngRoute']);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -13,6 +13,10 @@ app.config(function($routeProvider) {
     .when('/login', {
       templateUrl: 'partials/login.html',
       controller: 'loginController'
+    })
+    .when('/dashboard', {
+      templateUrl: 'partials/dashboard.html',
+      controller: 'dashboardController'
     })
 
 

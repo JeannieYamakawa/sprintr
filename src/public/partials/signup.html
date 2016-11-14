@@ -2,23 +2,33 @@
   <div class="smallContainer">
     <h3>Sign Up Page</h3>
     <form class="ui form" action="#" name="signupForm" ng-submit="signupForm.$valid && submitSignupForm($event)">
-      <div class="field">
+
+      <div class="field" ng-class="{'has-error': signupForm.firstname.$touched && signupForm.firstname.$invalid, 'has-success': signupForm.firstname.$touched && signupForm.firstname.$valid}">
         <input
         type="text"
         name="firstname"
         ng-model="view.signupFormInfo.firstname"
         placeholder="First Name"
+        ng-minlength="2"
         required
         >
+        <div class="error" ng-messages="signupForm.firstname.$error" ng-show="signupForm.firstname.$touched">
+          <div ng-messages-include="messages.html"></div>
+        </div>
       </div>
+
       <div class="field">
         <input
         type="text"
         name="lastname"
         ng-model="view.signupFormInfo.lastname"
         placeholder="Last Name"
+        ng-minlength="2"
         required
         >
+        <div class="error" ng-messages="signupForm.lastname.$error" ng-show="signupForm.lastname.$touched">
+          <div ng-messages-include="messages.html"></div>
+        </div>
       </div>
       <div class="field">
         <input
@@ -26,8 +36,12 @@
         name="username"
         ng-model="view.signupFormInfo.username"
         placeholder="Username"
+        ng-minlength="2"
         required
         >
+        <div class="error" ng-messages="signupForm.username.$error" ng-show="signupForm.username.$touched">
+          <div ng-messages-include="messages.html"></div>
+        </div>
       </div>
       <div class="field">
         <input
