@@ -5,17 +5,10 @@ var app = express();
 
 var path = require('path');
 
-var environment = process.env.NODE_ENV || "development";
-var knexConfig = require('../../knexfile')[environment];
-var knex = require('knex')(knexConfig);
-
-var jwt = require('jsonwebtoken');
-
 require('dotenv').config();
-
 var bodyParser = require('body-parser');
-
 var port = process.env.NODE_ENV || 8000;
+
 
 //MIDLEWARE=-=-=-=-=-=-=-=-=-=
 
@@ -24,27 +17,15 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-//ROUTES-=-=-=-=-=-=-=-=-=-==-
+//ROUTE CONFIG=-=-=-=-=-=-=-=-=-=-=
 
-app.get('/', function (req, res) {
-  res.redirect('/index.html');
-});
+var auth = require('./routes/auth');
 
-app.get('/test', function (req, res) {
-  knex('users').then((users) => {
-    res.send(users);
-  });
-});
-
-app.get('/login', function (req, res) {
-    console.log(req.body);
-    console.log("booooayyyyhhh");
-    res.send("boom!");
-});
+app.use(auth);
 
 
 //RUN SERVER=-=-=-=-=-=-=-=-=-=-=-=-
 
 app.listen(port, function () {
-  console.log('Example app listening on port:' + port);
+  console.log('Server listening on port:' + port);
 });
