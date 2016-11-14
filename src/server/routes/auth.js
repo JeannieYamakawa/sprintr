@@ -9,7 +9,6 @@ const jwt = require( 'jsonwebtoken' );
 const bcrypt = require( 'bcrypt' );
 
 
-<<<<<<< HEAD
 // router.get('/test', function (req, res) {
 //   console.log("boom");
 //   knex('players').then((users) => {
@@ -17,33 +16,6 @@ const bcrypt = require( 'bcrypt' );
 //   });
 // });
 
-
-//issue the user a token if they have valid login credentials
-router.post( '/login', function( req, res ) {
-    var username = req.body.username;
-    var password = req.body.password;
-    if ( !username || !password ) {
-        res.send( 'username or password cannot be empty' );
-    } else {
-        knex( 'players' ).where( {
-            username: username
-        } ).first().then( function( user ) {
-            if ( user ) {
-                console.log( "user", user );
-                if ( user.password === password ) {
-                    var token = jwt.sign( {
-                        id: user.id
-                    }, process.env.JWT_SECRET );
-                    res.json( {
-                        token: token
-                    } );
-                }
-            } else {
-                res.send( 'wrong username or password' );
-            }
-        } )
-    }
-=======
 //issue the user a token if they have valid login credentials
 router.post('/login', function (req, res) {
   var username = req.body.username;
@@ -63,7 +35,6 @@ router.post('/login', function (req, res) {
       }
     })
   }
->>>>>>> master
 
 } );
 
@@ -164,41 +135,3 @@ router.get( '/', function( req, res ) {
 } );
 
 module.exports = router;
-ty of user token, send user ID if it is valid
-            router.get( '/verify', function( req, res ) {
-                if ( req.headers.authorization ) {
-                    const token = req.headers.authorization.split( ' ' )[ 1 ];
-
-                    // IF it was expired - verify would actually throw an exception
-                    // we'd have to catch in a try/catch
-                    const payload = jwt.verify( token, process.env.JWT_SECRET );
-
-                        // payload is {id: 56}
-                        knex( 'players' ).where( {
-                            id: payload.id
-                        } ).first().then( function( player ) {
-                            console.log( "player", player );
-                            if ( player ) {
-                                res.json( {
-                                    id: player.id,
-                                    name: player.username
-                                } )
-                            } else {
-                                res.status( 403 ).json( {
-                                    error: "Invalid ID"
-                                } )
-                            }
-                        } )
-                } else {
-                    res.status( 403 ).json( {
-                        error: "No token"
-                    } )
-                }
-            } );
-
-            //redirect to home angular
-            router.get( '/', function( req, res ) {
-                res.redirect( '/index.html' );
-            } );
-
-            module.exports = router;
