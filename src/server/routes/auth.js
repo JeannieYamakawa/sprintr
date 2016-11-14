@@ -40,6 +40,10 @@ router.post('/login', function (req, res) {
 
 //create a new user account and issue a token
 router.post('/signup', function(req, res){
+    
+
+
+
 
 });
 
