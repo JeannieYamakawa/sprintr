@@ -9,6 +9,7 @@ const knex = require( 'knex' )( knexConfig );
 //=-=-=-==-=-=-=- ROUTE PREFIX -- '/users/:user_id/games/' =-=-=-=-==---
 
 //     /users/:user_id/games/new (post, user creates game)...happens when user clicks "submit" on the last create game view page
+
 router.post( '/new', function( req, res ) {
     //create a new game, designate creator as the admin
     console.log( req.body, 'req.body' );
@@ -53,6 +54,7 @@ router.post( '/new', function( req, res ) {
                 } );
         } )
 } )
+
 
 
 

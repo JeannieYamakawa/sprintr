@@ -1,7 +1,10 @@
 <h3>Dashboard</h3>
 
-<p>{{1 + 1}}</p>
-<p>dashboard stats</p>
+<div ng-show="view.currentUser">
+    <p>{{view.currentUser}}</p>
+    <p>dashboard stats</p>
 
 
-<button ng-click="logout()">Logout</button>
+    <button ng-click="logout()">Logout</button>
+
+</div>
