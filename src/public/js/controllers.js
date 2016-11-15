@@ -84,7 +84,7 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
             console.log($scope.currentUser, '$scope.currentUser');
             $scope.view.hi = "You have a valid token";
             $http.get('users/' + $scope.currentUser.id + '/games').then(function(response){
-                console.log(response.data, 'response.data from controller dashboard after knex calls')
+                // console.log(response.data, 'response.data from controller dashboard after knex calls')
                 $scope.view.player = response.data.user;
                 $scope.view.games = response.data.games;
             });
@@ -93,5 +93,25 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
             $location.path( '/' )
         }
 
+        $scope.singleGameClicked = function(gameId){
+            console.log(gameId, 'gameId from single clicked game funct');
+            $http.get('users/'+ $scope.currentUser.id +'/games/'+ gameId).then(function(response){
+                console.log(response, 'response from singleGameClicked function in dash controller');
+            })
+        }
+
+
+
+
+
+
+
     }
+
+
+
+
+
+
+
 ] );

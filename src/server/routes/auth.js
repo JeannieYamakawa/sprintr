@@ -27,10 +27,10 @@ router.post( '/login', function( req, res ) {
             username: username
         } ).first().then( function( player ) {
             if ( player ) {
-                console.log( "player", player );
+                // console.log( "player", player );
                 bcrypt.compare(password, player.password ,function(err,response){
                     if(response){
-                        console.log(response, 'response from bcrypt compare');
+                        // console.log(response, 'response from bcrypt compare');
                         var token = jwt.sign( {
                             id: player.id
                         }, ( process.env.JWT_SECRET ) );
@@ -115,7 +115,7 @@ router.post( '/signup', function( req, res ) {
 router.get( '/verify', function( req, res ) {
     if ( req.headers.authorization ) {
         const token = req.headers.authorization.split( ' ' )[ 1 ];
-        console.log( token, 'token from /verify route' );
+        // console.log( token, 'token from /verify route' );
         // IF it was expired - verify would actually throw an exception
         // we'd have to catch in a try/catch
         const payload = jwt.verify( token, ( process.env.JWT_SECRET ) );
