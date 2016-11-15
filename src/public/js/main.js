@@ -29,9 +29,16 @@ app.config( function( $routeProvider ) {
                         };
                         return $http.get( '/verify', config )
                             .then( function( response ) {
+                                var userId = response.data.id;
                                 console.log( "confirmed valid token in dashboard view" );
-                                console.log( response, 'response from dot then' );
-                                return response.data;
+                                const config2 = {
+                                    headers: {
+                                        'userId': userId
+                                    }
+                                };
+                                return $http.get( '/users/' + userId + '/games', config2 ).then( function( returnedData ) {
+                                    console.log( returnedData );
+                                } )
                             } )
                             .catch( function( error ) {
                                 console.log( error, 'resolve error' );
