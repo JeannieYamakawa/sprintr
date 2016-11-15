@@ -14,7 +14,7 @@ app.config( function( $routeProvider, $locationProvider ) {
             templateUrl: 'partials/login.html',
             controller: 'loginController'
         } )
-        .when( '/users/:user_id/games', {
+        .when( '/dashboard', {
             templateUrl: 'partials/dashboard.html',
             controller: 'dashboardController',
             resolve: {
@@ -29,7 +29,7 @@ app.config( function( $routeProvider, $locationProvider ) {
                         };
                         return $http.get( '/verify', config )
                             .then( function( response ) {
-                                return response.data;                                
+                                return response.data;
                             } )
 
                             .catch( function( error ) {

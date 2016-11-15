@@ -119,12 +119,12 @@ router.get( '/verify', function( req, res ) {
         // IF it was expired - verify would actually throw an exception
         // we'd have to catch in a try/catch
         const payload = jwt.verify( token, ( process.env.JWT_SECRET ) );
-        console.log( payload, 'payload from /verify route' );
+        // console.log( payload, 'payload from /verify route' );
         knex( 'players' ).where( {
             id: payload.id
         } ).first().then( function( user ) {
             if ( user ) {
-                console.log( user, 'user from /verify route' );
+                // console.log( user, 'user from /verify route' );
                 res.json( {
                     id: user.id,
                     username: user.username,

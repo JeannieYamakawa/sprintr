@@ -41,7 +41,7 @@ app.controller( 'signupController', [ '$scope', '$http', '$location',
                     console.log( response, 'response in dot then function' );
                     $window.localStorage.setItem( 'token', response.data.token );
                     var userId = response.data.id;
-                    $location.path( '/users/' + userId + '/games/' )
+                    $location.path( '/dashboard' )
                 } )
         }
     }
@@ -63,7 +63,9 @@ app.controller( 'loginController', [ '$scope', '$http', '$location',
             console.log( $scope.view.loginFormInfo );
             $http.post('/login', $scope.view.loginFormInfo).then(function(response){
                 console.log( response, 'response in dot then function login' );
-                console.log(response.data.token, 'res.data.token login');
+                $window.localStorage.setItem( 'token', response.data.token );
+                var userId = response.data.id;
+                $location.path( '/dashboard' )
             })
         };
 
@@ -71,8 +73,8 @@ app.controller( 'loginController', [ '$scope', '$http', '$location',
 ] );
 
 app.controller( 'dashboardController', [ '$scope', '$http', '$location',
-    '$window', 'currentUser',
-    function( $scope, $http, $location, $window, currentUser ) {
+    '$window', 'currentUser', '$routeParams',
+    function( $scope, $http, $location, $window, currentUser, $routeParams ) {
 
         $scope.view = {};
         $scope.currentUser = currentUser;
@@ -81,7 +83,11 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
         if ( $scope.currentUser ) {
             console.log($scope.currentUser, '$scope.currentUser');
             $scope.view.hi = "You have a valid token";
-            $http.get('users/' + $scope.currentUser.id + '/games')
+            $http.get('users/' + $scope.currentUser.id + '/games').then(function(response){
+                console.log(response.data, 'response.data from controller dashboard after knex calls')
+                $scope.view.player = response.data.user;
+                $scope.view.games = response.data.games;
+            });
 
         } else {
             $location.path( '/' )
