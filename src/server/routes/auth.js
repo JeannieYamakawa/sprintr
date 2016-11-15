@@ -116,16 +116,16 @@ router.get( '/verify', function( req, res ) {
         // we'd have to catch in a try/catch
         const payload = jwt.verify( token, ( process.env.JWT_SECRET ) );
         console.log( payload, 'payload from /verify route' );
-        knex( 'games' ).where( {
-            user_id: payload.id
-        } ).first().then( function( games ) {
-            if ( games ) {
-                console.log( games, 'games from /verify route' );
+        knex( 'players' ).where( {
+            id: payload.id
+        } ).first().then( function( user ) {
+            if ( user ) {
+                console.log( user, 'user from /verify route' );
                 res.json( {
-                    id: games.id,
-                    username: games.username,
-                    first_name: games.first_name,
-                    last_name: games.last_name
+                    id: user.id,
+                    username: user.username,
+                    first_name: user.first_name,
+                    last_name: user.last_name
                 } )
             } else {
                 res.status( 403 ).json( {
