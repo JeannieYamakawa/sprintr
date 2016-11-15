@@ -5,6 +5,8 @@
 //--if not, create entry and log time
 //--if yes, increment current time with new interval
 
+var userActive;
+var timeReport = [];
 
 var extractDomain = function(url) {
     var domain;
@@ -22,17 +24,48 @@ var extractDomain = function(url) {
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (sender.tab) {
-    console.log('userActive\'s value is ' + message.userActive);
     userActive = message.userActive;
-    console.log("this message originated from", sender.tab);
   }
 });
 
 setInterval(function(){
-  chrome.tabs.query(
-    {currentWindow: true, active : true},
-    function(tabArray){
-      console.log(tabArray);
-    }
-  )
+  if (userActive){
+    chrome.tabs.query(
+      {currentWindow: true, active : true},
+      function(tabArray){
+
+        var domain = extractDomain(tabArray[0].url);
+        newEntry = true;
+        timeReport.forEach(function(entry){
+          if (entry.url === domain){
+            newEntry = false;
+            entry.time += 5;
+          }
+        });
+        if (newEntry){
+          timeReport.push({url: domain, time: 5});
+        }
+      }
+    );
+  }
 }, 5000);
+
+
+// setInterval(function(){
+//     $.ajax({
+//       url: 'http://localhost:8000/users/' + ,
+//       type: 'default GET (Other values: POST)',
+//       dataType: 'default: Intelligent Guess (Other values: xml, json, script, or html)',
+//       data: {param1: 'value1'}
+//     })
+//     .done(function() {
+//       console.log("success");
+//     })
+//     .fail(function() {
+//       console.log("error");
+//     })
+//     .always(function() {
+//       console.log("complete");
+//     });
+//
+// }, 5000);

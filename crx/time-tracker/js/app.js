@@ -56,7 +56,7 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
 
 } ] );
 
-app.controller( 'dashboardController', [ '$scope', '$http', '$location', 'currentUser', function( $scope, $http, $location, currentUser ) {
+app.controller( 'dashboardController', [ '$scope', '$http', '$location', function( $scope, $http, $location) {
 
     $scope.view = {};
 
@@ -81,7 +81,6 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location', 'curren
                 } );
         }
     } );
-
 
     $scope.logout = function() {
         chrome.storage.local.clear();
