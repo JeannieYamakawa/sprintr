@@ -72,14 +72,20 @@ router.patch( '/:game_id', function( req, res ) {
 
 } );
 
-//fetch details about all games that user belongs to
+//fetch details about all games that user belongs to. needs information from all 5 tables:
+//userId, username, game title, 
 router.get( '/', function( req, res ) {
-
+    console.log( req.headers.userid, 'req.headers.userId from games / get route' );
+    knex( 'players' ).innerJoin( 'game_player', 'players.id', 'game_player.user_id' ).then( function( data ) {
+        console.log( data );
+    } )
 } );
+
+
 //fetch details about a single game
-router.get( '/:game_id', function( req, res ) {
-
-} );
+// router.get( '/:game_id', function( req, res ) {
+//
+// } );
 
 
 module.exports = router;

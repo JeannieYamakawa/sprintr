@@ -14,7 +14,8 @@ exports.seed = function( knex, Promise ) {
                     active: true,
                     start_time: startdate,
                     end_time: new_date,
-                    game_type: 'points'
+                    game_type: 'points',
+                    name: 'game1'
                 } ),
                 knex( 'games' ).insert( {
                     id: 2,
@@ -22,7 +23,8 @@ exports.seed = function( knex, Promise ) {
                     active: true,
                     start_time: startdate,
                     end_time: new_date,
-                    game_type: 'points'
+                    game_type: 'points',
+                    name: 'game2'
                 } ),
                 knex( 'games' ).insert( {
                     id: 3,
@@ -30,7 +32,8 @@ exports.seed = function( knex, Promise ) {
                     active: true,
                     start_time: startdate,
                     end_time: new_date,
-                    game_type: 'points'
+                    game_type: 'points',
+                    name: 'game3'
                 } )
             ] );
         } );
