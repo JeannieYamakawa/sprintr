@@ -20,6 +20,12 @@ var extractDomain = function(url) {
     }
     //find & remove port number
     domain = domain.split(':')[0];
+
+    //find & remove subdomain
+    if (domain.indexOf('www.') > -1){
+      domain = domain.split('www.')[1];
+    }
+
     return domain;
 }
 
@@ -75,19 +81,20 @@ function logBrowsing(){
 
 function sendSession(){
   setInterval(function(){
-    var report = JSON.stringify(timeReport);
-    $.ajax({
-      url: 'http://localhost:8000/users/' + currentUser.id + '/time/log',
-      type: 'post',
-      data: {user: currentUser.id, log: report}
-    })
-    .done(function(res) {
-      console.log(res);
-      timeReport = [];
-    })
-    .fail(function(err) {
-      console.log(err);
-    });
-
+    if (timeReport.length > 0){
+      var report = JSON.stringify(timeReport);
+      $.ajax({
+        url: 'http://localhost:8000/users/' + currentUser.id + '/time/log',
+        type: 'post',
+        data: {user: currentUser.id, log: report}
+      })
+      .done(function(res) {
+        console.log(res);
+        timeReport = [];
+      })
+      .fail(function(err) {
+        console.log(err);
+      });
+    }
   }, 10000);
 }
