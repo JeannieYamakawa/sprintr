@@ -1,10 +1,21 @@
+body {
+  background: #eceff4 !important;
+}
+
 .container {
   width: 90%;
   margin: auto;
 }
 
-h1,h2,h3,h4,h5,h6,p,a {
+h1,h2,h3,h4,h5,h6,p,a,li {
   font-family: 'Roboto', sans-serif !important;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
 /*--------------------------------------------------------------- home.html*/
@@ -12,6 +23,10 @@ h1,h2,h3,h4,h5,h6,p,a {
 .logoIcon {
   width: 50px;
   height: 50px;
+}
+
+.ui.secondary.pointing.menu {
+  background: #fff;
 }
 
 .ui.secondary.menu a {
@@ -72,12 +87,13 @@ h1,h2,h3,h4,h5,h6,p,a {
 
 /*--------------------------------------------------------------- signup.html*/
 
-..bigContainer {
+.bigContainer {
   display: flex;
 }
 
 .smallContainer {
-  border: 1px solid #dce0e0;
+  /*border: 1px solid #dce0e0;*/
+  background: #fff;
   margin: auto;
   margin-top: 1em;
   width: 35%;
@@ -107,4 +123,49 @@ input.ng-invalid.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-inval
 input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid.ng-valid-minlength {
   background-color: #C7EFCF;
   border: 1px solid green;
+}
+
+/*--------------------------------------------------------------- dashboard*/
+
+.dashboardWelcome {
+  font-size: 3rem;
+  text-align: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.ui.grid {
+  display: flex;
+  margin: auto;
+}
+
+.four.wide.column {
+  background: #fff;
+  border-radius: 5px;
+  margin: 0.5%;
+}
+
+.four.wide.column:hover {
+  border: 2px solid #eceff4;
+}
+
+.four.wide.column h3 {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboardRankingIcon {
+  width: 30px;
+  height: 30px;
+}
+
+.four.wide.column ul li {
+  display: flex;
+  align-items: center;
+}
+
+.four.wide.column ul li img {
+  margin-right: 3%;
+  margin-bottom: 2%;
 }
