@@ -115,6 +115,9 @@ router.get( '/', function( req, res ) {
 //
 // } ]
 
+
+
+
 router.get('/:game_id', function( req, res ) {
     let gameId = req.params.game_id;
     let userId = req.params.user_id;
