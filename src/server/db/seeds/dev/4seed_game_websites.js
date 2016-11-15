@@ -7,22 +7,22 @@ exports.seed = function( knex, Promise ) {
                 knex( 'game_website' ).insert( {
                     id: 1,
                     game_id: '1',
-                    domain: 'www.facebook.com'
+                    domain: 'facebook.com'
                 } ),
                 knex( 'game_website' ).insert( {
                     id: 2,
                     game_id: '1',
-                    domain: 'www.twitter.com'
+                    domain: 'twitter.com'
                 } ),
                 knex( 'game_website' ).insert( {
                     id: 3,
                     game_id: '1',
-                    domain: 'www.espn.com'
+                    domain: 'espn.com'
                 } ),
                 knex( 'game_website' ).insert( {
                     id: 4,
                     game_id: '2',
-                    domain: 'www.galvanize.com'
+                    domain: 'galvanize.com'
                 } )
             ] );
         } );

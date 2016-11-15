@@ -27,6 +27,7 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
     } )
 
     $scope.login = function() {
+        console.log('sending credentials');
         var data = {
             username: $scope.view.username,
             password: $scope.view.password
@@ -34,6 +35,7 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
         $http.post( 'http://localhost:8000/login', data ).then( function successCallback( response ) {
             console.log( 'response', response );
             if ( response.data.token ) {
+                console.log(response.data.token);
                 var token = response.data.token;
                 chrome.storage.local.set( {
                     token: token
@@ -56,7 +58,7 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
 
 } ] );
 
-app.controller( 'dashboardController', [ '$scope', '$http', '$location', 'currentUser', function( $scope, $http, $location, currentUser ) {
+app.controller( 'dashboardController', [ '$scope', '$http', '$location', function( $scope, $http, $location) {
 
     $scope.view = {};
 
@@ -75,6 +77,9 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location', 'curren
                     console.log( "confirmed valid token" );
                     console.log( response.data );
                     $scope.view.currentUser = response.data;
+                    chrome.storage.local.set({currentUser: response.data}, function(){
+                      console.log("stored currentUser");
+                    })
                 } )
                 .catch( function( response ) {
                     console.log( "resolve error" );

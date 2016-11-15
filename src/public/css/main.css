@@ -139,17 +139,22 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
   margin: auto;
 }
 
-.four.wide.column {
-  background: #fff;
-  border-radius: 5px;
-  margin: 0.5%;
+.ui.grid>.row>.column {
+  margin-top: 0.25% !important;
+  margin-bottom: 0.25% !important;
 }
 
-.four.wide.column:hover {
+.dashboardCard {
+  background: #fff;
+  border-radius: 5px;
+  margin-right: 0.25%;
+}
+
+.dashboardCard:hover {
   border: 2px solid #eceff4;
 }
 
-.four.wide.column h3 {
+.dashboardCard h3 {
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -160,12 +165,12 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
   height: 30px;
 }
 
-.four.wide.column ul li {
+.dashboardCard ul li {
   display: flex;
   align-items: center;
 }
 
-.four.wide.column ul li img {
+.dashboardCard ul li img {
   margin-right: 3%;
   margin-bottom: 2%;
 }

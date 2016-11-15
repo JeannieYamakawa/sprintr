@@ -8,7 +8,7 @@ exports.seed = function( knex, Promise ) {
                     id: 1,
                     game_website_id: '1',
                     player_id: '1',
-                    total_time: 180000000
+                    total_time: 0
                 } ),
                 knex( 'player_game_website' ).insert( {
                     id: 2,

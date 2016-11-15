@@ -5,6 +5,9 @@
 //--if not, create entry and log time
 //--if yes, increment current time with new interval
 
+var userActive;
+var currentUser;
+var timeReport = [];
 
 var extractDomain = function(url) {
     var domain;
@@ -17,22 +20,81 @@ var extractDomain = function(url) {
     }
     //find & remove port number
     domain = domain.split(':')[0];
+
+    //find & remove subdomain
+    if (domain.indexOf('www.') > -1){
+      domain = domain.split('www.')[1];
+    }
+
     return domain;
 }
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (sender.tab) {
-    console.log('userActive\'s value is ' + message.userActive);
     userActive = message.userActive;
-    console.log("this message originated from", sender.tab);
   }
 });
 
-setInterval(function(){
-  chrome.tabs.query(
-    {currentWindow: true, active : true},
-    function(tabArray){
-      console.log(tabArray);
+
+var intervalID = setInterval(findUser, 5000);
+
+
+function findUser(){
+  chrome.storage.local.get("currentUser", function(user){
+    if (user){
+      console.log("set current user:", user.currentUser.first_name);
+      currentUser = user.currentUser;
+      startSession();
+      clearInterval(intervalID);
     }
-  )
-}, 5000);
+  });
+}
+
+function startSession(){
+  console.log("starting to log session for", currentUser.first_name);
+  logBrowsing();
+  sendSession();
+}
+
+function logBrowsing(){
+  setInterval(function(){
+    if (userActive){
+      chrome.tabs.query(
+        {currentWindow: true, active : true},
+        function(tabArray){
+          var domain = extractDomain(tabArray[0].url);
+          newEntry = true;
+          timeReport.forEach(function(entry){
+            if (entry.url === domain){
+              newEntry = false;
+              entry.time += 5;
+            }
+          });
+          if (newEntry){
+            timeReport.push({url: domain, time: 5});
+          }
+        }
+      );
+    }
+  }, 5000);
+}
+
+function sendSession(){
+  setInterval(function(){
+    if (timeReport.length > 0){
+      var report = JSON.stringify(timeReport);
+      $.ajax({
+        url: 'http://localhost:8000/users/' + currentUser.id + '/time/log',
+        type: 'post',
+        data: {user: currentUser.id, log: report}
+      })
+      .done(function(res) {
+        console.log(res);
+        timeReport = [];
+      })
+      .fail(function(err) {
+        console.log(err);
+      });
+    }
+  }, 10000);
+}
