@@ -87,7 +87,6 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location', functio
         }
     } );
 
-
     $scope.logout = function() {
         chrome.storage.local.clear();
         $location.path( '/' );
