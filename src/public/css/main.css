@@ -14,10 +14,6 @@ h1,h2,h3,h4,h5,h6,p,a {
   height: 50px;
 }
 
-/*.ui.secondary.pointing.menu {
-  border-bottom: none !important;
-}*/
-
 .ui.secondary.menu a {
   color: rgba(0, 0, 0, 0.5); !important;
   font-size: 1.5rem;
@@ -94,4 +90,20 @@ h1,h2,h3,h4,h5,h6,p,a {
 .ui.form button {
   display: flex;
   margin: auto;
+}
+
+/*--------------------------------------------------------------- ngMessages*/
+
+input.ng-invalid.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-invalid-minlength.ng-touched {
+  background-color: #FE938C;
+  border: 1px solid red;
+}
+
+.error {
+  color: red;
+}
+
+input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid.ng-valid-minlength {
+  background-color: #C7EFCF;
+  border: 1px solid green;
 }
