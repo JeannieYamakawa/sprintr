@@ -42,4 +42,8 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/newgame', {
+      templateUrl: 'partials/newgame.html',
+      controller: 'newgameController',
+    })
 });

@@ -100,5 +100,50 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
       $location.path('/')
     }
 
+    $scope.singleGameClicked = function(gameId){
+        console.log(gameId, 'gameId from single clicked game funct');
+        $http.get('users/'+ $scope.currentUser.id +'/games/'+ gameId).then(function(response){
+            console.log(response, 'response from singleGameClicked function in dash controller');
+        })
+    }
+
+
+
+
+
   }
 ]);
+
+app.controller('newgameController', ['$scope', '$http', '$location', function(
+  $scope,
+  $http, $location) {
+  $scope.view = {};
+  $scope.view.newgameFormInfo = {
+    name: "",
+    password: "",
+    websites: [],
+    gametype: ""
+  }
+
+  // $scope.view.newPlayer = function(event) {
+  //   event.preventDefault();
+  //   var player = {
+  //     name: ''
+  //   }
+  //   $scope.view.newgameFormInfo.players.push(player)
+  // }
+
+  $scope.view.newWebsite = function(event) {
+    event.preventDefault();
+    var website = {
+      name: ''
+    }
+    $scope.view.newgameFormInfo.websites.push(website)
+  }
+
+  $scope.submitNewgameForm = function(event) {
+    event.preventDefault();
+    console.log($scope.view.newgameFormInfo);
+  }
+
+}])
