@@ -92,6 +92,30 @@ router.get( '/', function( req, res ) {
 } );
 
 
+// fetch details about a single game
+// all the players' usernames from that specific game
+// rankings
+// users own activity on donut chart broken down by website
+// all the players' times on websites (combined)
+// game name
+// games websites
+
+
+router.get( '/:game_id', function( req, res ) {
+
+
+} );
+
+
+
+
+
+
+//need router.delete('/:game_id', function(req,res){ })
+
+
+
+
 
 
 
