@@ -30,7 +30,7 @@ app.config( function( $routeProvider ) {
                         return $http.get( '/verify', config )
                             .then( function( response ) {
                                 console.log( "confirmed valid token in dashboard view" );
-                                console.log( response.data, 'response.data from dot then' );
+                                console.log( response, 'response from dot then' );
                                 return response.data;
                             } )
                             .catch( function( error ) {
