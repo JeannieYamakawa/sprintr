@@ -22,6 +22,8 @@ var extractDomain = function(url) {
     return domain;
 }
 
+console.log(chrome.extension.getViews());
+
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (sender.tab) {
     userActive = message.userActive;

@@ -27,6 +27,7 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
     } )
 
     $scope.login = function() {
+        console.log('sending credentials');
         var data = {
             username: $scope.view.username,
             password: $scope.view.password
@@ -34,6 +35,7 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
         $http.post( 'http://localhost:8000/login', data ).then( function successCallback( response ) {
             console.log( 'response', response );
             if ( response.data.token ) {
+                console.log(response.data.token);
                 var token = response.data.token;
                 chrome.storage.local.set( {
                     token: token
@@ -81,6 +83,7 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location', functio
                 } );
         }
     } );
+
 
     $scope.logout = function() {
         chrome.storage.local.clear();
