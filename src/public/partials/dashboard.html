@@ -1,7 +1,7 @@
-<h2 class="dashboardWelcome">Welcome, Robert!</h2>
+<h2 class="dashboardWelcome">Welcome, {{view.player.username}}!</h2>
 
 <div class="ui grid">
-  <div class="four wide column">
+  <div ng-repeat='game in view.games' class="four wide column">
     <h3>Game 1</h3>
     <ul>
       <li><img class="dashboardRankingIcon" src="../images/gold.jpg" /> Robert</li>
@@ -12,7 +12,7 @@
 
 
   </div>
-  <div class="four wide column">
+  <!-- <div class="four wide column">
     <h3>Game 2</h3>
     <ul>
       <li><img class="dashboardRankingIcon" src="../images/gold.jpg" /> Robert</li>
@@ -56,5 +56,5 @@
       <li><img class="dashboardRankingIcon" src="../images/bronze.jpg" /> Tim </li>
     </ul>
     <h4>Ends: <span>MM/DD/YYYY</span></h4>
-  </div>
+  </div> -->
 </div>

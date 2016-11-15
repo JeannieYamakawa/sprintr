@@ -92,21 +92,6 @@ router.get( '/', function( req, res ) {
 } );
 
 
-//fetch details about a single game
-// router.get( '/:game_id', function( req, res ) {
-//
-// } );
-
-
-
-
-
-
-
-
-
-
-
 
 
 
