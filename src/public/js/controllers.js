@@ -102,3 +102,37 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
 
   }
 ]);
+
+app.controller('newgameController', ['$scope', '$http', '$location', function(
+  $scope,
+  $http, $location) {
+  $scope.view = {};
+  $scope.view.newgameFormInfo = {
+    name: "",
+    password: "",
+    websites: [],
+    gametype: ""
+  }
+
+  // $scope.view.newPlayer = function(event) {
+  //   event.preventDefault();
+  //   var player = {
+  //     name: ''
+  //   }
+  //   $scope.view.newgameFormInfo.players.push(player)
+  // }
+
+  $scope.view.newWebsite = function(event) {
+    event.preventDefault();
+    var website = {
+      name: ''
+    }
+    $scope.view.newgameFormInfo.websites.push(website)
+  }
+
+  $scope.submitNewgameForm = function(event) {
+    event.preventDefault();
+    console.log($scope.view.newgameFormInfo);
+  }
+
+}])
