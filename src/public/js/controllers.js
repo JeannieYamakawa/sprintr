@@ -71,11 +71,12 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
     function( $scope, $http, $location, $window, currentUser ) {
 
         $scope.view = {};
+        $scope.currentUser = currentUser;
 
-        only render this part of the page
-        if the user is using a valid token
-        if ( currentUser ) {
+        // only render this part of the page if the user is using a valid token
+        if ( $scope.currentUser ) {
             $scope.view.hi = "You have a valid token";
+
         } else {
             $location.path( '/' )
         }
