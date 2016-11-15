@@ -1,6 +1,6 @@
 var app = angular.module( "timeTracker", [ 'ngMessages', 'ngRoute' ] );
 
-app.config( function( $routeProvider ) {
+app.config( function( $routeProvider, $locationProvider ) {
     $routeProvider
         .when( '/', {
             templateUrl: 'partials/home.html',
@@ -18,7 +18,7 @@ app.config( function( $routeProvider ) {
             templateUrl: 'partials/dashboard.html',
             controller: 'dashboardController',
             resolve: {
-                currentUser: function( $http ) {
+                currentUser: function( $http, $location ) {
                     if ( localStorage.getItem( 'token' ) ) {
                         console.log( localStorage.getItem( 'token' ), 'token from config resolve' );
                         const config = {
@@ -29,17 +29,9 @@ app.config( function( $routeProvider ) {
                         };
                         return $http.get( '/verify', config )
                             .then( function( response ) {
-                                var userId = response.data.id;
-                                console.log( "confirmed valid token in dashboard view" );
-                                const config2 = {
-                                    headers: {
-                                        'userId': userId
-                                    }
-                                };
-                                return $http.get( '/users/' + userId + '/games', config2 ).then( function( returnedData ) {
-                                    console.log( returnedData );
-                                } )
+                                return response.data;                                
                             } )
+
                             .catch( function( error ) {
                                 console.log( error, 'resolve error' );
                                 localStorage.clear();

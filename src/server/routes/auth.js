@@ -28,21 +28,25 @@ router.post( '/login', function( req, res ) {
         } ).first().then( function( player ) {
             if ( player ) {
                 console.log( "player", player );
-                if ( player.password === password ) {
-                    var token = jwt.sign( {
-                        id: player.id
-                    }, ( process.env.JWT_SECRET ) );
-                    res.json( {
-                        token: token
-                    } );
-                }
-            } else {
+                bcrypt.compare(password, player.password ,function(err,response){
+                    if(response){
+                        console.log(response, 'response from bcrypt compare');
+                        var token = jwt.sign( {
+                            id: player.id
+                        }, ( process.env.JWT_SECRET ) );
+                        res.json( {
+                            token: token
+                        } );
+                    }
+                 else {
                 res.send( 'wrong username or password' );
             }
         } )
     }
 
-} );
+} )
+}
+});
 
 //create a new user account and issue a token
 router.post( '/signup', function( req, res ) {

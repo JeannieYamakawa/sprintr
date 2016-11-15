@@ -72,13 +72,21 @@ router.patch( '/:game_id', function( req, res ) {
 
 } );
 
-//fetch details about all games that user belongs to. needs information from all 5 tables:
-//userId, username, game title, 
+// fetch details about all games that user belongs to. needs information from all 5 tables:
+// userId(players),
+// username(players),
+// game title(games),
+// game rankings(games),
+// player's time on websites(player_game_website),
+// time remaining(games)
 router.get( '/', function( req, res ) {
-    console.log( req.headers.userid, 'req.headers.userId from games / get route' );
-    knex( 'players' ).innerJoin( 'game_player', 'players.id', 'game_player.user_id' ).then( function( data ) {
-        console.log( data );
-    } )
+    let userId = req.params.user_id;
+    // knex('game_player').where('player_id', userId).innerJoin('posts', 'users.id', 'posts.user_id').then(function(data){
+    //
+    //
+    // .then(function(data){
+    //     console.log(data, 'data from knex call dashboard asda');
+    // })
 } );
 
 
@@ -86,6 +94,20 @@ router.get( '/', function( req, res ) {
 // router.get( '/:game_id', function( req, res ) {
 //
 // } );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router;
