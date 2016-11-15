@@ -1,5 +1,7 @@
 var timeoutID;
 
+console.log("injected");
+
 function setup() {
     this.addEventListener('mousemove', resetTimer, false);
     this.addEventListener('mousedown', resetTimer, false);

@@ -9,12 +9,6 @@ app.config(function($routeProvider) {
         .when('/dashboard', {
             templateUrl: 'partials/dashboard.html',
             controller: 'dashboardController',
-            resolve: {
-                currentUser: function($http) {
-
-
-                }
-            },
         });
 });
 
