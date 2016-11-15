@@ -61,6 +61,10 @@ app.controller( 'loginController', [ '$scope', '$http', '$location',
         $scope.submitLoginForm = function( event ) {
             event.preventDefault();
             console.log( $scope.view.loginFormInfo );
+            $http.post('/login', $scope.view.loginFormInfo).then(function(response){
+                console.log( response, 'response in dot then function login' );
+                console.log(response.data.token, 'res.data.token login');
+            })
         };
 
     }
@@ -75,7 +79,9 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
 
         // only render this part of the page if the user is using a valid token
         if ( $scope.currentUser ) {
+            console.log($scope.currentUser, '$scope.currentUser');
             $scope.view.hi = "You have a valid token";
+            $http.get('users/' + $scope.currentUser.id + '/games')
 
         } else {
             $location.path( '/' )
