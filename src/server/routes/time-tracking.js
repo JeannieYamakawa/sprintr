@@ -16,7 +16,9 @@ const knex = require('knex')(knexConfig);
 //--for each game_website, fetch player_game_website
 //--for each player_game_website, see the log contains a matching URL, and increment the time according to the posted data
 router.post('/log', function(req, res){
-  
+  var report = req.body;
+  console.log(report);
+  res.send("boom");
 });
 
 //fetch URL and time data for user

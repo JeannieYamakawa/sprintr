@@ -77,6 +77,9 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location', functio
                     console.log( "confirmed valid token" );
                     console.log( response.data );
                     $scope.view.currentUser = response.data;
+                    chrome.storage.local.set({currentUser: response.data}, function(){
+                      console.log("stored currentUser");
+                    })
                 } )
                 .catch( function( response ) {
                     console.log( "resolve error" );
