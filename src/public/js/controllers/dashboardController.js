@@ -16,24 +16,29 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
 
                 var promiseArray = [];
 
-                gamesList.forEach(function(game){
-                  promiseArray.push(new Promise(function(resolve, reject){
+                gamesList.forEach(function(game) {
+                    promiseArray.push(new Promise(function(resolve, reject) {
 
-                    $http.get('users/' + currentUser.id + '/games/' + game.game_id).then(function(game){
-                      var gameDetails = game.data;
-                      resolve(gameDetails);
-                    })
-                  }));
+                        $http.get('users/' + currentUser.id + '/games/' + game.game_id).then(function(game) {
+                            var gameDetails = game.data;
+                            resolve(gameDetails);
+                        })
+                    }));
                 })
 
-                Promise.all(promiseArray).then(function(games){
-                  console.log("gamesList", gamesList);
-                  games.forEach(function(game){
-                    console.log("game details", game);
-                  });
+                Promise.all(promiseArray).then(function(gamesDetails) {
+                    gamesList.forEach(function(game) {
+                      game.player_stats = [];
+                        gamesDetails.forEach(function(gameDetails) {
+                            if (parseInt(game.game_id) === parseInt(gameDetails.game_id)) {
+                                game.player_stats.push(gameDetails);
+                            }
+                        });
+                    })
+                    console.log(gamesList);
+                    $scope.view.games = gamesList;
                 });
 
-                $scope.view.games = response.data;
             });
 
         } else {
@@ -48,5 +53,5 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                 // $location.path('/')
             })
         }
-  }
+    }
 ]);
