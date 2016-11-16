@@ -74,6 +74,9 @@ ul {
   background-image: url('../images/cover1.jpg');
   height: 100vh;
   z-index: -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bgMessage {
@@ -83,6 +86,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 /*--------------------------------------------------------------- signup.html*/
