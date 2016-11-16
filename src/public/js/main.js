@@ -70,5 +70,9 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
 
-      })
+    })
+    .when('/leaderboard', {
+      templateUrl: 'partials/leaderboard.html',
+      controller: 'leaderboardController'
+    })
 });

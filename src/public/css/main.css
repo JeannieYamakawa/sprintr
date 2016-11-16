@@ -195,3 +195,31 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
 .newgameButtonsDiv {
   display: flex;
 }
+
+/*--------------------------------------------------------------- leaderboard*/
+
+.leaderboardContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.leaderboardLeft {
+  background: #fff;
+  border-radius: 5px;
+  width: 40vw;
+  height: 75vh;
+  margin-right: 5%;
+}
+
+.leaderboardRightCard {
+  background: #fff;
+  border-radius: 5px;
+  width: 40vw;
+  height: 37.25vh;
+  margin-bottom: 1%;
+}
+
+.leaderboardContainer h3{
+  text-align: center;
+  font-size: 2rem;
+}
