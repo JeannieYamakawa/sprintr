@@ -74,9 +74,6 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                          game.third_place = playerTotalTimes[2];
 
 
-                         console.log(moment(game.end_time).format());
-
-
                     })
 
                     $scope.view.games = gamesList;
