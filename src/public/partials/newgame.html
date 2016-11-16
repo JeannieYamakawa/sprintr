@@ -28,15 +28,14 @@
         </div> -->
 
         <div class="field">
-            <label>Websites</label>
             <ul>
                 <li ng-repeat='site in view.newgameFormInfo.websites'>
                     <h6 ng-show='!editShow'>{{ site }}</h6>
                     <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
 
-                    <button ng-click ='removeWebsite()'>Remove Site</button>
-                    <button ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
-                    <button ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
+                    <button class="ui button" ng-click ='removeWebsite()'>Remove Site</button>
+                    <button class="ui button" ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
+                    <button class="ui button" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
                 </li>
                 <li >
                     <input type="text" name="website" ng-model="website.name" placeholder="Website" >
