@@ -39,9 +39,9 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
           })
           console.log(gamesList);
           $scope.view.games = gamesList;
+          $scope.$digest();
         });
-
-      });
+      })
 
     } else {
       $location.path('/')
@@ -49,12 +49,13 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
 
     $scope.singleGameClicked = function(gameId) {
       console.log(gameId, 'gameId from single clicked game funct');
-      $http.get('users/' + $scope.currentUser.id + '/games/' + gameId).then(
-        function(response) {
-          // console.log( response, 'response from singleGameClicked function in dash controller' );
-          //this will be set to go to the view single game leaderboard page.
-          // $location.path('/')
-        })
+      $http.get('users/' + $scope.currentUser.id + '/games/' + gameId)
+        .then(
+          function(response) {
+            // console.log( response, 'response from singleGameClicked function in dash controller' );
+            //this will be set to go to the view single game leaderboard page.
+            // $location.path('/')
+          })
     }
   }
 ]);
