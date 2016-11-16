@@ -58,17 +58,45 @@ router.post('/new', function(req, res) {
 
 
 //add user to an existing game
-router.post('/join', function(req, res) {
-    knex('games').where('id', req.body.id)
-        //--register player in game_player table
-        //--fetch id for game_websites (for tracking this players score for this game)
-        //--create entry in player_game_website for each ID above
+router.post('/:game_id/join', function(req, res) {
+    let gameId = req.params.game_id;
+    let userId = req.params.user_id;
+    var promiseArray = [];
+    //register player with the game
+    knex('game_player').insert({
+        game_id: gameId,
+        player_id: userId
+    }).then(function() {
+
+        //fetch all URLs for that game
+        knex('game_website').where('game_id', gameId).then(function(urls) {
+            console.log(urls);
+            urls.forEach(function(url) {
+                promiseArray.push(new Promise(function(resolve, reject) {
+
+                    var urlId = url.id;
+                    knex('player_game_website').insert({
+                        game_website_id: urlId,
+                        player_id: userId,
+                        total_time: 0
+                    }).then(function() {
+                        resolve();
+                    });
+                }));
+            });
+
+            Promise.all(promiseArray).then(function() {
+                res.send("success!");
+            })
+
+        })
+    })
+
+    //--register player in game_player table
+    //--fetch id for game_websites (for tracking this players score for this game)
+    //--create entry in player_game_website for each ID above
 });
 
-//admin can edit and existing game
-router.patch('/:game_id', function(req, res) {
-
-});
 
 
 //fetch information about all games a player is involved with
@@ -106,30 +134,40 @@ router.get('/:game_id', function(req, res) {
         //loop through each player, build a user object and assign their username and ID
         players.forEach(function(person) {
 
-          promiseArray.push(new Promise(function(resolve, reject){
+            promiseArray.push(new Promise(function(resolve, reject) {
 
-            var newPersonObj = {};
-            var playerID = person.id;
-            newPersonObj.username = person.username;
-            newPersonObj.id = playerID;
-            newPersonObj.stats = [];
+                var newPersonObj = {};
+                var playerID = person.id;
+                newPersonObj.username = person.username;
+                newPersonObj.id = playerID;
+                newPersonObj.stats = [];
 
-            //get all the websites and times for our player tracked by this game
-            knex('player_game_website').where('player_id', playerID).innerJoin('game_website', 'player_game_website.game_website_id', 'game_website.id').then(function(urls){
-              urls.forEach(function(url){
-                newPersonObj.stats.push(url);
-              });
-              resolve(newPersonObj)
-            });
-          }));
+                //get all the websites and times for our player tracked by this game
+                knex('player_game_website').where('player_id', playerID).innerJoin('game_website', 'player_game_website.game_website_id', 'game_website.id').then(function(urls) {
+                    urls.forEach(function(url) {
+                        newPersonObj.stats.push(url);
+                    });
+                    resolve(newPersonObj)
+                });
+            }));
         });
-        Promise.all(promiseArray).then(function(data){
-          console.log(data);
-          res.send(data)
+
+        Promise.all(promiseArray).then(function(data) {
+            console.log(data);
+            res.send(data)
         })
     })
 });
 
-//need router.delete('/:game_id', function(req,res){ })
+
+//admin can edit and existing game
+router.patch('/:game_id', function(req, res) {
+
+});
+
+
+router.delete('/:game_id', function(req, res) {
+
+});
 
 module.exports = router;

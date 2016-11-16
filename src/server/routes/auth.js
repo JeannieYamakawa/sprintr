@@ -9,13 +9,6 @@ const jwt = require( 'jsonwebtoken' );
 const bcrypt = require( 'bcrypt' );
 
 
-// router.get('/test', function (req, res) {
-//   console.log("boom");
-//   knex('players').then((users) => {
-//     res.send(users);
-//   });
-// });
-
 //issue the user a token if they have valid login credentials
 router.post( '/login', function( req, res ) {
     var username = req.body.username;
