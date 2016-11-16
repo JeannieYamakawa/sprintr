@@ -4,21 +4,34 @@ exports.seed = function( knex, Promise ) {
         .then( function() {
             return Promise.all( [
                 // Inserts seed entries
+                knex.raw('ALTER SEQUENCE player_game_website_id_seq RESTART WITH 1'),
                 knex( 'player_game_website' ).insert( {
-                    id: 1,
                     game_website_id: '1',
                     player_id: '1',
                     total_time: 0
                 } ),
                 knex( 'player_game_website' ).insert( {
-                    id: 2,
                     game_website_id: '2',
                     player_id: '1',
                     total_time: 6000000
                 } ),
                 knex( 'player_game_website' ).insert( {
-                    id: 3,
+                    game_website_id: '3',
+                    player_id: '1',
+                    total_time: 6000000
+                } ),
+                knex( 'player_game_website' ).insert( {
                     game_website_id: '1',
+                    player_id: '2',
+                    total_time: 12000000
+                } ),
+                knex( 'player_game_website' ).insert( {
+                    game_website_id: '2',
+                    player_id: '2',
+                    total_time: 12000000
+                } ),
+                knex( 'player_game_website' ).insert( {
+                    game_website_id: '3',
                     player_id: '2',
                     total_time: 12000000
                 } )

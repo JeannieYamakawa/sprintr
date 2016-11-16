@@ -4,20 +4,18 @@ exports.seed = function( knex, Promise ) {
         .then( function() {
             return Promise.all( [
                 // Inserts seed entries
+                knex.raw('ALTER SEQUENCE game_player_id_seq RESTART WITH 1'),
                 knex( 'game_player' ).insert( {
-                    id: 1,
                     game_id: '1',
                     player_id: '1',
                     final_ranking: null
                 } ),
                 knex( 'game_player' ).insert( {
-                    id: 2,
                     game_id: '2',
                     player_id: '2',
                     final_ranking: null
                 } ),
                 knex( 'game_player' ).insert( {
-                    id: 3,
                     game_id: '1',
                     player_id: '2',
                     final_ranking: null

@@ -83,6 +83,7 @@ function sendSession(){
   setInterval(function(){
     if (timeReport.length > 0){
       var report = JSON.stringify(timeReport);
+      console.log("sending report:", timeReport);
       $.ajax({
         url: 'http://localhost:8000/users/' + currentUser.id + '/time/log',
         type: 'post',

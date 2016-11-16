@@ -8,8 +8,8 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       return Promise.all([
         // Inserts seed entries
+        knex.raw('ALTER SEQUENCE players_id_seq RESTART WITH 1'),
         knex('players').insert({
-          id: 1,
           first_name: "Tim",
           last_name: "Chew",
           username: "tryanc",
@@ -17,7 +17,6 @@ exports.seed = function(knex, Promise) {
           email: 'timothyrchew@gmail.com'
         }),
         knex('players').insert({
-          id: 2,
           first_name: "Jeannie",
           last_name: "Y",
           username: "jeansey",
