@@ -11,4 +11,9 @@ app.controller('joinGameController', ['$scope', '$http', '$location', 'currentUs
         })
     }
 
+    $scope.cancelClicked = function(event){
+        event.preventDefault()
+        $location.path('/dashboard')
+    }
+
 }])
