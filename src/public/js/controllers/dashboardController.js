@@ -73,7 +73,8 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                          game.second_place = playerTotalTimes[1];
                          game.third_place = playerTotalTimes[2];
 
-                         console.log(game);
+
+                         console.log(moment(game.end_time).format());
 
 
                     })
