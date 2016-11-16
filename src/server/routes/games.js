@@ -18,22 +18,6 @@ router.post( '/new', function( req, res ) {
     console.log(req.body.data, 'req.body.data from new games post route');
     var gameWebsites = req.body.data.websites;
 
-    //
-    // { id: 2,
-    //   username: 'jeansey',
-    //   first_name: 'Jeannie',
-    //   last_name: 'Y' } 'currentUser from req in new games post route'
-    // { websites: [ 'asffadsdg312' ],
-    //   name: 'jeansey',
-    //   password: 'password1',
-    //   gametype: 'Points',
-    //   start: '2016-01-01T06:00:00.000Z',
-    //   end: '2016-12-31T06:00:00.000Z' } 'req.body.data from new games post route'
-    //
-    // [ anonymous { id: 25, game_id: null, player_id: 5, final_ranking: null } ] 'gamePlayer info after insert into game_player table'
-    // [ anonymous { id: 13, game_id: null, domain: 'robertsite' } ] 'data from the last knex call'
-
-
 
     //--make entry into games table
     knex( 'games' ).insert( {
@@ -141,7 +125,7 @@ router.get('/:game_id', function(req, res) {
                 var newPersonObj = {};
                 var playerID = person.id;
                 newPersonObj.username = person.username;
-                newPersonObj.id = playerID;
+                newPersonObj.player_id = playerID;
                 newPersonObj.stats = [];
 
                 //get all the websites and times for our player tracked by this game
@@ -156,7 +140,10 @@ router.get('/:game_id', function(req, res) {
 
         Promise.all(promiseArray).then(function(data) {
             console.log(data);
-            res.send(data)
+            var gameObj = {};
+            gameObj.game_id = gameId;
+            gameObj.game_stats = data;
+            res.send(gameObj);
         })
     })
 } );

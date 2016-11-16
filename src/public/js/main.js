@@ -42,6 +42,34 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/joingame', {
+        templateUrl: 'partials/joingame.html',
+        controller: 'joinGameController',
+        resolve: {
+          currentUser: function($http, $location) {
+            if (localStorage.getItem('token')) {
+              console.log(localStorage.getItem('token'),
+                'token from config resolve');
+              const config = {
+                headers: {
+                  'Authorization': 'Bearer ' + localStorage.getItem(
+                    'token')
+                }
+              };
+              return $http.get('/verify', config)
+                .then(function(response) {
+                  return response.data;
+                })
+
+              .catch(function(error) {
+                console.log(error, 'resolve error');
+                localStorage.clear();
+                return null;
+              });
+            }
+          }
+        }
+    })
     .when('/newgame', {
       templateUrl: 'partials/newgame.html',
       controller: 'newgameController',
