@@ -5,6 +5,7 @@ const router = express.Router( {
 const environment = process.env.NODE_ENV || "development";
 const knexConfig = require( '../../../knexfile' )[ environment ];
 const knex = require( 'knex' )( knexConfig );
+const bcrypt = require('bcrypt');
 
 //=-=-=-==-=-=-=- ROUTE PREFIX -- '/users/:user_id/games/' =-=-=-=-==---
 
@@ -12,27 +13,30 @@ const knex = require( 'knex' )( knexConfig );
 
 router.post( '/new', function( req, res ) {
     //create a new game, designate creator as the admin
-    console.log( req.body, 'req.body' );
-    var reqBody = req.body;
-    var gameWebsites = req.body.websites;
-    console.log( gameWebsites, 'gameWebsites array from request' );
+    var hashPass = bcrypt.hashSync(req.body.data.password, 4);
+    var gameWebsites = req.body.data.websites;
+    console.log(gameWebsites, 'gameWebsites from req');
+
     //--make entry into games table
     knex( 'games' ).insert( {
-            name: req.body.name,
+        id: 34,
+            name: req.body.data.name,
+            game_password: hashPass,
             admin_user_id: req.params.user_id,
-            active_game: true,
-            start_time: req.body.start_time,
-            end_time: req.body.end_time,
-            game_type: req.body.game_type,
+            active: true,
+            start_time: req.body.data.start,
+            end_time: req.body.data.end,
+            game_type: req.body.data.gametype,
             first_place: null,
             second_place: null,
             third_place: null
+
         }, '*' )
         //make entry into game_player table
         .then( function( thisGame ) {
             console.log( thisGame, 'thisGame data after insert into games table' );
             knex( 'game_player' ).insert( {
-                    game_id: thisGame.id,
+                    game_id: 9,
                     player_id: req.body.user_id,
                     final_ranking: null
                 }, '*' )
@@ -42,7 +46,8 @@ router.post( '/new', function( req, res ) {
                     //--create entries into game_websites for each designated URL
                     gameWebsites.forEach( function( site ) {
                         knex( 'game_website' ).insert( {
-                            game_id: gamePlayer.id,
+                            id: 4,
+                            game_id: gamePlayer.game_id,
                             domain: site
                         }, '*' ).then( function( data ) {
                             console.log( data, 'data from the last knex call' );
@@ -157,13 +162,6 @@ router.get('/:game_id', function( req, res ) {
 
 
 //need router.delete('/:game_id', function(req,res){ })
-
-
-
-
-// i have user id and domain name
-// insert time value into (( total_time column in  player_game_website table ))
-
 
 
 

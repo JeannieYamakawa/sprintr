@@ -124,10 +124,12 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
 
 
 
-app.controller( 'newgameController', [ '$scope', '$http', '$location', function($scope, $http, $location ) {
+app.controller( 'newgameController', [ '$scope', '$http', '$location', 'currentUser', function($scope, $http, $location, currentUser ) {
     $scope.view = {};
     $scope.view.newgameFormInfo = {};
     $scope.view.newgameFormInfo.websites = [];
+    $scope.view.newgameFormInfo.currentUser = currentUser;
+    console.log($scope.view.newgameFormInfo.currentUser, "scope.currentUser");
 
 
     $scope.view.newWebsite = function( site ) {
@@ -165,9 +167,10 @@ app.controller( 'newgameController', [ '$scope', '$http', '$location', function(
     $scope.submitNewgameForm = function(event,gameInfo) {
         event.preventDefault();
         console.log(gameInfo, 'gameInfo inside submitNewgameForm funct');
-        // console.log(event, 'event from submit new game form funct');
 
-        // $http.get('/')
+        $http.post('/users/'+$scope.view.newgameFormInfo.currentUser.id+'/games/new', {data: gameInfo}).then(function(){
+            console.log('http post dot then');
+        })
         }
 
 } ] )
