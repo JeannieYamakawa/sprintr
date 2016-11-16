@@ -100,11 +100,11 @@ ul {
   padding: 2%;
 }
 
-.smallContainer h3 {
+.smallContainer h2 {
   text-align: center;
 }
 
-.ui.form button {
+.ui.primary.button, .ui.red.button {
   display: flex;
   margin: auto;
 }
@@ -148,6 +148,7 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
   background: #fff;
   border-radius: 5px;
   margin-right: 0.25%;
+  cursor: pointer;
 }
 
 .dashboardCard:hover {
@@ -173,4 +174,20 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
 .dashboardCard ul li img {
   margin-right: 3%;
   margin-bottom: 2%;
+}
+
+.radioButtonFlex {
+  display: flex;
+}
+
+.radioButtonFlex p {
+  padding-left: 2%;
+}
+
+#endDate {
+  margin-top: 1em;
+}
+
+.newgameButtonsDiv {
+  display: flex;
 }
