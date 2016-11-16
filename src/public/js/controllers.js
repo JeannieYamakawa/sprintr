@@ -114,10 +114,27 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
 ] );
 
 
+// user visits join game page.
+// join game view page is rendered with joinGame controller, including currentUser in scope.
+// user enters game id in form and user clicks 'submit' on join game page.
+// a function inside the joinGame controller runs and sends the information to the post '/:game_id/join' route. this joins the game+user in the database and then routes back to the .then function in the controller.
+// the .then function includes a redirect to the dashboard for that user. Dashboard should include that game for that user.
 
 
+app.controller('joinGameController', ['$scope', '$http', '$location', 'currentUser', function($scope,$http,$location,currentUser){
+    $scope.currentUser = currentUser;
+    console.log($scope.currentUser.id, 'scope.currentUser in joinGameController');
 
+    $scope.form = {};
+    $scope.form.gameName = '';
+    $scope.form.gamePassword = '';
 
+    $scope.submitJoinClicked = function(event, formInfo){
+        event.preventDefault();
+        console.log(formInfo);
+    }
+
+}])
 
 
 

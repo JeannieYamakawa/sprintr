@@ -40,7 +40,8 @@
                 <button ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
             </li>
             <li >
-                <input type="text" name="website" ng-model="website.name" placeholder="Website" >
+                <input ng-show='view.newgameFormInfo.websites.length==0' type="text" name="website" ng-model="website.name" placeholder="Website" required >
+                <input ng-hide='view.newgameFormInfo.websites.length==0' type="text" name="website" ng-model="website.name" placeholder="Website" >
                 <button  class="ui button" type="submit" ng-click="view.newWebsite($event,website.name)">Add Website</button>
             </li>
         </ul>
