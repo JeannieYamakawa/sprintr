@@ -6,7 +6,7 @@
 
 
         <div class="field" ng-class="{'has-error': form.gameId.$touched && form.gameId.$invalid, 'has-success': form.gameId.$touched && form.gameId.$valid}">
-            <input type="text" name="gameId" ng-model="formInfo.gameId" placeholder="Game Name" required>
+            <input type="text" name="gameId" ng-model="formInfo.gameId" placeholder="Game Id Code" required>
             <div class="error" ng-messages="form.gameId.$error" ng-show="form.gameId.$touched">
                 <div ng-messages-include="messages.html"></div>
             </div>
