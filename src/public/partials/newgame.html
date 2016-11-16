@@ -1,5 +1,5 @@
 <h2>New Game</h2>
-<form class="ui form" action="#" name="newgameForm" ng-submit="newgameForm.$valid && submitNewgameForm($event)">
+<form class="ui form" action="#" name="newgameForm" ng-submit="newgameForm.$valid && submitNewgameForm($event, view.newgameFormInfo)">
 
     <div class="field" ng-class="{'has-error': newgameForm.name.$touched && newgameForm.name.$invalid, 'has-success': newgameForm.name.$touched && newgameForm.name.$valid}">
         <label>Name</label>
@@ -26,13 +26,24 @@
 
     <div class="field">
         <label>Websites</label>
-        <button class="ui button" type="submit" ng-click="view.newWebsite($event)">Add</button>
         <ul>
-          <li ng-repeat="website in view.newgameFormInfo.websites">
-            <input type="text" name="website" ng-model="website.name" placeholder="Website" required>
-          </li>
+            <li ng-repeat='site in view.newgameFormInfo.websites'>
+                <h6 ng-show='!editShow'>{{ site }}</h6>
+                <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
+
+                <button ng-click ='removeWebsite()'>Remove Site</button>
+                <button ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
+                <button ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
+            </li>
+            <li >
+                <input type="text" name="website" ng-model="website.name" placeholder="Website" >
+                <button  class="ui button" type="submit" ng-click="view.newWebsite(website.name)">Add Website</button>
+            </li>
         </ul>
     </div>
+
+
+
 
     <div class="field">
         <label>Reward</label>
@@ -49,6 +60,6 @@
         <input type="date" name="end" ng-model="view.newgameFormInfo.end"/>
     </div>
 
-    <button class="ui primary button" type="submit">Submit</button>
+    <input class="ui primary button" type="submit" value="Submit">
     <button class="ui red button" type="submit">Cancel</button>
 </form>
