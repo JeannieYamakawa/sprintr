@@ -1,7 +1,9 @@
+
 <div class="bigContainer">
   <div class="smallContainer">
-    <h2>New Game</h2>
-    <form class="ui form" action="#" name="newgameForm" ng-submit="newgameForm.$valid && submitNewgameForm($event)">
+<h2>New Game</h2>
+<form class="ui form" action="#" name="newgameForm" ng-submit="newgameForm.$valid && submitNewgameForm($event, view.newgameFormInfo)">
+
 
         <div class="field" ng-class="{'has-error': newgameForm.name.$touched && newgameForm.name.$invalid, 'has-success': newgameForm.name.$touched && newgameForm.name.$valid}">
             <input type="text" name="name" ng-model="view.newgameFormInfo.name" placeholder="Name" ng-minlength="2" required>
@@ -14,6 +16,7 @@
             <input type="password" name="password" ng-model="view.newgameFormInfo.password" placeholder="Password" required>
         </div>
 
+
         <!-- <div class="field">
             <label>Players</label>
             <button class="ui button" type="submit" ng-click="view.newPlayer($event)">Add</button>
@@ -24,15 +27,28 @@
             </ul>
         </div> -->
 
-        <div class="field">
-            <h5>Websites</h5>
-            <button class="ui button websitesButton" type="submit" ng-click="view.newWebsite($event)">Add</button>
-            <ul>
-              <li ng-repeat="website in view.newgameFormInfo.websites">
-                <input type="text" name="website" ng-model="website.name" placeholder="Website" required>
-              </li>
-            </ul>
-        </div>
+
+    <div class="field">
+        <label>Websites</label>
+        <ul>
+            <li ng-repeat='site in view.newgameFormInfo.websites'>
+                <h6 ng-show='!editShow'>{{ site }}</h6>
+                <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
+
+                <button ng-click ='removeWebsite()'>Remove Site</button>
+                <button ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
+                <button ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
+            </li>
+            <li >
+                <input type="text" name="website" ng-model="website.name" placeholder="Website" >
+                <button  class="ui button" type="submit" ng-click="view.newWebsite(website.name)">Add Website</button>
+            </li>
+        </ul>
+    </div>
+
+
+
+
 
         <div class="field">
             <h5>Reward</h5>
