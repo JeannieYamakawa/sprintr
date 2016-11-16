@@ -55,15 +55,5 @@ router.post('/log', function(req, res){
   }
 });
 
-//fetch URL and time data for user
-//--create games array that will contian user score for each game they belong to
-//--check 'games_table' and fetch all the games this user belongs to
-//--for each game, push {game_id} into games array and fetch game_website entry
-//--for each game_website, fetch player_game_website
-//--attach URL and player score to game object
-router.post('/get', function(req, res){
-
-});
-
 
 module.exports = router;

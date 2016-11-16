@@ -18,7 +18,25 @@ exports.seed = function( knex, Promise ) {
                 } ),
                 knex( 'player_game_website' ).insert( {
                     id: 3,
+                    game_website_id: '3',
+                    player_id: '1',
+                    total_time: 6000000
+                } ),
+                knex( 'player_game_website' ).insert( {
+                    id: 4,
                     game_website_id: '1',
+                    player_id: '2',
+                    total_time: 12000000
+                } ),
+                knex( 'player_game_website' ).insert( {
+                    id: 5,
+                    game_website_id: '2',
+                    player_id: '2',
+                    total_time: 12000000
+                } ),
+                knex( 'player_game_website' ).insert( {
+                    id: 6,
+                    game_website_id: '3',
                     player_id: '2',
                     total_time: 12000000
                 } )
