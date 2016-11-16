@@ -105,7 +105,6 @@ app.config(function($routeProvider, $locationProvider) {
       resolve: {
           currentUser: function($http, $location) {
             if (localStorage.getItem('token')) {
-                'token from config resolve');
               const config = {
                 headers: {
                   'Authorization': 'Bearer ' + localStorage.getItem(

@@ -1,6 +1,6 @@
 app.controller('dashboardController', ['$scope', '$http', '$location',
-    '$window', 'currentUser', '$routeParams',
-    function($scope, $http, $location, $window, currentUser, $routeParams) {
+    '$window', 'currentUser', '$routeParams', 'currentGame',
+    function($scope, $http, $location, $window, currentUser, $routeParams, currentGame) {
 
         $scope.view = {};
         $scope.currentUser = currentUser;
@@ -87,12 +87,9 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
         }
 
         $scope.singleGameClicked = function(gameId) {
-            console.log(gameId, 'gameId from single clicked game funct');
-            $http.get('users/' + $scope.currentUser.id + '/games/' + gameId).then(function(response) {
-                // console.log( response, 'response from singleGameClicked function in dash controller' );
-                //this will be set to go to the view single game leaderboard page.
-                // $location.path('/')
-            })
+            currentGame.setSelectedGame(gameId);
+            console.log(currentGame.getSelectedGame());
+            $location.path('/leaderboard');
         }
     }
 ]);
