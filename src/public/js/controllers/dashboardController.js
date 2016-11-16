@@ -31,7 +31,10 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                       game.player_stats = [];
                         gamesDetails.forEach(function(gameDetails) {
                             if (parseInt(game.game_id) === parseInt(gameDetails.game_id)) {
-                                game.player_stats.push(gameDetails);
+                                var statsArray = gameDetails.game_stats;
+                                statsArray.forEach(function(game_stat){
+                                  game.player_stats.push(game_stat);
+                                })
                             }
                         });
                     })
