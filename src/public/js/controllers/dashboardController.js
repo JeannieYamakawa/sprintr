@@ -57,14 +57,6 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                         });
 
                         //sort the players according to total total time
-                        // for (var i = 1; i < playerTotalTimes.length; i++) {
-                        //     var min = playerTotalTimes[i - 1];
-                        //     for (var j = 1; j < playerTotalTimes.length; j++) {
-                        //         if (min.total_time > playerTotalTimes[j]) {
-                        //             min = playerTotalTimes[i];
-                        //         }
-                        //     }
-                        // }
                          for (var i = playerTotalTimes.length - 1; i >= 0; i--){
 
                            for(var j = 1; j <= i; j++){
@@ -80,6 +72,8 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                          game.first_place = playerTotalTimes[0];
                          game.second_place = playerTotalTimes[1];
                          game.third_place = playerTotalTimes[2];
+
+                         console.log(game);
 
 
                     })
