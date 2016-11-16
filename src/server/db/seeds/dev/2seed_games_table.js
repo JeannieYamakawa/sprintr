@@ -12,8 +12,8 @@ exports.seed = function( knex, Promise ) {
         .then( function() {
             return Promise.all( [
                 // Inserts seed entries
+                knex.raw('ALTER SEQUENCE games_id_seq RESTART WITH 1'),
                 knex( 'games' ).insert( {
-                    id: 1,
                     admin_user_id: '1',
                     active: true,
                     start_time: startdate,
@@ -23,7 +23,6 @@ exports.seed = function( knex, Promise ) {
                     game_password: passwordHash
                 } ),
                 knex( 'games' ).insert( {
-                    id: 2,
                     admin_user_id: '1',
                     active: true,
                     start_time: startdate,
@@ -33,7 +32,6 @@ exports.seed = function( knex, Promise ) {
                     game_password: passwordHash
                 } ),
                 knex( 'games' ).insert( {
-                    id: 3,
                     admin_user_id: '1',
                     active: true,
                     start_time: startdate,

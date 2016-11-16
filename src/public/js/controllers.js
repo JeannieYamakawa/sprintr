@@ -110,49 +110,65 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
         })
     }
 
-
-
+    $scope.singleGameClicked = function(gameId) {
+      console.log(gameId, 'gameId from single clicked game funct');
+      $http.get('users/' + $scope.currentUser.id + '/games/' + gameId).then(
+        function(response) {
+          console.log(response,
+            'response from singleGameClicked function in dash controller'
+          );
+        })
+    }
   }
 ]);
 
-app.controller('newgameController', ['$scope', '$http', '$location', function(
-  $scope,
-  $http, $location) {
-  $scope.view = {};
-  $scope.view.newgameFormInfo = {
-    name: "",
-    password: "",
-    websites: [],
-    gametype: ""
-  }
 
-  // $scope.view.newPlayer = function(event) {
-  //   event.preventDefault();
-  //   var player = {
-  //     name: ''
-  //   }
-  //   $scope.view.newgameFormInfo.players.push(player)
-  // }
+app.controller('newgameController', ['$scope', '$http', '$location',
+  function($scope, $http, $location) {
+    $scope.view = {};
+    $scope.view.newgameFormInfo = {};
+    $scope.view.newgameFormInfo.websites = [];
 
-  $scope.view.newWebsite = function(event) {
-    event.preventDefault();
-    var website = {
-      name: ''
+
+    $scope.view.newWebsite = function(site) {
+      if (site) {
+        if ($scope.view.newgameFormInfo.websites.indexOf(site) === -1) {
+          $scope.view.newgameFormInfo.websites.push(site)
+          $scope.website.name = ''
+          console.log($scope.view.newgameFormInfo.websites,
+            '$scope.view.newgameFormInfo.websites');
+        }
+      }
     }
-    $scope.view.newgameFormInfo.websites.push(website)
-  }
-
-  $scope.view.removeWebsite = function(event) {
-    event.preventDefault();
-    var website = {
-      name: ''
+    $scope.removeWebsite = function() {
+      var indexInArray = $scope.view.newgameFormInfo.websites.indexOf(
+        this.site);
+      $scope.view.newgameFormInfo.websites.splice(indexInArray, 1)
     }
-    $scope.view.newgameFormInfo.websites.push(website)
-  }
 
-  $scope.submitNewgameForm = function(event) {
-    event.preventDefault();
-    console.log($scope.view.newgameFormInfo);
-  }
+    $scope.editWebsite = function() {
+      this.editShow = false;
+      this.editShow = !this.editShow;
+      $scope.editIndex = $scope.view.newgameFormInfo.websites.indexOf(
+        this.site);
+      console.log($scope.editIndex);
+      console.log(this, 'this');
+    }
 
-}])
+    $scope.updateSite = function(siteItself) {
+      let siteIndex = this.$index;
+      this.site = siteItself;
+      $scope.view.newgameFormInfo.websites[siteIndex] = siteItself;
+      console.log($scope.view.newgameFormInfo.websites,
+        'updated websites');
+    }
+
+    $scope.submitNewgameForm = function(event, gameInfo) {
+      event.preventDefault();
+      console.log(gameInfo, 'gameInfo inside submitNewgameForm funct');
+      // console.log(event, 'event from submit new game form funct');
+
+      // $http.get('/')
+    }
+  }
+]);
