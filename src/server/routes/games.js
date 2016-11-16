@@ -141,7 +141,7 @@ router.get('/:game_id', function(req, res) {
                 var newPersonObj = {};
                 var playerID = person.id;
                 newPersonObj.username = person.username;
-                newPersonObj.id = playerID;
+                newPersonObj.player_id = playerID;
                 newPersonObj.stats = [];
 
                 //get all the websites and times for our player tracked by this game
@@ -156,7 +156,10 @@ router.get('/:game_id', function(req, res) {
 
         Promise.all(promiseArray).then(function(data) {
             console.log(data);
-            res.send(data)
+            var gameObj = {};
+            gameObj.game_id = gameId;
+            gameObj.game_stats = data;
+            res.send(gameObj);
         })
     })
 } );
