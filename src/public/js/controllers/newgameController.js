@@ -46,7 +46,10 @@ app.controller('newgameController', ['$scope', '$http', '$location',
       console.log($scope.view.newgameFormInfo.websites,
         'updated websites');
     }
-
+    $scope.cancelClicked = function(event){
+        event.preventDefault();
+        $location.path('/dashboard')
+    }
 
     $scope.currentUser = currentUser;
     console.log($scope.currentUser.id,
