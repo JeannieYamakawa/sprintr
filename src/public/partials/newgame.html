@@ -1,54 +1,77 @@
+
+<div class="bigContainer">
+  <div class="smallContainer">
 <h2>New Game</h2>
-<form class="ui form" action="#" name="newgameForm" ng-submit="newgameForm.$valid && submitNewgameForm($event)">
+<form class="ui form" action="#" name="newgameForm" ng-submit="newgameForm.$valid && submitNewgameForm($event, view.newgameFormInfo)">
 
-    <div class="field" ng-class="{'has-error': newgameForm.name.$touched && newgameForm.name.$invalid, 'has-success': newgameForm.name.$touched && newgameForm.name.$valid}">
-        <label>Name</label>
-        <input type="text" name="name" ng-model="view.newgameFormInfo.name" placeholder="Name" ng-minlength="2" required>
-        <div class="error" ng-messages="newgameForm.name.$error" ng-show="newgameForm.name.$touched">
-            <div ng-messages-include="messages.html"></div>
+
+        <div class="field" ng-class="{'has-error': newgameForm.name.$touched && newgameForm.name.$invalid, 'has-success': newgameForm.name.$touched && newgameForm.name.$valid}">
+            <input type="text" name="name" ng-model="view.newgameFormInfo.name" placeholder="Name" ng-minlength="2" required>
+            <div class="error" ng-messages="newgameForm.name.$error" ng-show="newgameForm.name.$touched">
+                <div ng-messages-include="messages.html"></div>
+            </div>
         </div>
-    </div>
 
-    <div class="field">
-        <label>Game Password</label>
-        <input type="password" name="password" ng-model="view.newgameFormInfo.password" placeholder="Password" required>
-    </div>
+        <div class="field">
+            <input type="password" name="password" ng-model="view.newgameFormInfo.password" placeholder="Password" required>
+        </div>
 
-    <!-- <div class="field">
-        <label>Players</label>
-        <button class="ui button" type="submit" ng-click="view.newPlayer($event)">Add</button>
-        <ul>
-          <li ng-repeat="player in view.newgameFormInfo.players">
-            <input type="text" name="player" ng-model="player.name" placeholder="Player">
-          </li>
-        </ul>
-    </div> -->
+
+        <!-- <div class="field">
+            <label>Players</label>
+            <button class="ui button" type="submit" ng-click="view.newPlayer($event)">Add</button>
+            <ul>
+              <li ng-repeat="player in view.newgameFormInfo.players">
+                <input type="text" name="player" ng-model="player.name" placeholder="Player">
+              </li>
+            </ul>
+        </div> -->
+
 
     <div class="field">
         <label>Websites</label>
-        <button class="ui button" type="submit" ng-click="view.newWebsite($event)">Add</button>
         <ul>
-          <li ng-repeat="website in view.newgameFormInfo.websites">
-            <input type="text" name="website" ng-model="website.name" placeholder="Website" required>
-          </li>
+            <li ng-repeat='site in view.newgameFormInfo.websites'>
+                <h6 ng-show='!editShow'>{{ site }}</h6>
+                <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
+
+                <button ng-click ='removeWebsite()'>Remove Site</button>
+                <button ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
+                <button ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
+            </li>
+            <li >
+                <input type="text" name="website" ng-model="website.name" placeholder="Website" >
+                <button  class="ui button" type="submit" ng-click="view.newWebsite(website.name)">Add Website</button>
+            </li>
         </ul>
     </div>
 
-    <div class="field">
-        <label>Reward</label>
-        <input type="radio" name="reward" value="Points" ng-model="view.newgameFormInfo.gametype"/>
-        <label>Points</label>
-        <input type="radio" name="reward" value="Cash" ng-model="view.newgameFormInfo.gametype"/>
-        <label>Cash</label>
-    </div>
 
-    <div class="field">
-        <label>Start</label>
-        <input type="date" name="start" ng-model="view.newgameFormInfo.start"/>
-        <label>End</label>
-        <input type="date" name="end" ng-model="view.newgameFormInfo.end"/>
-    </div>
 
-    <button class="ui primary button" type="submit">Submit</button>
-    <button class="ui red button" type="submit">Cancel</button>
-</form>
+
+
+        <div class="field">
+            <h5>Reward</h5>
+            <div class="radioButtonFlex">
+              <input type="radio" name="reward" value="Points" ng-model="view.newgameFormInfo.gametype"/>
+              <p>Points</p>
+            </div>
+            <div class="radioButtonFlex">
+              <input type="radio" name="reward" value="Cash" ng-model="view.newgameFormInfo.gametype"/>
+              <p>Cash</p>
+          </div>
+        </div>
+
+        <div class="field dateNewgame">
+            <p>Start</p>
+            <input type="date" name="start" ng-model="view.newgameFormInfo.start"/>
+            <p id="endDate">End</p>
+            <input type="date" name="end" ng-model="view.newgameFormInfo.end"/>
+        </div>
+        <div class="newgameButtonsDiv">
+          <button class="ui primary button" type="submit">Submit</button>
+          <button class="ui red button" type="submit">Cancel</button>
+        </div>
+    </form>
+  </div>
+</div>
