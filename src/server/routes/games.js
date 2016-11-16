@@ -95,57 +95,41 @@ router.get('/', function(req, res) {
 
 
 // fetch details about a single game
-// game name (games table--name column)
-// games websites (game_website table--domain column)
-//each person is an object in the array below
-
-//playerData:
-// [ {
-//  username: tim,
-//  id: 1,
-//  stats: [{ domain: www.whatever.com,
-//        total_time: 203802983
-//        },
-//          { domain: www.whatever.com,
-//        total_time: 203802983
-//        }]
-//
-// } ]
-
-
 router.get('/:game_id', function(req, res) {
     let gameId = req.params.game_id;
     let userId = req.params.user_id;
-    let players = [];
+    let data = [];
+    var promiseArray = [];
     //get all players that belong to the game
     knex('game_player').where('game_id', gameId).innerJoin('players', 'game_player.player_id', 'players.id').then(function(players) {
 
         //loop through each player, build a user object and assign their username and ID
         players.forEach(function(person) {
+
+          promiseArray.push(new Promise(function(resolve, reject){
+
             var newPersonObj = {};
             var playerID = person.id;
             newPersonObj.username = person.username;
             newPersonObj.id = playerID;
             newPersonObj.stats = [];
 
-            // get the players times for all websites that are tracked by the game
-            knex('game_website').where('game_id', gameId).innerJoin('player_game_website', 'game_website.id', 'player_game_website.game_website_id').then(function(urls) {
-                urls.forEach(function(url) {
-                    let newUrlObj = {};
-                    newUrlObj.domain = url.domain;
-                    newUrlObj.total_time = url.total_time;
-                    newPersonObj.stats.push(newUrlObj);
-
-                })
-            })
+            //get all the websites and times for our player tracked by this game
+            knex('player_game_website').where('player_id', playerID).innerJoin('game_website', 'player_game_website.game_website_id', 'game_website.id').then(function(urls){
+              urls.forEach(function(url){
+                newPersonObj.stats.push(url);
+              });
+              resolve(newPersonObj)
+            });
+          }));
         });
-        res.send(players)
+        Promise.all(promiseArray).then(function(data){
+          console.log(data);
+          res.send(data)
+        })
     })
 });
 
-
 //need router.delete('/:game_id', function(req,res){ })
-
-
 
 module.exports = router;
