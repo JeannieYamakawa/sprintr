@@ -14,12 +14,29 @@ const bcrypt = require('bcrypt');
 router.post( '/new', function( req, res ) {
     //create a new game, designate creator as the admin
     var hashPass = bcrypt.hashSync(req.body.data.password, 4);
+    console.log(req.body.currentUser, 'currentUser from req in new games post route');
+    console.log(req.body.data, 'req.body.data from new games post route');
     var gameWebsites = req.body.data.websites;
-    console.log(gameWebsites, 'gameWebsites from req');
+
+    //
+    // { id: 2,
+    //   username: 'jeansey',
+    //   first_name: 'Jeannie',
+    //   last_name: 'Y' } 'currentUser from req in new games post route'
+    // { websites: [ 'asffadsdg312' ],
+    //   name: 'jeansey',
+    //   password: 'password1',
+    //   gametype: 'Points',
+    //   start: '2016-01-01T06:00:00.000Z',
+    //   end: '2016-12-31T06:00:00.000Z' } 'req.body.data from new games post route'
+    //
+    // [ anonymous { id: 25, game_id: null, player_id: 5, final_ranking: null } ] 'gamePlayer info after insert into game_player table'
+    // [ anonymous { id: 13, game_id: null, domain: 'robertsite' } ] 'data from the last knex call'
+
+
 
     //--make entry into games table
     knex( 'games' ).insert( {
-        id: 34,
             name: req.body.data.name,
             game_password: hashPass,
             admin_user_id: req.params.user_id,
@@ -31,23 +48,22 @@ router.post( '/new', function( req, res ) {
             second_place: null,
             third_place: null
 
-        }, '*' )
+        },'*')
         //make entry into game_player table
-        .then( function( thisGame ) {
-            console.log( thisGame, 'thisGame data after insert into games table' );
+        .then( function( gameData ) {
+            console.log(gameData, 'gameData after insert into games table' );
             knex( 'game_player' ).insert( {
-                    game_id: 9,
-                    player_id: req.body.user_id,
-                    final_ranking: null
-                }, '*' )
+                    player_id: req.body.currentUser.id,
+                    final_ranking: null,
+                    game_id: gameData[0].id
+                }, '*')
                 //make entry for each website into game_website table
                 .then( function( gamePlayer ) {
                     console.log( gamePlayer, 'gamePlayer info after insert into game_player table' );
                     //--create entries into game_websites for each designated URL
                     gameWebsites.forEach( function( site ) {
                         knex( 'game_website' ).insert( {
-                            id: 4,
-                            game_id: gamePlayer.game_id,
+                            game_id: gamePlayer[0].game_id,
                             domain: site
                         }, '*' ).then( function( data ) {
                             console.log( data, 'data from the last knex call' );
@@ -102,6 +118,7 @@ router.post('/:game_id/join', function(req, res) {
 router.get('/', function(req, res) {
     let userId = req.params.user_id;
     knex('game_player').where('player_id', userId).innerJoin('games', 'game_player.game_id', 'games.id').then(function(games) {
+        console.log(games,'games from dashboard route');
         res.json(games);
     })
 });
@@ -153,7 +170,6 @@ router.patch('/:game_id', function(req, res) {
 
 
 router.delete('/:game_id', function(req, res) {
->>>>>>> ce27e264a377a8de0645d141ddb64616cf16d210
 
 });
 

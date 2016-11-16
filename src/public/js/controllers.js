@@ -80,6 +80,7 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
 
         $scope.view = {};
         $scope.currentUser = currentUser;
+        console.log($scope.currentUser, 'scope.currentUser');
 
         // only render this part of the page if the user is using a valid token
         if ( $scope.currentUser ) {
@@ -89,11 +90,7 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
                 response ) {
                 console.log( response.data,
                     'response.data from controller dashboard after knex calls' )
-                $scope.view.player = response.data.user;
-                console.log( $scope.view.player );
-                $scope.view.games = response.data.games;
-                console.log( $scope.view.games );
-
+                $scope.view.games = response.data;
             } );
 
         } else {
@@ -104,6 +101,8 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
             console.log( gameId, 'gameId from single clicked game funct' );
             $http.get( 'users/' + $scope.currentUser.id + '/games/' + gameId ).then( function( response ) {
                 console.log( response, 'response from singleGameClicked function in dash controller' );
+                //this will be set to go to the view single game leaderboard page.
+                // $location.path('/')
             } )
         }
 
@@ -124,15 +123,15 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location',
 
 
 
-app.controller( 'newgameController', [ '$scope', '$http', '$location', 'currentUser', function($scope, $http, $location, currentUser ) {
+app.controller( 'newgameController', [ '$scope', '$http', '$location', 'currentUser', function($scope, $http, $location, currentUser) {
     $scope.view = {};
     $scope.view.newgameFormInfo = {};
     $scope.view.newgameFormInfo.websites = [];
-    $scope.view.newgameFormInfo.currentUser = currentUser;
-    console.log($scope.view.newgameFormInfo.currentUser, "scope.currentUser");
 
 
-    $scope.view.newWebsite = function( site ) {
+    $scope.view.newWebsite = function( event, site ) {
+        event.preventDefault()
+        console.log(site, 'site.....');
         if(site){
         if($scope.view.newgameFormInfo.websites.indexOf(site)===-1){
         $scope.view.newgameFormInfo.websites.push( site )
@@ -162,15 +161,20 @@ app.controller( 'newgameController', [ '$scope', '$http', '$location', 'currentU
     }
 
 
-
+    $scope.currentUser = currentUser;
+    console.log($scope.currentUser.id, 'scope.currentUser in newGameController');
 
     $scope.submitNewgameForm = function(event,gameInfo) {
         event.preventDefault();
         console.log(gameInfo, 'gameInfo inside submitNewgameForm funct');
 
-        $http.post('/users/'+$scope.view.newgameFormInfo.currentUser.id+'/games/new', {data: gameInfo}).then(function(){
-            console.log('http post dot then');
+        $http.post('/users/' +  $scope.currentUser.id + '/games/new', {data: gameInfo, currentUser: $scope.currentUser}).then(function(){
+            console.log('dot then function after post new game route working');
+            $location.path('/dashboard')
         })
+
+
+
         }
 
 } ] )

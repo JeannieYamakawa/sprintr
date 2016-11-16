@@ -1,16 +1,16 @@
-<h2 class="dashboardWelcome">Welcome, {{view.player.first_name}}!</h2>
+<h2 class="dashboardWelcome">Welcome, {{currentUser.username}}!</h2>
 
 <div class="ui grid container">
   <div class="four column centered row">
-    <div class="column dashboardCard" ng-repeat="info in view.games">
-      <h3>{{info.name}}</h3>
+    <div class="column dashboardCard" ng-repeat="game in view.games">
+      <h3>{{game.name}}</h3>
       <ul>
-        <li><img class="dashboardRankingIcon" src="../images/gold.jpg" /> {{ info.first_place }}</li>
-        <li><img class="dashboardRankingIcon" src="../images/silver.jpg" /> {{ info.second_place }} </li>
-        <li><img class="dashboardRankingIcon" src="../images/bronze.jpg" /> {{ info.third_place }} </li>
+        <li><img class="dashboardRankingIcon" src="../images/gold.jpg" /> {{ game.first_place }}</li>
+        <li><img class="dashboardRankingIcon" src="../images/silver.jpg" /> {{ game.second_place }} </li>
+        <li><img class="dashboardRankingIcon" src="../images/bronze.jpg" /> {{ game.third_place }} </li>
       </ul>
-      <p>Ends: {{ info.end_time | date: 'MMM d, y' }}</p>
-      <p>Game Number: {{ info.game_id }}</p>
+      <p>Ends: {{ game.end_time | date: 'MMM d, y' }}</p>
+      <p>Game Number: {{ game.game_id }}</p>
     </div>
 
     <!-- <div class="column dashboardCard">
