@@ -87,16 +87,10 @@ router.post('/:game_id/join', function(req, res) {
 
             Promise.all(promiseArray).then(function() {
                 res.send("success!");
-            })
-
-        })
-    })
-
-    //--register player in game_player table
-    //--fetch id for game_websites (for tracking this players score for this game)
-    //--create entry in player_game_website for each ID above
+            });
+        });
+    });
 });
-
 
 
 //fetch information about all games a player is involved with

@@ -1,10 +1,7 @@
-<h3>Dashboard</h3>
-
-<div ng-show="view.currentUser">
-    <p>{{view.currentUser}}</p>
-    <p>dashboard stats</p>
-
-
-    <button ng-click="logout()">Logout</button>
-
+<div class="content-wrapper">
+  <div ng-show="view.currentUser">
+    <p>Hi, {{view.currentUser.first_name}}</p>
+    <p><i>Logging your current browsing session</i></p>
+    <button class="ui button" ng-click="logout()">Logout</button>
+  </div>
 </div>
