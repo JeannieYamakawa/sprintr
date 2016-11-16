@@ -131,11 +131,13 @@ app.controller( 'newgameController', [ '$scope', '$http', '$location', function(
 
 
     $scope.view.newWebsite = function( site ) {
+        if(site){
         if($scope.view.newgameFormInfo.websites.indexOf(site)===-1){
         $scope.view.newgameFormInfo.websites.push( site )
         $scope.website.name = ''
         console.log($scope.view.newgameFormInfo.websites, '$scope.view.newgameFormInfo.websites');
         }
+    }
     }
     $scope.removeWebsite = function(){
         var indexInArray = $scope.view.newgameFormInfo.websites.indexOf(this.site);
