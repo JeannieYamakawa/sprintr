@@ -37,6 +37,7 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
                     })
                     console.log(gamesList);
                     $scope.view.games = gamesList;
+                    $scope.$digest();
                 });
 
             });
