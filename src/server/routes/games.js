@@ -102,22 +102,8 @@ router.post('/:game_id/join', function(req, res) {
 //fetch information about all games a player is involved with
 router.get('/', function(req, res) {
     let userId = req.params.user_id;
-    let player = {};
-    knex('players').where('id', userId).first().then(function(data) {
-        // console.log(data, 'data from first knex call');
-        player.username = data.username;
-        player.first_name = data.first_name;
-        player.id = data.id;
-        // console.log(player, 'player');
-
-    });
-
-    knex('game_player').where('game_player.player_id', userId).innerJoin('games', 'game_player.game_id', 'games.id').then(function(data) {
-        // console.log(data, 'data from second call');
-        res.json({
-            user: player,
-            games: data
-        })
+    knex('game_player').where('player_id', userId).innerJoin('games', 'game_player.game_id', 'games.id').then(function(games) {
+        res.json(games);
     })
 });
 
