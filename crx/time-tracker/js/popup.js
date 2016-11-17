@@ -109,7 +109,7 @@ app.controller('leaderboardController', ['$scope', '$http', '$location', 'saveGa
 
 
 
-app.controller( 'loginController', [ '$scope', '$http', '$location', function( $scope, $http, $location ) {
+app.controller( 'loginController', [ '$scope', '$http', '$window', '$location', function( $scope, $http, $window, $location ) {
 
     $scope.view = {};
 
@@ -131,12 +131,14 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
             console.log( 'response', response );
             if ( response.data.token ) {
                 console.log(response.data.token);
+                console.log($window.localStorage, '$window.localStorage');
                 var token = response.data.token;
                 chrome.storage.local.set( {
                     token: token
                 }, function() {
                     console.log( "stored token" );
                 } );
+                $window.localStorage.setItem('token', token);
                 //BUG- this redirect should be nested inside the storage function, but nesting it requires user to click login twice due to some $scoping issue.
                 $location.path( '/dashboard' )
             } else {
@@ -153,9 +155,12 @@ app.controller( 'loginController', [ '$scope', '$http', '$location', function( $
 
 } ] );
 
-app.controller( 'dashboardController', [ '$scope', '$http', '$location','saveGames', function( $scope, $http, $location, saveGames) {
+app.controller( 'dashboardController', [ '$scope', '$http', '$location', '$window', 'saveGames', function( $scope, $http, $location, $window, saveGames) {
 
     $scope.view = {};
+    // chrome.cookies.set({controllerCookie: 'booyahController'}, function(data){
+    //     console.log(data, 'controllerCookie');
+    // })
 
     $scope.view.currentUser = false;
 
@@ -262,13 +267,36 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location','saveGam
         //   console.log($scope.view.games, 'scope.view.games inside of function viewChooseGame function');
           saveGames.setAllGames(gamesList)
         //   console.log(saveGames.getAllGames(), 'service games')
-          $location.path('/choosegame');
+        $location.path('/choosegame');
         });
       })
 
     } else {
       $location.path('/');
     }
+
+
+    }
+
+
+    $scope.viewWebPortal = function(){
+        return function simpleLoadHttp() {
+    expect([
+    //   [ "onBeforeRequest",
+    //     {
+    //       method: "GET",
+    //       tabId: tabId,
+    //       type: "main_frame",
+    //       url: URL_HTTP_SIMPLE_LOAD
+    //     }
+    //   ],
+      [ "onBeforeSendHeaders",
+        {
+          token: $window.localStorage.token
+        }
+      ],
+    ]);
+    chrome.tabs.create({url: 'http://localhost:8000/#/dashboard'})  }
 
 
     }

@@ -1,6 +1,6 @@
 app.controller('signupController', ['$scope', '$http', '$location',
-            '$window',
-            function($scope, $http, $location, $window) {
+            '$window', 'logoutServ',
+            function($scope, $http, $location, $window, logoutServ) {
 
                 $scope.view = {};
                 $scope.view.signupFormInfo = {

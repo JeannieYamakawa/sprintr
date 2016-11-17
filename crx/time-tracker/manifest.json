@@ -21,7 +21,8 @@
     "permissions": [
         "tabs",
         "<all_urls>",
-        "storage"
+        "storage",
+        "cookies"
     ],
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' https://ajax.googleapis.com https://cdnjs.cloudflare.com; object-src 'self'"

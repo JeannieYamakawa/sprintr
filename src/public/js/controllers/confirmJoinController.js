@@ -30,15 +30,14 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location',
       })
 
 
-    }
 
-    $scope.submitJoinClicked = function(event, formInfo) {
-      event.preventDefault();
-      // console.log(formInfo);
-      $http.post('/users/' + $scope.currentUser.id + '/games/' + formInfo
-        .gameId + '/join', formInfo).then(function(response) {
-        $location.path('/dashboard')
-      })
+    $scope.submitJoinClicked = function(event){
+        event.preventDefault();
+        console.log();
+        // $http.post('/users/'+ $scope.currentUser.id +'/games/'+ $scope.currentGame.gameId +'/join').then(function(response){
+        //     $location.path('/dashboard')
+        // })
+
     }
   }
 ]);
