@@ -1,0 +1,15 @@
+<div class="content-wrapper">
+  <div ng-show="view.currentUser">
+    <p>Hi, {{view.currentUser.first_name}}</p>
+    <h4> </h4>
+    <p>Choose which game you want to view.</p>
+    <select class='ui dropdown' ng-model ='view.dropMenu' name="dropdown" id="">
+        <option ng-repeat='game in view.games' value='{{game.id}}' href="">{{game.name}}</option>
+    </select>
+    <button class='ui button block' ng-click=viewSingleGame(view.dropMenu)>View Game</button>
+    <br>
+    <br>
+    <button class="block ui negative basic button " ng-click="logout()">Logout</button>
+
+  </div>
+</div>
