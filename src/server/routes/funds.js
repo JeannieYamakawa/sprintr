@@ -1,5 +1,5 @@
 var express = require('express');
-var app = express();
+var router = express.Router();
 var dwolla = require('dwolla-v2');
 
 var client = new dwolla.Client({
@@ -17,15 +17,12 @@ var auth = new client.Auth({
 });
 
 
-app.get('/', function(req, res) {
-    return res.send('To begin the OAuth process, send the user off to <a href="' + auth.url + '">' + auth.url + '</a>');
+router.get('/dwolla', function(req, res) {
+    res.send(auth.url);
 });
 
 
-
-
-app.get('/callback', function(req, res) {
-
+router.get('/callback', function(req, res) {
 
     var userToken;
 
@@ -77,28 +74,11 @@ app.get('/callback', function(req, res) {
                                   });
 
                             });
-
-
                     })
                 });
             })
         });
-
-
-
-
-
-
-
     })
-
-
-
-
 });
 
-
-
-
-
-app.listen(8000);
+module.exports = router;

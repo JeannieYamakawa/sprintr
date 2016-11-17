@@ -44,9 +44,9 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/joingame', {
-      templateUrl: 'partials/joingame.html',
-      controller: 'joinGameController',
+    .when('/findgame', {
+      templateUrl: 'partials/findgame.html',
+      controller: 'findGameController',
       resolve: {
         currentUser: function($http, $location) {
           if (localStorage.getItem('token')) {
