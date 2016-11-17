@@ -1,5 +1,5 @@
-app.controller('dashboardController', ['$scope', '$http', '$location','$window', 'currentUser', '$routeParams', 'currentGame', 'logoutServ',
-    function($scope, $http, $location, $window, currentUser, $routeParams, currentGame,logoutServ) {
+app.controller('dashboardController', ['$scope', '$http', '$location','$window', '$cookies', 'currentUser', '$routeParams', 'currentGame', 'logoutServ',
+    function($scope, $http, $location, $window, $cookies, currentUser, $routeParams, currentGame,logoutServ) {
         $scope.logout = logoutServ.logout;
 
         $scope.view = {};
@@ -89,7 +89,7 @@ app.controller('dashboardController', ['$scope', '$http', '$location','$window',
     } else {
       $location.path('/')
     }
-    
+
     $scope.singleGameClicked = function(gameId) {
       console.log(gameId, 'gameId from single clicked game funct');
       currentGame.setSelectedGame(gameId);

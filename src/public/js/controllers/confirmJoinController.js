@@ -13,10 +13,10 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location', '$windo
     $scope.currentGame.gameType = $window.localStorage.getItem('gameType');
     console.log($scope.currentGame.gameType, 'game type !!');
 
-    $scope.submitJoinClicked = function(event, formInfo){
+    $scope.submitJoinClicked = function(event){
         event.preventDefault();
-        console.log(formInfo);
-        // $http.post('/users/'+ $scope.currentUser.id +'/games/'+ formInfo.gameId +'/join', formInfo).then(function(response){
+        console.log();
+        // $http.post('/users/'+ $scope.currentUser.id +'/games/'+ $scope.currentGame.gameId +'/join').then(function(response){
         //     $location.path('/dashboard')
         // })
     }

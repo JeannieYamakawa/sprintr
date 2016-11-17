@@ -1,4 +1,4 @@
-var app = angular.module("timeTracker", ['ngMessages', 'ngRoute']);
+var app = angular.module("timeTracker", ['ngMessages', 'ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider
