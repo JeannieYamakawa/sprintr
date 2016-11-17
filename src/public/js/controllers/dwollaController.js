@@ -1,5 +1,6 @@
-app.controller('dwollaController', ['$scope', '$http', '$location','$window',
-  function($scope, $http, $location, $window) {
+app.controller('dwollaController', ['$scope', '$http', '$location','$window','logoutServ',
+  function($scope, $http, $location, $window,logoutServ) {
+    $scope.logout = logoutServ.logout;
 
     $scope.view = {}
 

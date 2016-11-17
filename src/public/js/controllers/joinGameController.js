@@ -1,6 +1,7 @@
-app.controller('joinGameController', ['$scope', '$http', '$location', '$window', 'currentUser', 'currentGame', function($scope,$http,$location,$window, currentUser, currentGame){
+app.controller('joinGameController', ['$scope', '$http', '$location', '$window', 'currentUser', 'currentGame', 'logoutServ',function($scope,$http,$location,$window, currentUser, currentGame, logoutServ){
     $scope.currentUser = currentUser;
     // console.log($scope.currentUser.id, 'scope.currentUser in joinGameController');
+    $scope.logout = logoutServ.logout;
 
 
     $scope.cancelClicked = function(event){
