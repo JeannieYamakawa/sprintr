@@ -1,8 +1,53 @@
 <ng-include src="'partials/navBarInside.html'"></ng-include>
 <div class="bigContainer">
-  <div class="smallContainer">
-<h2>Join Game</h2>
-<h1>{{currentGame.game_id}}, game info</h1>
-{{currentUser}}
-  </div>
+    <div class="mediumContainer">
+        <h1>{{currentGame.name}}</h1>
+        <h2>Start Time: </h2>
+        <h3>{{currentGame.startTime| date: 'MMM d, y' }}</h3>
+
+        <h2>Current Players:</h2>
+        <ul>
+            <li ng-repeat='stat in currentGame.stats'>
+                <h4>{{stat.username}}</h4>
+            </li>
+        </ul>
+        <h2>Tracked Websites:</h2>
+        <ul>
+            <li ng-repeat='site in currentGame.sites.stats'>
+                <h4>{{site.domain}}</h4>
+            </li>
+        </ul>
+
+
+        <div ng-show='currentGame.gameType === "points"'>
+            <form class="ui form" name="confirmJoinForm" action="#">
+                <div class="field" ng-class="{'has-error': confirmJoinForm.firstName.$touched && confirmJoinForm.firstName.$invalid, 'has-success': confirmJoinForm.firstName.$touched && confirmJoinForm.firstName.$valid}">
+                    <input type="text" name='firstName' placeholder='some cash info here' ng-minlength="2" required>
+                    <div class="error" ng-messages="confirmJoinForm.firstName.$error" ng-show="confirmJoinForm.firstName.$touched">
+                        <div ng-messages-include="messages.html"></div>
+                    </div>
+                </div>
+                <div class="field" ng-class="{'has-error': confirmJoinForm.lastName.$touched && confirmJoinForm.lastName.$invalid, 'has-success': confirmJoinForm.lastName.$touched && confirmJoinForm.lastName.$valid}">
+                    <input type="text" name='lastName' placeholder='some cash info here' ng-minlength="2" required>
+                    <div class="error" ng-messages="confirmJoinForm.lastName.$error" ng-show="confirmJoinForm.lastName.$touched">
+                        <div ng-messages-include="messages.html"></div>
+                    </div>
+                </div>
+                <div class="field" ng-class="{'has-error': confirmJoinForm.bankName.$touched && confirmJoinForm.bankName.$invalid, 'has-success': confirmJoinForm.bankName.$touched && confirmJoinForm.bankName.$valid}">
+                    <input type="text" name='bankName' placeholder='some cash info here' ng-minlength="3" required>
+                    <div class="error" ng-messages="confirmJoinForm.bankName.$error" ng-show="confirmJoinForm.bankName.$touched">
+                        <div ng-messages-include="messages.html"></div>
+                    </div>
+                </div>
+                <div class="field" ng-class="{'has-error': confirmJoinForm.acctNum.$touched && confirmJoinForm.acctNum.$invalid, 'has-success': confirmJoinForm.acctNum.$touched && confirmJoinForm.acctNum.$valid}">
+                    <input type="text" name='acctNum' placeholder='some cash info here' ng-minlength="5" required>
+                    <div class="error" ng-messages="confirmJoinForm.acctNum.$error" ng-show="confirmJoinForm.acctNum.$touched">
+                        <div ng-messages-include="messages.html"></div>
+                    </div>
+                </div>
+                <input type="submit" class="ui primary button">
+
+            </form>
+        </div>
+    </div>
 </div>

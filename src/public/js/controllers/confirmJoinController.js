@@ -1,7 +1,14 @@
-app.controller('confirmJoinController', ['$scope', '$http', '$location', 'currentUser', 'currentGame', function($scope,$http,$location,currentUser, currentGame){
+app.controller('confirmJoinController', ['$scope', '$http', '$location', '$window','currentUser', 'currentGame', function($scope, $http, $location, $window, currentUser, currentGame){
     $scope.currentUser = currentUser;
+    $scope.currentGame = {};
+
     // console.log($scope.currentUser.id, 'scope.currentUser in joinGameController');
-    $scope.currentGame = currentGame.get();
-    console.log($scope.currentGame, 'currentGame _+_+_+_+_+_+')
+    $scope.currentGame.name = $window.localStorage.getItem('game');
+    $scope.currentGame.gameId = $window.localStorage.getItem('gameId');
+    $scope.currentGame.stats = JSON.parse($window.localStorage.getItem('gameStats'));
+    $scope.currentGame.startTime = $window.localStorage.getItem('startTime');
+    $scope.currentGame.sites = $scope.currentGame.stats[0];
+    $scope.currentGame.gameType = $window.localStorage.getItem('gameType');
+    console.log($scope.currentGame.gameType, 'game type !!');
 
 }])

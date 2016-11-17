@@ -18,6 +18,23 @@ ul {
   padding-left: 0;
 }
 
+/*--------------------------------------------------------------- confirmjoin.html*/
+
+
+.mediumContainer{
+    background: #fff;
+    margin: auto;
+    margin-top: 1em;
+    width: 55%;
+    padding: 2%;
+}
+
+.mediumContainer h1,h2,h3,h4 {
+  text-align: center;
+}
+
+
+
 /*--------------------------------------------------------------- home.html*/
 
 .logoIcon {
@@ -107,6 +124,7 @@ ul {
 .smallContainer h2 {
   text-align: center;
 }
+
 
 .ui.primary.button, .ui.red.button {
   display: flex;
