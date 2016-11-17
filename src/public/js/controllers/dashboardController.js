@@ -41,6 +41,8 @@ app.controller('dashboardController', ['$scope', '$http', '$location','$window',
             });
           })
 
+
+          //TODO- duplicate code below with leaderboard Controller logic. put this into an angular service. 
           //Determine game rankings for each game
           gamesList.forEach(function(game) {
             console.log(game);
