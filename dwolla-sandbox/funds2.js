@@ -22,30 +22,75 @@ app.get('/', function(req, res) {
 });
 
 
+
+
 app.get('/callback', function(req, res) {
 
 
-    auth.callback(req.query) // pass the code and optional state to the callback
-        .then(function(accountToken) {
+    var userToken;
 
-            var Token = new client.Token({
-                access_token: accountToken.access_token,
-                refresh_token: accountToken.refresh_token,
-                expires_in: accountToken.expires_in,
-                scope: accountToken.scope,
-                account_id: accountToken.account_id
-            });
+    var appRootUrl; //this is what i set as the destination for a payment
+    var userRootUrl; //this is the first half of the source link for a payment
+    var userFundId; //this is the second half of the source link for a payment
 
-            console.log(Token);
-            var accountUrl = 'https://api-uat.dwolla.com/accounts/' + accountToken.account_id;
+    auth.callback(req.query).then(function(accountToken) {
 
-            res.send(Token);
+        userToken = accountToken;
 
-            Token.get(`${accountUrl}/funding-sources`).then(function(res) {
-                    res.body._embedded['funding-sources'][0].name; // => 'Joe Buyer - Checking 1234'
+        //fetch an application token to get my own credentials
+        client.auth.client().then(function(appToken) {
+
+            appToken.get('/').then(function(response) {
+                appRootUrl = response.body._links.account.href;
+
+                accountToken.get('/').then(function(response) {
+                    userRootUrl = response.body._links.account.href;
+
+                    accountToken.get(`${userRootUrl}/funding-sources`).then(function(response) {
+                        userFundId = response.body._embedded['funding-sources'][0].id;
+
+                        var requestBody = {
+                            _links: {
+                                source: {
+                                    href: 'https://api.dwolla.com/funding-sources/' + userFundId
+                                },
+                                destination: {
+                                    href: appRootUrl
+                                }
+                            },
+                            amount: {
+                                currency: 'USD',
+                                value: '225.00'
+                            },
+                            metadata: {
+                                foo: 'bar',
+                                baz: 'boo'
+                            }
+                        };
+
+                        accountToken.post('transfers', requestBody).then(function(data) {
+                                console.log(data);
+                                var transferUrl = data.headers.get('location');
+                                
+                                accountToken.get(transferUrl).then(function(response) {
+                                    res.send(response.body.status);
+                                  });
+
+                            });
+
+
+                    })
                 });
+            })
+        });
 
-        })
+
+
+
+
+
+
+    })
 
 
 
