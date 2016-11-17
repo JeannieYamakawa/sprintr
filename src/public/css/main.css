@@ -20,7 +20,6 @@ ul {
 
 /*--------------------------------------------------------------- confirmjoin.html*/
 
-
 .mediumContainer{
     background: #fff;
     margin: auto;
@@ -29,11 +28,25 @@ ul {
     padding: 2%;
 }
 
-.mediumContainer h1,h2,h3,h4 {
+.confirmjoinBoxH3, .mediumContainer h2 {
   text-align: center;
 }
 
+.confirmjoinContainer {
+  display: flex;
+}
 
+.confirmjoinBox {
+  width: 33%;
+}
+
+.confirmjoinSpan {
+  font-size: 1.071rem;
+}
+
+.confirmjoinBoxLeftH3 {
+  margin-top: 0;
+}
 
 /*--------------------------------------------------------------- home.html*/
 

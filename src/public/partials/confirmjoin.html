@@ -1,22 +1,31 @@
 <ng-include src="'partials/navBarInside.html'"></ng-include>
 <div class="bigContainer">
     <div class="mediumContainer">
-        <h1>{{currentGame.name}}</h1>
-        <h2>Start Time: </h2>
-        <h3>{{currentGame.startTime| date: 'MMM d, y' }}</h3>
-
-        <h2>Current Players:</h2>
-        <ul>
-            <li ng-repeat='stat in currentGame.stats'>
-                <h4>{{stat.username}}</h4>
-            </li>
-        </ul>
-        <h2>Tracked Websites:</h2>
-        <ul>
-            <li ng-repeat='site in currentGame.sites.stats'>
-                <h4>{{site.domain}}</h4>
-            </li>
-        </ul>
+        <h2>{{currentGame.name}}</h2>
+        <div class="confirmjoinContainer">
+          <div class="confirmjoinBox">
+            <h3><strong>Type:</strong></h3>
+              <p class="confirmjoinSpan">{{ currentGame.gameType }}</p>
+            <h3 class="confirmjoinBoxLeftH3"><strong>Start:</strong></h3>
+              <p class="confirmjoinSpan">{{currentGame.startTime| date: 'MMM d, y' }}</p>
+          </div>
+          <div class="confirmjoinBox">
+            <h3 class="confirmjoinBoxH3"><strong>Websites:</strong></h3>
+            <ul>
+              <li ng-repeat='site in currentGame.sites.stats'>
+                  <h4>{{site.domain}}</h4>
+              </li>
+            </ul>
+          </div>
+          <div class="confirmjoinBox">
+            <h3 class="confirmjoinBoxH3"><strong>Players:</strong></h3>
+            <ul>
+                <li ng-repeat='stat in currentGame.stats'>
+                    <h4>{{stat.username}}</h4>
+                </li>
+            </ul>
+          </div>
+        </div>
 
 
         <div ng-show='currentGame.gameType === "points"'>
