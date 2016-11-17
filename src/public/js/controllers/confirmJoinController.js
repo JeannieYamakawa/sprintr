@@ -24,7 +24,10 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location',
       //do all of our dwolla api magic inside the callback route.
       //when the change goes through successfull, redirect them back this confirm join angular, change the view to reflect that we confirmed charge.----how do we pass this information back?
 
-      $window.location.href
+      $http.get('/dwolla').then(function(response){
+        var dwollaGateway = response.data;
+        $window.location.href = dwollaGateway;
+      })
 
 
     }

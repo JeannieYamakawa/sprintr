@@ -57,11 +57,7 @@ router.get('/callback', function(req, res) {
                             },
                             amount: {
                                 currency: 'USD',
-                                value: '225.00'
-                            },
-                            metadata: {
-                                foo: 'bar',
-                                baz: 'boo'
+                                value: '10.00'
                             }
                         };
 
@@ -70,7 +66,8 @@ router.get('/callback', function(req, res) {
                                 var transferUrl = data.headers.get('location');
 
                                 accountToken.get(transferUrl).then(function(response) {
-                                    res.send(response.body.status);
+                                    console.log("payent status:", response.body.status);
+                                    res.redirect('http://localhost:8000/#/confirmjoin');
                                   });
 
                             });
