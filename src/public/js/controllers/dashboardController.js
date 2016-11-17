@@ -1,5 +1,6 @@
-app.controller('dashboardController', ['$scope', '$http', '$location','$window', 'currentUser', '$routeParams', 'currentGame',
-    function($scope, $http, $location, $window, currentUser, $routeParams, currentGame) {
+app.controller('dashboardController', ['$scope', '$http', '$location','$window', 'currentUser', '$routeParams', 'currentGame', 'logoutServ',
+    function($scope, $http, $location, $window, currentUser, $routeParams, currentGame,logoutServ) {
+        $scope.logout = logoutServ.logout;
 
         $scope.view = {};
         $scope.currentUser = currentUser;
@@ -40,6 +41,8 @@ app.controller('dashboardController', ['$scope', '$http', '$location','$window',
             });
           })
 
+
+          //TODO- duplicate code below with leaderboard Controller logic. put this into an angular service. 
           //Determine game rankings for each game
           gamesList.forEach(function(game) {
             console.log(game);

@@ -1,9 +1,11 @@
 app.controller('confirmJoinController', ['$scope', '$http', '$location',
-  '$window', 'currentUser', 'currentGame',
-  function($scope, $http, $location, $window, currentUser, currentGame) {
+  '$window', 'currentUser', 'currentGame', 'logoutServ',
+  function($scope, $http, $location, $window, currentUser, currentGame,
+    logoutServ) {
     $scope.currentUser = currentUser;
     $scope.currentGame = {};
     $scope.confirmForm = {};
+    $scope.logout = logoutServ.logout;
 
     // console.log($scope.currentUser.id, 'scope.currentUser in joinGameController');
     $scope.currentGame.name = $window.localStorage.getItem('game');
@@ -24,6 +26,5 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location',
         $location.path('/dashboard')
       })
     }
-
   }
-])
+]);

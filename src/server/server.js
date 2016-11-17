@@ -24,10 +24,8 @@ app.use( express.static( path.join( __dirname, '../public' ) ) );
 const auth = require( './routes/auth' );
 const timeTracking = require( './routes/time-tracking' );
 const games = require( './routes/games' );
-const funds = require( './routes/funds' );
 
 app.use( auth );
-app.use( funds );
 app.use( '/users/:user_id/time/', timeTracking );
 app.use( '/users/:user_id/games/', games );
 

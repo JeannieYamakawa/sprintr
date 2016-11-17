@@ -10,6 +10,7 @@ app.controller('signupController', ['$scope', '$http', '$location',
                     password: "",
                     email: ""
                 }
+                $scope.logout = logoutServ.logout;
 
                 $scope.submitSignupForm = function(event) {
                     event.preventDefault();
