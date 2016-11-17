@@ -1,3 +1,4 @@
+
 app.controller('leaderboardController', ['$scope', '$http', '$location', 'currentUser', 'currentGame', function($scope, $http, $location, currentUser, currentGame) {
 
     $scope.view = {};
@@ -8,5 +9,5 @@ app.controller('leaderboardController', ['$scope', '$http', '$location', 'curren
         var gameDetails = game.data;
         console.log(gameDetails);
     })
-
-}]);
+  }
+]);
