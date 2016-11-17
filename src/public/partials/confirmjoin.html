@@ -29,31 +29,8 @@
 
 
         <div ng-show='currentGame.gameType === "points"'>
-            <form class="ui form" name="confirmJoinForm" action="#" ng-submit="confirmJoinForm.$valid && submitJoinClicked($event, confirmForm)">
-                <div class="field" ng-class="{'has-error': confirmJoinForm.firstName.$touched && confirmJoinForm.firstName.$invalid, 'has-success': confirmJoinForm.firstName.$touched && confirmJoinForm.firstName.$valid}">
-                    <input type="text" ng-model='confirmForm.firstName' name='firstName' placeholder='some cash info here' ng-minlength="2" required>
-                    <div class="error" ng-messages="confirmJoinForm.firstName.$error" ng-show="confirmJoinForm.firstName.$touched">
-                        <div ng-messages-include="messages.html"></div>
-                    </div>
-                </div>
-                <div class="field" ng-class="{'has-error': confirmJoinForm.lastName.$touched && confirmJoinForm.lastName.$invalid, 'has-success': confirmJoinForm.lastName.$touched && confirmJoinForm.lastName.$valid}">
-                    <input type="text" name='lastName' ng-model='confirmForm.lastName' placeholder='some cash info here' ng-minlength="2" required>
-                    <div class="error" ng-messages="confirmJoinForm.lastName.$error" ng-show="confirmJoinForm.lastName.$touched">
-                        <div ng-messages-include="messages.html"></div>
-                    </div>
-                </div>
-                <div class="field" ng-class="{'has-error': confirmJoinForm.bankName.$touched && confirmJoinForm.bankName.$invalid, 'has-success': confirmJoinForm.bankName.$touched && confirmJoinForm.bankName.$valid}">
-                    <input type="text" name='bankName' ng-model='confirmForm.bankName' placeholder='some cash info here' ng-minlength="3" required>
-                    <div class="error" ng-messages="confirmJoinForm.bankName.$error" ng-show="confirmJoinForm.bankName.$touched">
-                        <div ng-messages-include="messages.html"></div>
-                    </div>
-                </div>
-                <div class="field" ng-class="{'has-error': confirmJoinForm.acctNum.$touched && confirmJoinForm.acctNum.$invalid, 'has-success': confirmJoinForm.acctNum.$touched && confirmJoinForm.acctNum.$valid}">
-                    <input type="text" name='acctNum' ng-model='confirmForm.acctNum' placeholder='some cash info here' ng-minlength="5" required>
-                    <div class="error" ng-messages="confirmJoinForm.acctNum.$error" ng-show="confirmJoinForm.acctNum.$touched">
-                        <div ng-messages-include="messages.html"></div>
-                    </div>
-                </div>
+                <p>This is a cash game with a $10 buy-in, select your payment method below.</p>
+                <button class="ui button" ng-click="dwolla()">Pay with Dwolla</button>
                 <input type="submit" class="ui primary button" value='Join Game'>
 
             </form>
