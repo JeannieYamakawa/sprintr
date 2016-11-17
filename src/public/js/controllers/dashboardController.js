@@ -1,19 +1,19 @@
-app.controller('dashboardController', ['$scope', '$http', '$location',
-  '$window', 'currentUser', '$routeParams',
-  function($scope, $http, $location, $window, currentUser, $routeParams) {
+app.controller('dashboardController', ['$scope', '$http', '$location','$window', 'currentUser', '$routeParams', 'currentGame',
+    function($scope, $http, $location, $window, currentUser, $routeParams, currentGame) {
 
-    $scope.view = {};
-    $scope.currentUser = currentUser;
-    // console.log($scope.currentUser, 'scope.currentUser');
+        $scope.view = {};
+        $scope.currentUser = currentUser;
+        // console.log($scope.currentUser, 'scope.currentUser');
 
-    // only render this part of the page if the user is using a valid token
-    if ($scope.currentUser) {
-      $scope.view.hi = "You have a valid token";
-      $http.get('users/' + currentUser.id + '/games').then(function(
-        response) {
-        var gamesList = response.data;
+        // only render this part of the page if the user is using a valid token
+        if ($scope.currentUser) {
+            $scope.view.hi = "You have a valid token";
+            $http.get('users/' + currentUser.id + '/games').then(function(
+                response) {
+                var gamesList = response.data;
 
-        var promiseArray = [];
+                var promiseArray = [];
+
 
         gamesList.forEach(function(game) {
           promiseArray.push(new Promise(function(resolve, reject) {
@@ -91,13 +91,8 @@ app.controller('dashboardController', ['$scope', '$http', '$location',
 
     $scope.singleGameClicked = function(gameId) {
       console.log(gameId, 'gameId from single clicked game funct');
-      $http.get('users/' + $scope.currentUser.id + '/games/' + gameId)
-        .then(
-          function(response) {
-            // console.log( response, 'response from singleGameClicked function in dash controller' );
-            //this will be set to go to the view single game leaderboard page.
-            // $location.path('/')
-          })
+      currentGame.setSelectedGame(gameId);
+      $location.path('/leaderboard');
     }
   }
 ]);
