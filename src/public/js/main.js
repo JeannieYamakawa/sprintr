@@ -124,8 +124,35 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+
         .when('/dwolla', {
           templateUrl: 'partials/dwolla.html',
           controller: 'dwollaController'
+
+        .when('/confirmjoin', {
+            templateUrl: 'partials/confirmjoin.html',
+            controller: 'confirmJoinController',
+            resolve: {
+                currentUser: function($http, $location) {
+                    if (localStorage.getItem('token')) {
+                        const config = {
+                            headers: {
+                                'Authorization': 'Bearer ' + localStorage.getItem(
+                                    'token')
+                            }
+                        };
+                        return $http.get('/verify', config)
+                            .then(function(response) {
+                                return response.data;
+                            })
+                            .catch(function(error) {
+                                console.log(error, 'resolve error');
+                                localStorage.clear();
+                                return null;
+                            });
+                    }
+                }
+            }
+
         })
 });
