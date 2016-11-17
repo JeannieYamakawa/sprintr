@@ -1,19 +1,18 @@
 <ng-include src="'partials/navBarInside.html'"></ng-include>
 
-<h2 class="dashboardWelcome"> NAME OF GAME </h2>
-
+<h2 class="dashboardWelcome"> {{view.gameDetails.name}} </h2>
 <div class="leaderboardContainer">
   <div class="leaderboardLeft">
     <div class="leaderboardTeam">
       <h3> Rankings </h3>
-      <canvas id="leaderboardTeamChart"></canvas>
+      <canvas id="leaderboardTeamChart" class="chart-horizontal-bar" chart-data="barData" chart-labels="barLabels"></canvas>
     </div>
   </div>
   <div class="leaderboardRight">
     <div class="leaderboardDonut leaderboardRightCardTop">
       <h3> Stats </h3>
         <div class="leaderboardDonutInner">
-          <canvas id="leaderboardDonutChart"></canvas>
+          <canvas id="leaderboardDonutChart" class="chart chart-doughnut" chart-data="donutChartData" chart-labels="donutChartLabels" ></canvas>
         </div>
     </div>
     <div class="leaderboardRemain leaderboardRightCardBottom">

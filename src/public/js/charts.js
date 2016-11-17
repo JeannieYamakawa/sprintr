@@ -3,7 +3,7 @@ $(document).ready(function() {
   var myChart = new Chart(ctx, {
     type: 'horizontalBar',
     data: {
-      labels: ["Robert", "Jeannie", "Tim", "Chris", "Taylor", "Louis"],
+      labels: ["Louis", "Robert", "Tim", "Jeannie", "Chris"],
       datasets: [{
         label: 'Time in minutes',
         data: [20, 19, 15, 14, 12, 8],

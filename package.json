@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/timothyrchew/chrome-time-tracker#readme",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-chart.js": "^1.0.3",
     "angular-route": "^1.5.8",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
+    "chart.js": "^2.4.0",
     "dotenv": "^2.0.0",
     "dwolla-node": "^1.1.4",
     "dwolla-v2": "^1.2.3",
