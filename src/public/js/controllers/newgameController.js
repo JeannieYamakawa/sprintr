@@ -1,9 +1,10 @@
 app.controller('newgameController', ['$scope', '$http', '$location',
-  'currentUser',
-  function($scope, $http, $location, currentUser) {
+  'currentUser', 'logoutServ',
+  function($scope, $http, $location, currentUser, logoutServ) {
     $scope.view = {};
     $scope.view.newgameFormInfo = {};
     $scope.view.newgameFormInfo.websites = [];
+    $scope.logout = logoutServ.logout;
 
 
 

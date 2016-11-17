@@ -1,7 +1,8 @@
-app.controller('confirmJoinController', ['$scope', '$http', '$location', '$window','currentUser', 'currentGame', function($scope, $http, $location, $window, currentUser, currentGame){
+app.controller('confirmJoinController', ['$scope', '$http', '$location', '$window','currentUser', 'currentGame','logoutServ', function($scope, $http, $location, $window, currentUser, currentGame,logoutServ){
     $scope.currentUser = currentUser;
     $scope.currentGame = {};
     $scope.confirmForm={};
+    $scope.logout = logoutServ.logout;
 
     // console.log($scope.currentUser.id, 'scope.currentUser in joinGameController');
     $scope.currentGame.name = $window.localStorage.getItem('game');
@@ -14,10 +15,10 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location', '$windo
 
     $scope.submitJoinClicked = function(event, formInfo){
         event.preventDefault();
-        // console.log(formInfo);
-        $http.post('/users/'+ $scope.currentUser.id +'/games/'+ formInfo.gameId +'/join', formInfo).then(function(response){
-            $location.path('/dashboard')
-        })
+        console.log(formInfo);
+        // $http.post('/users/'+ $scope.currentUser.id +'/games/'+ formInfo.gameId +'/join', formInfo).then(function(response){
+        //     $location.path('/dashboard')
+        // })
     }
 
 }])

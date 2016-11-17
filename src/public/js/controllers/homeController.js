@@ -1,6 +1,6 @@
 app.controller('homeController', ['$scope', '$http', '$location', '$window',
   function($scope, $http, $location, $window) {
-
+      
     $scope.view = {};
 
     // $scope.login = function() {

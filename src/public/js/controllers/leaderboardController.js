@@ -1,5 +1,6 @@
 
-app.controller('leaderboardController', ['$scope', '$http', '$location', 'currentUser', 'currentGame', function($scope, $http, $location, currentUser, currentGame) {
+app.controller('leaderboardController', ['$scope', '$http', '$location', 'currentUser', 'currentGame', 'logoutServ', function($scope, $http, $location, currentUser, currentGame, logoutServ) {
+    $scope.logout = logoutServ.logout;
 
     $scope.view = {};
 
