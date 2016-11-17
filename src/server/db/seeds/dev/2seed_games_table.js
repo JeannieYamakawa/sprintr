@@ -18,7 +18,7 @@ exports.seed = function( knex, Promise ) {
                     active: true,
                     start_time: startdate,
                     end_time: new_date,
-                    game_type: 'points',
+                    game_type: 'cash',
                     name: 'game1',
                     game_password: passwordHash
                 } ),
