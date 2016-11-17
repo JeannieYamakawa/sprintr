@@ -124,4 +124,8 @@ app.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/dwolla', {
+          templateUrl: 'partials/dwolla.html',
+          controller: 'dwollaController'
+        })
 });
