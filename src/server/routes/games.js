@@ -115,37 +115,46 @@ router.get('/:game_id', function(req, res) {
     let data = [];
     var promiseArray = [];
     //get all players that belong to the game
-    knex('game_player').where('game_id', gameId).innerJoin('players', 'game_player.player_id', 'players.id').then(function(players) {
+
+    knex('games').where('id', gameId).first().then(function(game){
+
+      var gameName = game.name;
+
+      knex('game_player').where('game_id', gameId).innerJoin('players', 'game_player.player_id', 'players.id').then(function(players) {
 
         //loop through each player, build a user object and assign their username and ID
         players.forEach(function(person) {
 
-            promiseArray.push(new Promise(function(resolve, reject) {
+          promiseArray.push(new Promise(function(resolve, reject) {
 
-                var newPersonObj = {};
-                var playerID = person.id;
-                newPersonObj.username = person.username;
-                newPersonObj.player_id = playerID;
-                newPersonObj.stats = [];
+            var newPersonObj = {};
+            var playerID = person.id;
+            newPersonObj.username = person.username;
+            newPersonObj.player_id = playerID;
+            newPersonObj.stats = [];
 
-                //get all the websites and times for our player tracked by this game
-                knex('player_game_website').where('player_id', playerID).innerJoin('game_website', 'player_game_website.game_website_id', 'game_website.id').then(function(urls) {
-                    urls.forEach(function(url) {
-                        newPersonObj.stats.push(url);
-                    });
-                    resolve(newPersonObj)
-                });
-            }));
+            //get all the websites and times for our player tracked by this game
+            knex('player_game_website').where('player_id', playerID).innerJoin('game_website', 'player_game_website.game_website_id', 'game_website.id').then(function(urls) {
+              urls.forEach(function(url) {
+                newPersonObj.stats.push(url);
+              });
+              resolve(newPersonObj)
+            });
+          }));
         });
 
         Promise.all(promiseArray).then(function(data) {
-            console.log(data);
-            var gameObj = {};
-            gameObj.game_id = gameId;
-            gameObj.game_stats = data;
-            res.send(gameObj);
+          // console.log(data);
+          var gameObj = {};
+          gameObj.game_id = gameId;
+          gameObj.name = gameName;
+          gameObj.game_stats = data;
+          res.send(gameObj);
         })
+      })
+
     })
+
 } );
 
 
