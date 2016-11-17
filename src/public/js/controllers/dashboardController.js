@@ -89,7 +89,7 @@ app.controller('dashboardController', ['$scope', '$http', '$location','$window',
     } else {
       $location.path('/')
     }
-
+    
     $scope.singleGameClicked = function(gameId) {
       console.log(gameId, 'gameId from single clicked game funct');
       currentGame.setSelectedGame(gameId);
