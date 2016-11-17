@@ -30,6 +30,9 @@
     <script src="js/controllers/newGameController.js" charset="utf-8"></script>
     <script src="js/controllers/signupController.js" charset="utf-8"></script>
     <script src="js/controllers/leaderboardController.js" charset="utf-8"></script>
+    <script src="js/controllers/confirmJoinController.js" charset="utf-8"></script>
+    <script src="js/factory/currentGame.js"></script>
+
 
     <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" charset="utf-8"></script>
@@ -37,14 +40,8 @@
 </head>
 
 <body ng-app="timeTracker">
-  <div class="ui secondary pointing menu">
-    <img class="logoIcon" src="../images/logo2.png" />
-    <a class="item" href="/#/"> Tracker </a>
-    <div class="right menu">
-      <a class="ui item" href="/#/signup" > Signup </a>
-      <a class="ui item"  href="/#/login" > Login </a>
-    </div>
-  </div>
+
+
 
   <div ng-view></div>
 
