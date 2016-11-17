@@ -1,3 +1,5 @@
+<ng-include src="'partials/navBarInside.html'"></ng-include>
+
 <h2 class="dashboardWelcome">Welcome, {{currentUser.username}}!</h2>
 
 <div class="ui grid container">
@@ -12,5 +14,5 @@
       <p>Ends: {{ game.end_time | date: 'MMM d, y' }}</p>
       <p>Game Number: {{ game.game_id }}</p>
     </div>
-  </div>  
+  </div>
 </div>

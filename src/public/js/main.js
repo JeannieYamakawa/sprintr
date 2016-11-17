@@ -103,4 +103,32 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl: 'partials/leaderboard.html',
       controller: 'leaderboardController'
     })
+    .when('/confirmjoin', {
+      templateUrl: 'partials/confirmjoin.html',
+      controller: 'confirmJoinController',
+      resolve: {
+        currentUser: function($http, $location) {
+          if (localStorage.getItem('token')) {
+            console.log(localStorage.getItem('token'),
+              'token from config resolve');
+            const config = {
+              headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(
+                  'token')
+              }
+            };
+            return $http.get('/verify', config)
+              .then(function(response) {
+                return response.data;
+              })
+
+            .catch(function(error) {
+              console.log(error, 'resolve error');
+              localStorage.clear();
+              return null;
+            });
+          }
+        }
+      }
+    })
 });

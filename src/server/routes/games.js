@@ -98,6 +98,7 @@ router.post('/:game_id/join', function(req, res) {
 });
 
 
+
 //fetch information about all games a player is involved with
 router.get('/', function(req, res) {
     let userId = req.params.user_id;
