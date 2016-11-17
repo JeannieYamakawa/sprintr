@@ -1,117 +1,104 @@
 var express = require('express');
 var app = express();
-const environment = process.env.NODE_ENV || "development";
-const request = require('request');
-var Dwolla = require('dwolla-node')('GFZgliT3KeVdD63qpeyqujF9WSyjy49zMk55Ipk4D13TItFG16', "9dkp1WIhBu25nh7rI911BspQ39Dl54xucQlhLNmObUlQUSQ7S0"); // initialize API client
+var dwolla = require('dwolla-v2');
 
-
-
-// router.get('/dwolla_redirect', function(req, res) {
-//
-//     var code = req.query.code;
-//     console.log(code);
-//
-//     var data = {
-//         "client_id": "GFZgliT3KeVdD63qpeyqujF9WSyjy49zMk55Ipk4D13TItFG16",
-//         "client_secret": "9dkp1WIhBu25nh7rI911BspQ39Dl54xucQlhLNmObUlQUSQ7S0",
-//         "code": code,
-//         "grant_type": "authorization_code",
-//         "redirect_uri": "https://localhost:8000/dwolla_redirect"
-//     }
-//
-//
-//     request.post('https://uat.dwolla.com/oauth/v2/token', data, function(err, response, body){
-//       // console.log(err);
-//       // console.log(res);
-//       console.log(body);
-//       res.send('sucess')
-//     })
-//
-//
-// });
-
-
-// Some constants...
-var redirect_uri = 'http://localhost:3000/oauth_return';
-
-// use sandbox API environment
-Dwolla.sandbox = true;
-
-
-/**
- * STEP 1:
- *   Create an authentication URL
- *   that the user will be redirected to
- *
- *   Visit http://localhost:3000/ to see it in action.
- **/
-app.get('/', function(req, res) {
-    var authUrl = Dwolla.authUrl(redirect_uri);
-
-    return res.send('To begin the OAuth process, send the user off to <a href="' + authUrl + '">' + authUrl + '</a>');
+var client = new dwolla.Client({
+    id: 'GFZgliT3KeVdD63qpeyqujF9WSyjy49zMk55Ipk4D13TItFG16',
+    secret: "9dkp1WIhBu25nh7rI911BspQ39Dl54xucQlhLNmObUlQUSQ7S0",
+    environment: 'sandbox',
 });
 
 
-/**
- * STEP 2:
- *   Exchange the temporary code given
- *   to us in the querystring, for
- *   an access token and refresh token.
- **/
-app.get('/oauth_return', function(req, res) {
-    var code = req.query.code;
+var auth = new client.Auth({
+    redirect_uri: 'http://localhost:8000/callback',
+    scope: 'Send|Funding|Transactions',
+    verified_account: true, // optional
+    dwolla_landing: 'register', // optional
+});
 
-    Dwolla.finishAuth(code, redirect_uri, function(error, auth) {
-        var output = "Your OAuth access_token is: <b>" + auth.access_token + "</b>, which will expire in " + auth.expires_in + " seconds.<br>Your refresh_token is: <b>" + auth.refresh_token + "</b>, and that'll expire in " + auth.refresh_expires_in + " seconds.";
-        output += '<br><a href="/refresh?refreshToken=' + encodeURIComponent(auth.refresh_token) + '">Click here to get a new access and refresh token pair!</a>';
-        // return res.send(output);
+
+app.get('/', function(req, res) {
+    return res.send('To begin the OAuth process, send the user off to <a href="' + auth.url + '">' + auth.url + '</a>');
+});
 
 
 
-        var accountUrl = 'https://api-uat.dwolla.com/accounts/' + auth.account_id;
 
-        accountToken
-        .get(`${accountUrl}/funding-sources`)
-        .then(function(res) {
-          res.body._embedded['funding-sources'][0].name; // => 'Joe Buyer - Checking 1234'
+app.get('/callback', function(req, res) {
+
+
+    var userToken;
+
+    var appRootUrl; //this is what i set as the destination for a payment
+    var userRootUrl; //this is the first half of the source link for a payment
+    var userFundId; //this is the second half of the source link for a payment
+
+    auth.callback(req.query).then(function(accountToken) {
+
+        userToken = accountToken;
+
+        //fetch an application token to get my own credentials
+        client.auth.client().then(function(appToken) {
+
+            appToken.get('/').then(function(response) {
+                appRootUrl = response.body._links.account.href;
+
+                accountToken.get('/').then(function(response) {
+                    userRootUrl = response.body._links.account.href;
+
+                    accountToken.get(`${userRootUrl}/funding-sources`).then(function(response) {
+                        userFundId = response.body._embedded['funding-sources'][0].id;
+
+                        var requestBody = {
+                            _links: {
+                                source: {
+                                    href: 'https://api.dwolla.com/funding-sources/' + userFundId
+                                },
+                                destination: {
+                                    href: appRootUrl
+                                }
+                            },
+                            amount: {
+                                currency: 'USD',
+                                value: '225.00'
+                            },
+                            metadata: {
+                                foo: 'bar',
+                                baz: 'boo'
+                            }
+                        };
+
+                        accountToken.post('transfers', requestBody).then(function(data) {
+                                console.log(data);
+                                var transferUrl = data.headers.get('location');
+
+                                accountToken.get(transferUrl).then(function(response) {
+                                    res.send(response.body.status);
+                                  });
+
+                            });
+
+
+                    })
+                });
+            })
         });
 
 
-    });
+
+
+
+
+
+    })
+
 
 
 
 });
 
-/**
- * STEP 3:
- *  Use a refresh token to get a new
- *  access token and refresh token pair.
- **/
-
-app.get('/refresh', function(req, res) {
-    Dwolla.refreshAuth(req.query.refreshToken, function(error, auth) {
-        if (error) return res.send(error);
-
-        var output = "Your OAuth access_token is: <b>" + auth.access_token + "</b>, which will expire in " + auth.expires_in + " seconds.<br>Your refresh_token is: <b>" + auth.refresh_token + "</b>, and that'll expire in " + auth.refresh_expires_in + " seconds.";
-        output += '<br><a href="/refresh?refreshToken=' + encodeURIComponent(auth.refresh_token) + '">Click here to get a new access and refresh token pair!</a>';
-        return res.send(output);
-    });
-});
-
-
-app.get('/catalog', function(req, res) {
-    Dwolla.catalog(req.query.token, function(error, links) {
-        if (error) return res.send(error);
-
-        var output = "The endpoints that you can use are:"
-        links.forEach(function(link) {
-            output += "<br /> " + link;
-        })
-        return res.send(output);
-    });
-});
 
 
 
-app.listen(3000);
+
+app.listen(8000);
