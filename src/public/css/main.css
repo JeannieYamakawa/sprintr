@@ -211,15 +211,39 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
   margin-right: 5%;
 }
 
-.leaderboardRightCard {
+.leaderboardRightCardTop {
   background: #fff;
   border-radius: 5px;
   width: 40vw;
-  height: 37.25vh;
+  height: 60vh;
+  margin-bottom: 1%;
+}
+
+.leaderboardRightCardBottom {
+  background: #fff;
+  border-radius: 5px;
+  width: 40vw;
+  height: 14vh;
   margin-bottom: 1%;
 }
 
 .leaderboardContainer h3{
   text-align: center;
   font-size: 2rem;
+}
+
+
+#leaderboardTeamChart {
+  width: 90% !important;
+  height: 100% !important;
+}
+
+.leaderboardDonutInner {
+  display: flex;
+  justify-content: center;
+}
+
+#leaderboardDonutChart{
+  width: 71% !important;
+  height: 71% !important;
 }

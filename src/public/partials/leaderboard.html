@@ -1,18 +1,24 @@
-<h2 class="dashboardWelcome"> {{ NAME OF GAME }}</h2>
-
+<h2 class="dashboardWelcome"> {{ GAME }}</h2>
 
 <div class="leaderboardContainer">
   <div class="leaderboardLeft">
     <div class="leaderboardTeam">
       <h3> Rankings </h3>
+      <canvas id="leaderboardTeamChart"></canvas>
     </div>
   </div>
   <div class="leaderboardRight">
-    <div class="leaderboardDonut leaderboardRightCard">
+    <div class="leaderboardDonut leaderboardRightCardTop">
       <h3> Stats </h3>
+        <div class="leaderboardDonutInner">
+          <canvas id="leaderboardDonutChart"></canvas>
+        </div>
     </div>
-    <div class="leaderboardRemain leaderboardRightCard">
-      <h3> Time </h3>
+    <div class="leaderboardRemain leaderboardRightCardBottom">
+      <h3> Time Remaining </h3>
+      <div class="leaderboardDonutInner">
+        <h3>00h 00m 00s</h3>
+      </div>
     </div>
   </div>
 </div>
