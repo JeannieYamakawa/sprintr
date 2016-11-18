@@ -29,18 +29,24 @@
         </div> -->
 
     <div class="field">
-        <ul>
+        <ul class="websitesButtons">
+            <h5>Websites to track:</h5>
             <li ng-repeat='site in view.newgameFormInfo.websites'>
-                <h6 ng-show='!editShow'>{{ site }}</h6>
-                <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
-
-                <a class="ui button" ng-click ='removeWebsite()'>Remove Site</a>
-                <a class="ui button" ng-show='editShow' ng-click='updateSite(site)'>Update Site</a>
-                <a class="ui button" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</a>
+              <div class="newGameWebsiteDiv">
+                <div class="newGameWebsiteDivLeft">
+                  <h6 ng-show='!editShow'>{{ site }}</h6>
+                  <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
+                </div>
+                <div class="newGameWebsiteDivRight">
+                  <button class="ui button websitebutton linksInside" ng-click ='removeWebsite()'>Remove Site</button>
+                  <button class="ui button websitebutton linksInside" ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
+                  <button class="ui button websitebutton linksInside" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
+                </div>
+              </div>
             </li>
             <li >
                 <input type="text" name="website" ng-model="website.name" placeholder="Website"  ng-required='firstSite'>
-                <button class="ui button" type="submit" ng-click="view.newWebsite($event,website.name)" >Add Website</button>
+                <button class="ui button websitebutton" type="submit" ng-click="view.newWebsite($event,website.name)" >Add Website</button>
 
             </li>
         </ul>
