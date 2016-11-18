@@ -80,4 +80,16 @@ router.get('/callback', function(req, res) {
     })
 });
 
+
+router.get('/payment/:userID/:gameID', function(req, res){
+
+  var userID = req.params.userID;
+  var gameID = req.params.gameID;
+
+  knex('game_player').where({game_id: gameID, player_id: userID}).update('valid_payment', true).then(function(){
+    res.send('registered payment in DB');
+  });
+
+})
+
 module.exports = router;
