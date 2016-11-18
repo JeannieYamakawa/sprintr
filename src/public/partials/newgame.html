@@ -14,7 +14,7 @@
         </div>
 
         <div class="field">
-            <input type="password" name="password" ng-model="view.newgameFormInfo.password" placeholder="Password" required>
+            <input type="text" name="password" ng-model="view.newgameFormInfo.password" placeholder="Password" required>
         </div>
 
 
@@ -39,7 +39,7 @@
                 <a class="ui button" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</a>
             </li>
             <li >
-                <input type="text" name="website" ng-model="website.name" placeholder="Website" required>
+                <input type="text" name="website" ng-model="website.name" placeholder="Website"  ng-required='firstSite'>
                 <button class="ui button" type="submit" ng-click="view.newWebsite($event,website.name)" >Add Website</button>
 
             </li>
