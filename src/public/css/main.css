@@ -1,71 +1,61 @@
 body {
-  background: #eceff4 !important;
+    background: #eceff4 !important;
 }
-
 .container {
-  width: 90%;
-  margin: auto;
+    width: 90%;
+    margin: auto;
 }
-
-h1,h2,h3,h4,h5,h6,p,a,li {
-  font-family: 'Roboto', sans-serif !important;
-  color: rgba(0, 0, 0, 0.5);
+h1, h2, h3, h4, h5, h6, p, a, li {
+    font-family: 'Roboto', sans-serif !important;
+    color: rgba(0, 0, 0, 0.5);
 }
-
 ul {
-  list-style-type: none;
-  margin-left: 0;
-  padding-left: 0;
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
 }
 
 /*--------------------------------------------------------------- confirmjoin.html*/
 
-.mediumContainer{
+.mediumContainer {
     background: #fff;
     margin: auto;
     margin-top: 1em;
     width: 55%;
     padding: 2%;
 }
-
 .confirmjoinBoxH3, .mediumContainer h2 {
-  text-align: center;
+    text-align: center;
 }
-
 .confirmjoinContainer {
-  display: flex;
+    display: flex;
 }
-
 .confirmjoinBox {
-  width: 33%;
+    width: 33%;
 }
-
 .confirmjoinSpan {
-  font-size: 1.071rem;
+    font-size: 1.071rem;
 }
-
 .confirmjoinBoxLeftH3 {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 /*--------------------------------------------------------------- home.html*/
 
 .logoIcon {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
-
 .ui.secondary.pointing.menu {
-  background: #fff;
+    background: #fff;
 }
-
 .ui.secondary.menu a {
-  color: rgba(0, 0, 0, 0.5); !important;
-  font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.5);
+    !important;
+    font-size: 1.5rem;
 }
-
 .ui.menu {
-  margin: 0 !important;
+    margin: 0 !important;
 }
 
 /*.homeNavInner {
@@ -81,6 +71,7 @@ ul {
   margin: 3%;
 }*/
 
+
 /*.homeNavInner h3 {
   width: 100px;
 	height: 100px;
@@ -94,212 +85,181 @@ ul {
   color: #fff;
 }*/
 
-
-.homeNavInner h3:first-child{
-  margin: 10px;
+.homeNavInner h3:first-child {
+    margin: 10px;
 }
-
 .bg {
-  background-size: cover;
-  background-image: url('../images/cover1.jpg');
-  height: 100vh;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-size: cover;
+    background-image: url('../images/cover1.jpg');
+    height: 100vh;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 .bgMessage {
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.5);
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 /*--------------------------------------------------------------- signup.html*/
 
 .bigContainer {
-  display: flex;
+    display: flex;
 }
-
 .smallContainer {
-  /*border: 1px solid #dce0e0;*/
-  background: #fff;
-  margin: auto;
-  margin-top: 1em;
-  width: 35%;
-  padding: 2%;
+    /*border: 1px solid #dce0e0;*/
+    background: #fff;
+    margin: auto;
+    margin-top: 1em;
+    width: 35%;
+    padding: 2%;
 }
-
 .smallContainer h2 {
-  text-align: center;
+    text-align: center;
 }
-
-
 .ui.primary.button, .ui.red.button {
-  display: flex;
-  margin: auto;
+    display: flex;
+    margin: auto;
 }
 
 /*--------------------------------------------------------------- ngMessages*/
 
 input.ng-invalid.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-invalid-minlength.ng-touched {
-  background-color: #FE938C;
-  border: 1px solid red;
+    background-color: #FE938C;
+    border: 1px solid red;
 }
-
 .error {
-  color: red;
+    color: red;
 }
-
 input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid.ng-valid-minlength {
-  background-color: #C7EFCF;
-  border: 1px solid green;
+    background-color: #C7EFCF;
+    border: 1px solid green;
 }
 
 /*--------------------------------------------------------------- dashboard*/
 
 .dashboardWelcome {
-  font-size: 3rem;
-  text-align: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
+    font-size: 3rem;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
-
 .ui.grid {
-  display: flex;
-  margin: auto;
+    display: flex;
+    margin: auto;
 }
-
 .ui.grid>.row>.column {
-  margin-top: 0.25% !important;
-  margin-bottom: 0.25% !important;
+    margin-top: 0.25% !important;
+    margin-bottom: 0.25% !important;
 }
-
 .dashboardCard {
-  background: #fff;
-  border-radius: 5px;
-  margin-right: 0.25%;
-  cursor: pointer;
+    background: #fff;
+    border-radius: 5px;
+    margin-right: 0.25%;
+    cursor: pointer;
 }
-
 .dashboardCard:hover {
-  border: 2px solid #eceff4;
+    border: 2px solid #eceff4;
 }
-
 .dashboardCard h3 {
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: center;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
 }
-
 .dashboardRankingIcon {
-  width: 30px;
-  height: 30px;
+    width: 30px;
+    height: 30px;
 }
-
 .dashboardCard ul li {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
-
 .dashboardCard ul li img {
-  margin-right: 3%;
-  margin-bottom: 2%;
+    margin-right: 3%;
+    margin-bottom: 2%;
 }
-
 .radioButtonFlex {
-  display: flex;
+    display: flex;
 }
-
 .radioButtonFlex p {
-  padding-left: 2%;
+    padding-left: 2%;
 }
-
 #endDate {
-  margin-top: 1em;
+    margin-top: 1em;
 }
-
 .newgameButtonsDiv {
-  display: flex;
+    display: flex;
 }
 
 /*--------------------------------------------------------------- leaderboard*/
 
 .leaderboardContainer {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
-
 .leaderboardLeft {
-  background: #fff;
-  border-radius: 5px;
-  width: 40vw;
-  height: 75vh;
-  margin-right: 5%;
+    background: #fff;
+    border-radius: 5px;
+    width: 40vw;
+    height: 75vh;
+    margin-right: 5%;
 }
-
 .leaderboardRightCardTop {
-  background: #fff;
-  border-radius: 5px;
-  width: 40vw;
-  height: 60vh;
-  margin-bottom: 1%;
+    background: #fff;
+    border-radius: 5px;
+    width: 40vw;
+    height: 60vh;
+    margin-bottom: 1%;
 }
-
 .leaderboardRightCardBottom {
-  background: #fff;
-  border-radius: 5px;
-  width: 40vw;
-  height: 14vh;
-  margin-bottom: 1%;
+    background: #fff;
+    border-radius: 5px;
+    width: 40vw;
+    height: 14vh;
+    margin-bottom: 1%;
 }
-
-.leaderboardContainer h3{
-  text-align: center;
-  font-size: 2rem;
-  margin-top: 0;
+.leaderboardContainer h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
 }
-
 #leaderboardTeamChart {
-  width: 90% !important;
+    width: 90% !important;
 }
-
 .leaderboardDonutInner {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
-
-#leaderboardDonutChart{
-  width: 55% !important;
-  height: 55% !important;
+#leaderboardDonutChart {
+    width: 55% !important;
+    height: 55% !important;
 }
-
 .websiteLinksChart {
-  padding-left: 1rem;
+    padding-left: 1rem;
 }
-
 .websiteLinksChart li {
-  font-size: 1.5rem;
-  padding: 0.15rem;
+    font-size: 1.5rem;
+    padding: 0.15rem;
 }
 
 /*--------------------------------------------------------------- new game*/
 
 .websitesButtons h6 {
-  font-size: 1rem;
-  margin-bottom: 0;
-  margin-top: 0.25em
+    font-size: 1rem;
+    margin-bottom: 0;
+    margin-top: 0.25em
 }
-
 button.ui.button.websitebutton {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  color: #FF4500;
-  font-size: 0.85rem;
-  padding-left: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #FF4500;
+    font-size: 0.85rem;
+    padding-left: 0;
 }

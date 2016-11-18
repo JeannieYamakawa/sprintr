@@ -1,13 +1,21 @@
+<ng-include src="'partials/navbarOuter.html'">
+</ng-include>
 <div class="content-wrapper">
-    <div class="logo-wrapper">
-        <h1>Time Tracker</h1>
-    </div>
-    <div class="login-wrapper">
-        <div class="input-wrapper ui input">
-            <input type="text" value="username" placeholder="username" ng-model="view.username">
-            <input type="password" value="password" placeholder="password" ng-model="view.password">
+    <div class='content-wrapper-inner'>
+
+        <div class="logo-wrapper">
+            <h1>Login</h1>
+            <br>
         </div>
-        <button class="ui button" ng-click="login()">Login</button>
-        <p>{{view.badLogin}}</p>
+        <div class="login-wrapper">
+            <div class="input-wrapper ui input">
+                <input type="text" value="username" placeholder="username" ng-model="view.username">
+                <br>
+                <input type="password" value="password" placeholder="password" ng-model="view.password">
+            </div>
+            <br>
+            <button class="ui button" ng-click="login()">Login</button>
+            <p>{{view.badLogin}}</p>
+        </div>
     </div>
 </div>
