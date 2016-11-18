@@ -130,7 +130,6 @@ router.get( '/:game_id', function( req, res ) {
     let data = [];
     var promiseArray = [];
     //get all players that belong to the game
-
     knex( 'games' ).where( 'id', gameId ).first().then( function( game ) {
 
         var gameName = game.name;
