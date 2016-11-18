@@ -171,18 +171,15 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
                   // console.log(donutBackground);
                   // console.log(donutHover);
                 });
-
-          }
-
-
-
-          loadStats();
-          //refresh the leaderboard
-          window.setInterval(loadStats, 3000)
-
-
-
-
-
     }
+
+
+
+    loadStats();
+    //refresh the leaderboard
+    window.setInterval(loadStats, 3000)
+
+
+
+  }
 ]);
