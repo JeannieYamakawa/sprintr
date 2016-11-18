@@ -10,6 +10,7 @@ exports.seed = function(knex, Promise) {
         // Inserts seed entries
         knex.raw('ALTER SEQUENCE players_id_seq RESTART WITH 1'),
         knex('players').insert({
+          id: 1,
           first_name: "Tim",
           last_name: "Chew",
           username: "tryanc",
@@ -17,6 +18,7 @@ exports.seed = function(knex, Promise) {
           email: 'timothyrchew@gmail.com'
         }),
         knex('players').insert({
+          id: 2,
           first_name: "Jeannie",
           last_name: "Y",
           username: "jeansey",
@@ -24,6 +26,7 @@ exports.seed = function(knex, Promise) {
           email: 'jeanbean@gmail.com'
         }),
         knex('players').insert({
+          id: 3,
           first_name: "Robert",
           last_name: "Varela",
           username: "robert",
@@ -31,6 +34,7 @@ exports.seed = function(knex, Promise) {
           email: 'robert@gmail.com'
         }),
         knex('players').insert({
+          id: 4,
           first_name: "Zubair",
           last_name: "Desai",
           username: "zubair",
