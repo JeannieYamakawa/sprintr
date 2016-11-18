@@ -34,13 +34,13 @@
                 <h6 ng-show='!editShow'>{{ site }}</h6>
                 <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
 
-                <button class="ui button" ng-click ='removeWebsite()'>Remove Site</button>
-                <button class="ui button" ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
-                <button class="ui button" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
+                <a class="ui button" ng-click ='removeWebsite()'>Remove Site</a>
+                <a class="ui button" ng-show='editShow' ng-click='updateSite(site)'>Update Site</a>
+                <a class="ui button" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</a>
             </li>
             <li >
                 <input type="text" name="website" ng-model="website.name" placeholder="Website" required>
-                <button class="ui button" type="submit" ng-click="view.newWebsite($event,website.name)">Add Website</button>
+                <button class="ui button" type="submit" ng-click="view.newWebsite($event,website.name)" >Add Website</button>
 
             </li>
         </ul>
@@ -49,11 +49,11 @@
         <div class="field">
             <h5>Reward</h5>
             <div class="radioButtonFlex">
-              <input type="radio" name="reward" value="Points" ng-model="view.newgameFormInfo.gametype"/>
+              <input type="radio" name="reward" value="points" ng-model="view.newgameFormInfo.gametype"/>
               <p>Points</p>
             </div>
             <div class="radioButtonFlex">
-              <input type="radio" name="reward" value="Cash" ng-model="view.newgameFormInfo.gametype"/>
+              <input type="radio" name="reward" value="cash" ng-model="view.newgameFormInfo.gametype"/>
               <p>Cash</p>
           </div>
         </div>
