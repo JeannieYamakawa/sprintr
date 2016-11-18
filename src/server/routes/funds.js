@@ -69,7 +69,7 @@ router.get('/callback', function(req, res) {
                                 accountToken.get(transferUrl).then(function(response) {
                                     console.log("payent status:", response.body.status);
                                     knex('game_player').where
-                                    res.redirect('http://localhost:8000/#/confirmjoin/payment_success');
+                                    res.redirect('http://localhost:8000/#/payment');
                                   });
                             });
 
