@@ -23,6 +23,20 @@ exports.seed = function(knex, Promise) {
           password: passwordHash,
           email: 'jeanbean@gmail.com'
         }),
+        knex('players').insert({
+          first_name: "Robert",
+          last_name: "Varela",
+          username: "robert",
+          password: passwordHash,
+          email: 'robert@gmail.com'
+        }),
+        knex('players').insert({
+          first_name: "Zubair",
+          last_name: "Desai",
+          username: "zubair",
+          password: passwordHash,
+          email: 'jeanbean@gmail.com'
+        }),
       ]);
     });
 };
