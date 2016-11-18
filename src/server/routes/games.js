@@ -135,6 +135,7 @@ router.get( '/:game_id', function( req, res ) {
 
         var gameName = game.name;
         var startTime = game.start_time;
+        var endTime = game.end_time;
         var gameType = game.game_type;
 
         knex( 'game_player' ).where( 'game_id', gameId ).innerJoin( 'players', 'game_player.player_id', 'players.id' ).then( function( players ) {
@@ -168,6 +169,7 @@ router.get( '/:game_id', function( req, res ) {
                 gameObj.game_id = gameId;
                 gameObj.name = gameName;
                 gameObj.start_time = startTime;
+                gameObj.end_time = endTime;
                 gameObj.game_stats = data;
                 gameObj.game_type = gameType;
                 res.send( gameObj );
