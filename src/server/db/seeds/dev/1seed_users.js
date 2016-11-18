@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
           id: 1,
           first_name: "Tim",
           last_name: "Chew",
-          username: "tryanc",
+          username: "timchew",
           password: passwordHash,
           email: 'timothyrchew@gmail.com'
         }),

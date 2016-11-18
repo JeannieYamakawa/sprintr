@@ -31,7 +31,7 @@ exports.seed = function(knex, Promise) {
                     start_time: startdate,
                     end_time: new_date,
                     game_type: 'cash',
-                    name: 'Fantasy Football',
+                    name: 'Alpaca Breeding Club',
                     game_password: passwordHash
                 }),
                 knex('games').insert({
@@ -41,7 +41,7 @@ exports.seed = function(knex, Promise) {
                     start_time: startdate,
                     end_time: new_date,
                     game_type: 'cash',
-                    name: 'Alpaca Breeding Club',
+                    name: 'French Study Group',
                     game_password: passwordHash
                 }),
                 knex('games').insert({
@@ -52,16 +52,6 @@ exports.seed = function(knex, Promise) {
                     end_time: new_date,
                     game_type: 'cash',
                     name: 'Real Estate Investing',
-                    game_password: passwordHash
-                }),
-                knex('games').insert({
-                    id: 5,
-                    admin_user_id: '1',
-                    active: true,
-                    start_time: startdate,
-                    end_time: new_date,
-                    game_type: 'cash',
-                    name: 'French Study Group',
                     game_password: passwordHash
                 }),
             ]);

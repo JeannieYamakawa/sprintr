@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
                     player_id: '4',
                     final_ranking: null
                 }),
-                //REAL ESTATE GAME
+                //ALPACA
                 knex('game_player').insert({
                     game_id: '2',
                     player_id: '1',
@@ -47,7 +47,7 @@ exports.seed = function(knex, Promise) {
                     player_id: '4',
                     final_ranking: null
                 }),
-                //FANTAST FOOTBALL GAME
+                //FRENCH STUDY
                 knex('game_player').insert({
                     game_id: '3',
                     player_id: '1',
@@ -68,24 +68,24 @@ exports.seed = function(knex, Promise) {
                     player_id: '4',
                     final_ranking: null
                 }),
-                //ALAPCA BREEDING CLUB
+                //REAL ESTATE
                 knex('game_player').insert({
                     game_id: '4',
                     player_id: '1',
                     final_ranking: null
                 }),
                 knex('game_player').insert({
-                    game_id: '5',
+                    game_id: '4',
                     player_id: '2',
                     final_ranking: null
                 }),
                 knex('game_player').insert({
-                    game_id: '5',
+                    game_id: '4',
                     player_id: '3',
                     final_ranking: null
                 }),
                 knex('game_player').insert({
-                    game_id: '5',
+                    game_id: '4',
                     player_id: '4',
                     final_ranking: null
                 }),
