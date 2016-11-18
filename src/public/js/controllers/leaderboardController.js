@@ -165,7 +165,6 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
             // console.log(donutData);
             // console.log(donutBackground);
             // console.log(donutHover);
-
           });
 
 
