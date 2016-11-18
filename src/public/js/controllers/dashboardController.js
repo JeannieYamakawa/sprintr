@@ -42,7 +42,7 @@ app.controller('dashboardController', ['$scope', '$http', '$location','$window',
           })
 
 
-          //TODO- duplicate code below with leaderboard Controller logic. put this into an angular service. 
+          //TODO- duplicate code below with leaderboard Controller logic. put this into an angular service.
           //Determine game rankings for each game
           gamesList.forEach(function(game) {
             console.log(game);
@@ -75,10 +75,13 @@ app.controller('dashboardController', ['$scope', '$http', '$location','$window',
                 }
               }
             }
+            var thirdLast = playerTotalTimes.length-3;
+            var secondLast = playerTotalTimes.length-2;
+            var last = playerTotalTimes.length-1;
 
-            game.first_place = playerTotalTimes[0];
-            game.second_place = playerTotalTimes[1];
-            game.third_place = playerTotalTimes[2];
+            game.first_place = playerTotalTimes[last];
+            game.second_place = playerTotalTimes[secondLast];
+            game.third_place = playerTotalTimes[thirdLast];
 
 
           })

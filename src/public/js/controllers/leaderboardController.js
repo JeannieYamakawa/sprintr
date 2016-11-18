@@ -104,15 +104,17 @@
                           //Structure data for ranking chart
                           for (var i = 0; i < playerTotalTimes.length; i++) {
                             $scope.barLabels.push(playerTotalTimes[i].username);
+                            $scope.barLabels.reverse()
                             $scope.barData.push(playerTotalTimes[i].total_time / 60);
+                            $scope.barData.reverse();
                             var border = borderOptions.splice(0, 1)[0];
                             var color = backgroundOptions.splice(0, 1)[0];
                             borderColor.push(border);
                             backgroundColor.push(color);
                           }
 
-                          // console.log($scope.barLabels);
-                          // console.log($scope.barData);
+                          console.log($scope.barLabels);
+                          console.log($scope.barData);
                           // console.log(backgroundColor);
                           // console.log(borderColor);
 
