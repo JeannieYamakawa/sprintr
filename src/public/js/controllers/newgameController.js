@@ -38,7 +38,7 @@ app.controller('newgameController', ['$scope', '$http', '$location',
       console.log($scope.editIndex);
       console.log(this, 'this');
     }
-
+    $scope.firstSite = $scope.view.newgameFormInfo.websites[0];
     $scope.updateSite = function(siteItself) {
       let siteIndex = this.$index;
       this.site = siteItself;
@@ -57,7 +57,8 @@ app.controller('newgameController', ['$scope', '$http', '$location',
       'scope.currentUser in newGameController');
 
     $scope.submitNewgameForm = function(event, gameInfo) {
-      event.preventDefault();
+         event.preventDefault();
+        if($scope.view.newgameFormInfo.websites[0]!==undefined){
       console.log(gameInfo, 'gameInfo inside submitNewgameForm funct');
 
       $http.post('/users/' + $scope.currentUser.id + '/games/new', {
@@ -69,6 +70,7 @@ app.controller('newgameController', ['$scope', '$http', '$location',
         );
         $location.path('/dashboard')
       })
+  }
     }
 
   }]);
