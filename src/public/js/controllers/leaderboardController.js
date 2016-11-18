@@ -9,6 +9,8 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
     $scope.donutChartLabels = [];
     $scope.donutChartData = [];
 
+
+
     var gameId = currentGame.getSelectedGame();
 
     $http.get('users/' + currentUser.id + '/games/' + gameId).then(function(
@@ -18,6 +20,20 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
       console.log($scope.view.gameDetails);
       var playerTotalTimes = [];
 
+      //calculate time remaining in the games
+
+      window.setInterval(function(){
+        var now = moment(new Date());
+        var end = moment(gameDetails.end_time);
+        var duration = moment.duration(end.diff(now));
+
+        $scope.view.days = duration.days();
+        $scope.view.hours = duration.hours();
+        $scope.view.minutes = duration.minutes();
+        $scope.view.seconds = duration.seconds();
+        $scope.$digest();
+
+      }, 1000)
 
       //TODO- duplicate code below with dashbaord Controller logic. put this into an angular service.
       //build arrays for main ranked chart
@@ -84,10 +100,10 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
         backgroundColor.push(color);
       }
 
-      console.log($scope.barLabels);
-      console.log($scope.barData);
-      console.log(backgroundColor);
-      console.log(borderColor);
+      // console.log($scope.barLabels);
+      // console.log($scope.barData);
+      // console.log(backgroundColor);
+      // console.log(borderColor);
 
 
       //Structure data for player stats donut chart
@@ -132,8 +148,8 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
         donutBackground.push(color);
       });
 
-      console.log($scope.donutChartLabels);
-      console.log($scope.donutChartData);
+      // console.log($scope.donutChartLabels);
+      // console.log($scope.donutChartData);
 
       // console.log(donutLabels);
       // console.log(donutData);
