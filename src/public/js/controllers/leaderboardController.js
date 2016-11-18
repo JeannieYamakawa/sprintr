@@ -92,7 +92,7 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
             //Structure data for ranking chart
             for (var i = 0; i < playerTotalTimes.length; i++) {
               $scope.barLabels.push(playerTotalTimes[i].username);
-              $scope.barData.push(playerTotalTimes[i].total_time);
+              $scope.barData.push(playerTotalTimes[i].total_time / 60);
               var border = borderOptions.splice(0, 1)[0];
               var color = backgroundOptions.splice(0, 1)[0];
               borderColor.push(border);
@@ -138,14 +138,25 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
             var donutBackground = [];
             var donutHover = [];
 
+            var legendArray = [];
+
             currentUserStats.stats.forEach(function(url) {
+
+              var legendItem = {};
+              legendItem.domain = url.domain;
+              legendItem.color = donutHoverOptions[0];
+              legendArray.push(legendItem);
+
               $scope.donutChartLabels.push(url.domain);
-              $scope.donutChartData.push(url.total_time);
+              $scope.donutChartData.push(url.total_time / 60);
               var hover = donutHoverOptions.splice(0, 1)[0];
               donutHover.push(hover);
               var color = donutColorOptions.splice(0, 1)[0];
               donutBackground.push(color);
             });
+
+            console.log(legendArray);
+            $scope.view.legendArray = legendArray;
 
             // console.log($scope.donutChartLabels);
             // console.log($scope.donutChartData);

@@ -8,7 +8,7 @@
       <canvas id="leaderboardDonutChart" class="chart chart-doughnut" chart-data="donutChartData" chart-labels="donutChartLabels"></canvas>
     </div>
     <ul class="websiteLinksChart">
-      <li ng-repeat="link in donutChartLabels"> {{ link }}</li>
+      <li ng-repeat="legend in view.legendArray"> {{ legend.domain }} {{legend.color}}</li>
     </ul>
   </div>
   <div class="leaderboardRight">
