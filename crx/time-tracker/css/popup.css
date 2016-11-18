@@ -37,6 +37,9 @@
 
 /*=-=-=-=-=-=-=-=-=-=-=LEADERBOARD=-=-==-=-=-=-=-=-=-=-*/
 
+li {
+    list-style-type: none
+}
 .leaderboardLeft {
     background: #fff;
     border-radius: 5px;
@@ -58,4 +61,8 @@
 .websiteLinksChart li {
     font-size: 1.5rem;
     padding: 0.15rem;
+}
+.centerMe {
+    display: flex;
+    justify-content: center;
 }

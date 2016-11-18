@@ -76,7 +76,8 @@ app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'save
     $scope.view.currentUser = saveGames.getCurrentUser();
     console.log( $scope.view.currentUser, 'scope.currentUser' );
 
-
+    var gameId = saveGames.getCurrentGameId()
+    console.log( gameId, 'gameId in leaderboardController' );
 
     chrome.storage.local.get( 'token', function( token ) {
         if ( token.hasOwnProperty( "token" ) ) {
@@ -105,8 +106,7 @@ app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'save
     } );
 
 
-    var gameId = saveGames.getCurrentGameId()
-    console.log( gameId, 'gameId in leaderboardController' );
+
 
 
 
@@ -128,6 +128,7 @@ app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'save
             playerTime.username = player.username;
             playerTime.player_id = player.player_id;
             var totalTime = 0;
+            // console.log( playerTime, 'playerTime object' );
 
             //loop through every tracked url and add a players total time
             player.stats.forEach( function( stat ) {
@@ -197,6 +198,7 @@ app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'save
         gameDetails.game_stats.forEach( function( player ) {
             if ( player.player_id === $scope.view.currentUser.id ) {
                 currentUserStats = player;
+                console.log( currentUserStats, 'currentUserStats' );
             }
         } )
 
