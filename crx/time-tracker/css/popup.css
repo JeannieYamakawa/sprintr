@@ -1,41 +1,61 @@
 /*=-=-=-=-=-=-=-=-=-=-=CHOOSE GAME=-=-==-=-=-=-=-=-=-=-*/
+
 .block {
     display: block;
 }
 
 /*=-=-=-=-=-=-=-=-=-=-=GLOBAL=-=-==-=-=-=-=-=-=-=-*/
 
-
 .content-wrapper {
-  width: 350px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    width: 350px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
 
 /*=-=-=-=-=-=-=-=-=-=-=LOGIN=-=-==-=-=-=-=-=-=-=-*/
 
-
 .logo-wrapper {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
-
 .input-wrapper {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
-
 .login-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
-
 
 /*=-=-=-=-=-=-=-=-=-=-=DASHBOARD=-=-==-=-=-=-=-=-=-=-*/
+
+
+/*=-=-=-=-=-=-=-=-=-=-=LEADERBOARD=-=-==-=-=-=-=-=-=-=-*/
+
+.leaderboardLeft {
+    background: #fff;
+    border-radius: 5px;
+    width: 40vw;
+    height: 75vh;
+    margin-right: 5%;
+}
+.leaderboardDonutInner {
+    display: flex;
+    justify-content: center;
+}
+#leaderboardDonutChart {
+    width: 55% !important;
+    height: 55% !important;
+}
+.websiteLinksChart {
+    padding-left: 1rem;
+}
+.websiteLinksChart li {
+    font-size: 1.5rem;
+    padding: 0.15rem;
+}
