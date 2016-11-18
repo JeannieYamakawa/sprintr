@@ -3,37 +3,62 @@
     <div class="mediumContainer">
         <h2>{{currentGame.name}}</h2>
         <div class="confirmjoinContainer">
-          <div class="confirmjoinBox">
-            <h3><strong>Type:</strong></h3>
-              <p class="confirmjoinSpan">{{ currentGame.gameType }}</p>
-            <h3 class="confirmjoinBoxLeftH3"><strong>Start:</strong></h3>
-              <p class="confirmjoinSpan">{{currentGame.startTime| date: 'MMM d, y' }}</p>
-          </div>
-          <div class="confirmjoinBox">
-            <h3 class="confirmjoinBoxH3"><strong>Websites:</strong></h3>
-            <ul>
-              <li ng-repeat='site in currentGame.sites.stats'>
-                  <h4>{{site.domain}}</h4>
-              </li>
-            </ul>
-          </div>
-          <div class="confirmjoinBox">
-            <h3 class="confirmjoinBoxH3"><strong>Players:</strong></h3>
-            <ul>
-                <li ng-repeat='stat in currentGame.stats'>
-                    <h4>{{stat.username}}</h4>
-                </li>
-            </ul>
-          </div>
+
+            <div class="confirmjoinBox">
+                <div class="confirm-join">
+                <h3><strong>Type:</strong></h3>
+                <p class="confirmjoinSpan">{{ currentGame.gameType }}</p>
+                <br>
+                <br>
+                <h3 class="confirmjoinBoxLeftH3"><strong>Start:</strong></h3>
+                <p class="confirmjoinSpan">{{currentGame.startTime| date: 'MMM d, y' }}</p>
+            </div>
+            </div>
+
+
+
+            <div class="confirmjoinBox">
+
+                <div class="confirm-join">
+                    <h3 class="confirmjoinBoxH3"><strong>Websites:</strong></h3>
+                    <ul>
+                        <li ng-repeat='site in currentGame.sites.stats'>
+                            <h4>{{site.domain}}</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="confirmjoinBox">
+
+                <div class="confirm-join">
+                    <h3 class="confirmjoinBoxH3"><strong>Players:</strong></h3>
+                    <ul>
+                        <li ng-repeat='stat in currentGame.stats'>
+                            <h4>{{stat.username}}</h4>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
         </div>
 
         <div ng-show='currentGame.gameType === "points"'>
-            <button class="ui button" ng-click="submitJoinClicked()">Join this game</button>
+            <div class="confirm-join">
+                <button class="flex_button ui button " ng-click="submitJoinClicked()">Join this game</button>
+            </div>
         </div>
 
         <div ng-show='currentGame.gameType === "cash"'>
-                <p>This is a cash game with a $10 buy-in, select your payment method below.</p>
-                <button class="ui button" ng-click="dwolla()">Pay with Dwolla</button>
+
+            <div class="confirm-join">
+                <p>This is a cash game with a $10 buy-in.</p>
+
+                <button class="flex_button ui button " ng-click="dwolla()">Pay with Dwolla</button>
+            </div>
         </div>
 
     </div>

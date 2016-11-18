@@ -151,7 +151,7 @@ router.get( '/:game_id', function( req, res ) {
                     newPersonObj.stats = [];
 
                     //get all the websites and times for our player tracked by this game
-                    knex( 'game_website' ).where( 'game_id', gameId ).innerJoin( 'player_game_website', 'game_website.id', 'player_game_website.game_website_id' ).where( 'player_game_website.player_id', userId ).then( function( urls ) {
+                    knex( 'game_website' ).where( 'game_id', gameId ).innerJoin( 'player_game_website', 'game_website.id', 'player_game_website.game_website_id' ).where( 'player_game_website.player_id', playerID ).then( function( urls ) {
                         urls.forEach( function( url ) {
                             newPersonObj.stats.push( url );
                         } );
