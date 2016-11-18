@@ -261,12 +261,11 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
 .leaderboardContainer h3{
   text-align: center;
   font-size: 2rem;
+  margin-top: 0;
 }
-
 
 #leaderboardTeamChart {
   width: 90% !important;
-  height: 100% !important;
 }
 
 .leaderboardDonutInner {
@@ -275,6 +274,32 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
 }
 
 #leaderboardDonutChart{
-  width: 71% !important;
-  height: 71% !important;
+  width: 55% !important;
+  height: 55% !important;
+}
+
+.websiteLinksChart {
+  padding-left: 1rem;
+}
+
+.websiteLinksChart li {
+  font-size: 1.5rem;
+  padding: 0.15rem;
+}
+
+/*--------------------------------------------------------------- new game*/
+
+.websitesButtons h6 {
+  font-size: 1rem;
+  margin-bottom: 0;
+  margin-top: 0.25em
+}
+
+button.ui.button.websitebutton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #FF4500;
+  font-size: 0.85rem;
+  padding-left: 0;
 }

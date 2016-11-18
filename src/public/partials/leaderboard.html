@@ -3,19 +3,20 @@
 <h2 class="dashboardWelcome"> {{view.gameDetails.name}} </h2>
 <div class="leaderboardContainer">
   <div class="leaderboardLeft">
-    <div class="leaderboardTeam">
+    <h3> Stats </h3>
+    <div class="leaderboardDonutInner">
+      <canvas id="leaderboardDonutChart" class="chart chart-doughnut" chart-data="donutChartData" chart-labels="donutChartLabels"></canvas>
+    </div>
+    <ul class="websiteLinksChart">
+      <li ng-repeat="link in donutChartLabels"> {{ link }}</li>
+    </ul>
+  </div>
+  <div class="leaderboardRight">
+    <div class="leaderboardRightCardTop">
       <h3> Rankings </h3>
       <canvas id="leaderboardTeamChart" class="chart-horizontal-bar" chart-data="barData" chart-labels="barLabels"></canvas>
     </div>
-  </div>
-  <div class="leaderboardRight">
-    <div class="leaderboardDonut leaderboardRightCardTop">
-      <h3> Stats </h3>
-        <div class="leaderboardDonutInner">
-          <canvas id="leaderboardDonutChart" class="chart chart-doughnut" chart-data="donutChartData" chart-labels="donutChartLabels" ></canvas>
-        </div>
-    </div>
-    <div class="leaderboardRemain leaderboardRightCardBottom">
+    <div class="leaderboardRightCardBottom">
       <h3> Time Remaining </h3>
       <div class="leaderboardDonutInner">
         <h3>00h 00m 00s</h3>

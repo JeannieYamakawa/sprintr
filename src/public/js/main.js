@@ -158,6 +158,9 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     }
-
   })
+  .when('/payment', {
+    templateUrl: 'partials/payment.html',
+    controller: 'paymentController',
+  });
 });
