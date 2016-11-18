@@ -154,10 +154,10 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
 
                     $scope.donutChartLabels.push(url.domain);
                     $scope.donutChartData.push(url.total_time / 60);
-                    var hover = donutHoverOptions.splice(0, 1)[0];
-                    donutHover.push(hover);
-                    var color = donutColorOptions.splice(0, 1)[0];
-                    donutBackground.push(color);
+                    var hover = donutHoverOptions.splice(0, 1);
+                    donutHover.push(hover[0]);
+                    var color = donutColorOptions.splice(0, 1);
+                    donutBackground.push(color[0]);
                   });
 
                   console.log(legendArray);

@@ -16,8 +16,58 @@ exports.seed = function(knex, Promise) {
                     final_ranking: null
                 }),
                 knex('game_player').insert({
+                    game_id: '1',
+                    player_id: '3',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '1',
+                    player_id: '4',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '2',
+                    player_id: '1',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
                     game_id: '2',
                     player_id: '2',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '2',
+                    player_id: '3',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '2',
+                    player_id: '4',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '3',
+                    player_id: '1',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '3',
+                    player_id: '2',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '3',
+                    player_id: '3',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '3',
+                    player_id: '4',
+                    final_ranking: null
+                }),
+                knex('game_player').insert({
+                    game_id: '4',
+                    player_id: '1',
                     final_ranking: null
                 }),
             ]);
