@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
             return Promise.all([
                 // Inserts seed entries
                 knex.raw('ALTER SEQUENCE player_game_website_id_seq RESTART WITH 1'),
+                // GAME 1
                 knex('player_game_website').insert({
                     player_id: '1',
                     game_website_id: '1',
@@ -65,6 +66,7 @@ exports.seed = function(knex, Promise) {
                     game_website_id: '3',
                     total_time: 2100
                 }),
+                //GAME 4
 
             ]);
         });

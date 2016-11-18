@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
             return Promise.all([
                 // Inserts seed entries
                 knex.raw('ALTER SEQUENCE game_website_id_seq RESTART WITH 1'),
+                // GAME 1
                 knex('game_website').insert({
                     game_id: '1',
                     domain: 'github.com'
@@ -17,6 +18,7 @@ exports.seed = function(knex, Promise) {
                     game_id: '1',
                     domain: 'scotch.io'
                 }),
+                // GAME 2
                 knex('game_website').insert({
                     game_id: '2',
                     domain: 'alpacainfo.com'
@@ -29,6 +31,7 @@ exports.seed = function(knex, Promise) {
                     game_id: '2',
                     domain: 'alpacanation.com'
                 }),
+                // GAME 3
                 knex('game_website').insert({
                     game_id: '3',
                     domain: 'biggerpockets.com'
@@ -41,6 +44,7 @@ exports.seed = function(knex, Promise) {
                     game_id: '3',
                     domain: 'austinrenc.com'
                 }),
+                // GAME 4
                 knex('game_website').insert({
                     game_id: '4',
                     domain: 'babbel.com'
