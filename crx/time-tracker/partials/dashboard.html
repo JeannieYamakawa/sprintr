@@ -1,9 +1,27 @@
+<ng-include src="'partials/navbar.html'">
+</ng-include>
+
 <div class="content-wrapper">
-  <div ng-show="view.currentUser">
-    <p>Hi, {{view.currentUser.first_name}}</p>
-    <p><i>Logging your current browsing session</i></p>
-    <button class="ui button" ng-click="viewWebPortal()">View Web Portal</button>
-    <button class="ui button" ng-click="logout()">Logout</button>
-    <button class="ui button" ng-click='viewChooseGame()'>View Game Stats</button>
-  </div>
+    <div class='content-wrapper-inner'>
+        <div ng-show="view.currentUser">
+            <!-- <div class='extensionLogoIcon'>
+
+                <img class="logoIcon" src="../images/logo2.png" />
+                <p class='tracker'><strong>Tracker</strong></p>
+                <div></div>
+
+
+            </div> -->
+            <h2>Hi, {{view.currentUser.first_name}}</h2>
+            <p><i>Logging your current browsing session</i></p>
+            <br>
+            <button class="ui button" ng-click="viewWebPortal()">Web Portal</button>
+            <button class="ui button" ng-click='viewChooseGame()'>Game Stats</button>
+        </div>
+
+    </div>
+
 </div>
+<!-- <div class='logout-outer'>
+    <a class="red" ng-click="logout()">Logout</a>
+</div> -->
