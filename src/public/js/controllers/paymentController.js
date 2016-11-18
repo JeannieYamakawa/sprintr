@@ -6,4 +6,5 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location', '$windo
     $scope.currentGame.gameId = $window.localStorage.getItem('gameId');
 
 
+
 }]);

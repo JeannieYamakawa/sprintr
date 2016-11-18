@@ -31,9 +31,9 @@
         <div ng-show='currentGame.gameType === "cash"'>
                 <p>This is a cash game with a $10 buy-in, select your payment method below.</p>
                 <button class="ui button" ng-click="dwolla()">Pay with Dwolla</button>
-                <input type="submit" class="ui primary button" value='Join Game'>
-
-            </form>
+        </div>
+        <div ng-show='currentGame.gameType === "points"'>
+          <input type="submit" class="ui primary button" value='Join Game'>
         </div>
     </div>
 </div>
