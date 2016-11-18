@@ -1,6 +1,15 @@
 <div class="content-wrapper">
-  <div ng-show="view.currentUser">
-    <p>Hi, {{view.currentUser.first_name}}</p>
-    this route works.
-  </div>
+    <div ng-show="view.currentUser">
+        <p>Hi, {{view.currentUser.first_name}}</p>
+        this route works.
+        <div class="leaderboardLeft">
+            <h3> Stats </h3>
+            <div class="leaderboardDonutInner">
+                <canvas id="leaderboardDonutChart" class="chart chart-doughnut" chart-data="donutChartData" chart-labels="donutChartLabels"></canvas>
+            </div>
+            <ul class="websiteLinksChart">
+                <li ng-repeat="link in donutChartLabels"> {{ link }}</li>
+            </ul>
+        </div>
+    </div>
 </div>
