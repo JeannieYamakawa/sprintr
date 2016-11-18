@@ -20,8 +20,9 @@ app.config( function( $routeProvider ) {
         } )
 } );
 
-app.controller( 'chooseGameController', [ '$scope', '$http', '$location', 'saveGames', function( $scope, $http, $location, saveGames ) {
+app.controller( 'chooseGameController', [ '$scope', '$http', '$location', 'saveGames', 'logoutServ', function( $scope, $http, $location, saveGames, logoutServ ) {
     $scope.view = {};
+    $scope.logout = logoutServ.logout;
 
     $scope.view.currentUser = false;
 
@@ -66,7 +67,8 @@ app.controller( 'chooseGameController', [ '$scope', '$http', '$location', 'saveG
 } ] );
 
 
-app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'saveGames', function( $scope, $http, $location, saveGames ) {
+app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'saveGames', 'logoutServ', function( $scope, $http, $location, saveGames , logoutServ ) {
+    $scope.logout = logoutServ.logout;
     $scope.view = {};
     $scope.donutChartLabels = [];
     $scope.donutChartData = [];
@@ -264,8 +266,8 @@ app.controller( 'leaderboardController', [ '$scope', '$http', '$location', 'save
 
 
 
-app.controller( 'loginController', [ '$scope', '$http', '$window', '$location', function( $scope, $http, $window, $location ) {
-
+app.controller( 'loginController', [ '$scope', '$http', '$window', '$location', 'logoutServ',function( $scope, $http, $window, $location , logoutServ ) {
+    $scope.logout = logoutServ.logout;
     $scope.view = {};
 
     ///TODO -Change this to check verify token with server before going to dashboard
@@ -310,8 +312,8 @@ app.controller( 'loginController', [ '$scope', '$http', '$window', '$location', 
 
 } ] );
 
-app.controller( 'dashboardController', [ '$scope', '$http', '$location', '$window', 'saveGames', function( $scope, $http, $location, $window, saveGames ) {
-
+app.controller( 'dashboardController', [ '$scope', '$http', '$location', '$window', 'saveGames', 'logoutServ',function( $scope, $http, $location, $window, saveGames , logoutServ ) {
+    $scope.logout = logoutServ.logout;
     $scope.view = {};
     // chrome.cookies.set({controllerCookie: 'booyahController'}, function(data){
     //     console.log(data, 'controllerCookie');
