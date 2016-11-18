@@ -9,13 +9,14 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location',
 
     // console.log($scope.currentUser.id, 'scope.currentUser in joinGameController');
     $scope.currentGame.name = $window.localStorage.getItem('game');
-    $scope.currentGame.gameId = $window.localStorage.getItem('gameId');
+    $scope.currentGame.game_id = $window.localStorage.getItem('gameId');
     $scope.currentGame.stats = JSON.parse($window.localStorage.getItem(
       'gameStats'));
     $scope.currentGame.startTime = $window.localStorage.getItem('startTime');
     $scope.currentGame.sites = $scope.currentGame.stats[0];
     $scope.currentGame.gameType = $window.localStorage.getItem('gameType');
     console.log($scope.currentGame);
+    $scope.currentGame.userId = $scope.currentUser.id;
     // console.log($scope.currentGame.gameType, 'game type !!');
 
     $scope.dwolla = function(){
@@ -28,16 +29,13 @@ app.controller('confirmJoinController', ['$scope', '$http', '$location',
         var dwollaGateway = response.data;
         $window.location.href = dwollaGateway;
       })
+  }
 
-
-
-    $scope.submitJoinClicked = function(event){
-        event.preventDefault();
-        console.log();
-        // $http.post('/users/'+ $scope.currentUser.id +'/games/'+ $scope.currentGame.gameId +'/join').then(function(response){
-        //     $location.path('/dashboard')
-        // })
-
-    }
+  $scope.submitJoinClicked = function(){
+      console.log('submitJoinClicked');
+      $http.post('/users/'+ $scope.currentUser.id +'/games/'+ $scope.currentGame.game_id +'/join', $scope.currentGame).then(function(response){
+          $location.path('/dashboard')
+      })
+  }
   }
 ]);

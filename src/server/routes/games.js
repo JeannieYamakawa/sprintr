@@ -64,10 +64,12 @@ router.post( '/new', function( req, res ) {
 
 //add user to an existing game
 router.post('/:game_id/join', function(req, res) {
+    console.log('join');
     let gameId = req.params.game_id;
     let userId = req.params.user_id;
     var promiseArray = [];
     //register player with the game
+
     knex('game_player').insert({
         game_id: gameId,
         player_id: userId
@@ -115,7 +117,7 @@ router.get('/:game_id', function(req, res) {
     let data = [];
     var promiseArray = [];
     //get all players that belong to the game
-
+    
     knex('games').where('id', gameId).first().then(function(game){
 
       var gameName = game.name;

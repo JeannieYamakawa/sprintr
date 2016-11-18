@@ -26,7 +26,10 @@
             </ul>
           </div>
         </div>
-
+        
+        <div ng-show='currentGame.gameType === "points"'>
+            <button class="ui button" ng-click="submitJoinClicked()">Join this game</button>
+        </div>
 
         <div ng-show='currentGame.gameType === "cash"'>
                 <p>This is a cash game with a $10 buy-in, select your payment method below.</p>
