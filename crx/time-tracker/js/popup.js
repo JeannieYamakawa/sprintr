@@ -280,23 +280,8 @@ app.controller( 'dashboardController', [ '$scope', '$http', '$location', '$windo
 
 
     $scope.viewWebPortal = function(){
-        return function simpleLoadHttp() {
-    expect([
-    //   [ "onBeforeRequest",
-    //     {
-    //       method: "GET",
-    //       tabId: tabId,
-    //       type: "main_frame",
-    //       url: URL_HTTP_SIMPLE_LOAD
-    //     }
-    //   ],
-      [ "onBeforeSendHeaders",
-        {
-          token: $window.localStorage.token
-        }
-      ],
-    ]);
-    chrome.tabs.create({url: 'http://localhost:8000/#/dashboard'})  }
+
+    chrome.tabs.create({url: 'http://localhost:8000/#/'})  
 
 
     }

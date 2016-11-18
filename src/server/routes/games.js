@@ -17,8 +17,7 @@ router.post( '/new', function( req, res ) {
     console.log(req.body.currentUser, 'currentUser from req in new games post route');
     console.log(req.body.data, 'req.body.data from new games post route');
     var gameWebsites = req.body.data.websites;
-
-
+    
     //--make entry into games table
     knex( 'games' ).insert( {
             name: req.body.data.name,
@@ -31,7 +30,6 @@ router.post( '/new', function( req, res ) {
             first_place: null,
             second_place: null,
             third_place: null
-
         },'*')
         //make entry into game_player table
         .then( function( gameData ) {
@@ -117,7 +115,7 @@ router.get('/:game_id', function(req, res) {
     let data = [];
     var promiseArray = [];
     //get all players that belong to the game
-    
+
     knex('games').where('id', gameId).first().then(function(game){
 
       var gameName = game.name;
