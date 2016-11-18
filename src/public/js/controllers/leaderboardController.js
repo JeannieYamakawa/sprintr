@@ -91,7 +91,10 @@ app.controller('leaderboardController', ['$scope', '$http', '$location',
           $scope.donutChartData = [];
           $scope.donutChartColors = [
             "#FF6384",
-            "#36A2EB"
+            "#36A2EB",
+            "#ffce56",
+            "#4bc0c0",
+            "#9966ff"
           ];
 
           var chartLables = [];
