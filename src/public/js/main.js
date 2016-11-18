@@ -1,6 +1,8 @@
+
 var app = angular.module("timeTracker", ["ngMessages", "ngRoute",
-  "chart.js"
+  "chart.js", 'ngCookies'
 ]);
+
 
 app.config(function($routeProvider, $locationProvider) {
   $routeProvider
@@ -156,6 +158,9 @@ app.config(function($routeProvider, $locationProvider) {
         }
       }
     }
-
   })
+  .when('/payment', {
+    templateUrl: 'partials/payment.html',
+    controller: 'paymentController',
+  });
 });

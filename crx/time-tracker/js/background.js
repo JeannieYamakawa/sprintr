@@ -8,7 +8,8 @@
 var userActive;
 var currentUser;
 var timeReport = [];
-
+// chrome.cookies.set()
+// console.log(chrome.cookies, 'chrome.cookies from backgroundjs');
 var extractDomain = function(url) {
     var domain;
     //find & remove protocol and get domain

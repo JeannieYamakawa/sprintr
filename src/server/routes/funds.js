@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const environment = process.env.NODE_ENV || "development";
+const knexConfig = require( '../../../knexfile' )[ environment ];
+const knex = require( 'knex' )( knexConfig );
+const bcrypt = require('bcrypt');
 var dwolla = require('dwolla-v2');
 
 var client = new dwolla.Client({
@@ -8,7 +12,6 @@ var client = new dwolla.Client({
     environment: 'sandbox',
 });
 
-
 var auth = new client.Auth({
     redirect_uri: 'http://localhost:8000/callback',
     scope: 'Send|Funding|Transactions',
@@ -16,11 +19,9 @@ var auth = new client.Auth({
     dwolla_landing: 'register', // optional
 });
 
-
 router.get('/dwolla', function(req, res) {
     res.send(auth.url);
 });
-
 
 router.get('/callback', function(req, res) {
 
@@ -57,11 +58,7 @@ router.get('/callback', function(req, res) {
                             },
                             amount: {
                                 currency: 'USD',
-                                value: '225.00'
-                            },
-                            metadata: {
-                                foo: 'bar',
-                                baz: 'boo'
+                                value: '10.00'
                             }
                         };
 
@@ -70,10 +67,12 @@ router.get('/callback', function(req, res) {
                                 var transferUrl = data.headers.get('location');
 
                                 accountToken.get(transferUrl).then(function(response) {
-                                    res.send(response.body.status);
+                                    console.log("payent status:", response.body.status);
+                                    knex('game_player').where
+                                    res.redirect('http://localhost:8000/#/confirmjoin/payment_success');
                                   });
-
                             });
+
                     })
                 });
             })
