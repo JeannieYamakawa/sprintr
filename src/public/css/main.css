@@ -296,7 +296,7 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
 .websitesButtons h6 {
   font-size: 1rem;
   margin-bottom: 0;
-  margin-top: 0.40em;
+  margin-top: 0em;
 }
 
 button.ui.button.websitebutton {
@@ -308,18 +308,15 @@ button.ui.button.websitebutton {
   padding-left: 0;
 }
 
-button.ui.button.websitebutton.linksInside {
-  color: #1974D2;
-}
-
 .newGameWebsiteDiv {
   display: flex;
 }
 
-.newGameWebsiteDivRight {
+.newGameWebsiteDivRight a {
   margin-left: 1rem;
+  font-size: 0.80rem;
 }
 
-.input.ng-pristine.ng-valid.ng-not-empty.ng-touched {
-  margin-bottom: 0.5rem;
+input.ng-valid.ng-valid-required.ng-dirty.ng-empty.ng-touched {
+    margin-top: 1rem;
 }
