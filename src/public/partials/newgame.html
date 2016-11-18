@@ -30,12 +30,10 @@
 
     <div class="field">
         <ul>
-          <div class="websitesButtons">
             <li ng-repeat='site in view.newgameFormInfo.websites'>
                 <h6 ng-show='!editShow'>{{ site }}</h6>
-                  <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
+                <input ng-show='editShow'type="text" value='{{site}}' ng-model='site'>
 
-<<<<<<< HEAD
                 <a class="ui button" ng-click ='removeWebsite()'>Remove Site</a>
                 <a class="ui button" ng-show='editShow' ng-click='updateSite(site)'>Update Site</a>
                 <a class="ui button" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</a>
@@ -43,16 +41,6 @@
             <li >
                 <input type="text" name="website" ng-model="website.name" placeholder="Website" required>
                 <button class="ui button" type="submit" ng-click="view.newWebsite($event,website.name)" >Add Website</button>
-=======
-                  <button class="ui button websitebutton" ng-click ='removeWebsite()'>Remove Site</button>
-                  <button class="ui button websitebutton" ng-show='editShow' ng-click='updateSite(site)'>Update Site</button>
-                  <button class="ui button websitebutton" ng-show='!editShow'ng-click='editWebsite()'>Edit Site</button>
-                </div>
-            </li>
-            <li >
-                <input type="text" name="website" ng-model="website.name" placeholder="Website">
-                <button class="ui button websitebutton" type="submit" ng-click="view.newWebsite($event,website.name)">Add Website</button>
->>>>>>> b788f6130cca6404f3f4ddc2f7d9c5f89e62bed0
 
             </li>
         </ul>
