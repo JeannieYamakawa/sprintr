@@ -1,10 +1,11 @@
 const moment = require( 'moment' );
-var startdate = moment();
-var new_date = moment( startdate, "DD-MM-YYYY" ).add( 5, 'days' );
+var startdate = moment().format();
+var new_date = moment( startdate, "DD-MM-YYYY" ).add( 5, 'days' ).format();
 const bcrypt = require('bcrypt');
 const saltRounds = 4;
 const passwordHash = bcrypt.hashSync('password1', saltRounds);
 
+console.log(startdate);
 
 exports.seed = function( knex, Promise ) {
     // Deletes ALL existing entries
@@ -19,7 +20,7 @@ exports.seed = function( knex, Promise ) {
                     start_time: startdate,
                     end_time: new_date,
                     game_type: 'cash',
-                    name: 'game1',
+                    name: 'Learning React!',
                     game_password: passwordHash
                 } ),
                 knex( 'games' ).insert( {
@@ -27,8 +28,8 @@ exports.seed = function( knex, Promise ) {
                     active: true,
                     start_time: startdate,
                     end_time: new_date,
-                    game_type: 'points',
-                    name: 'game2',
+                    game_type: 'cash',
+                    name: 'French Study Group',
                     game_password: passwordHash
                 } ),
                 knex( 'games' ).insert( {
@@ -36,8 +37,8 @@ exports.seed = function( knex, Promise ) {
                     active: true,
                     start_time: startdate,
                     end_time: new_date,
-                    game_type: 'points',
-                    name: 'game3',
+                    game_type: 'cash',
+                    name: 'Research Alpaca Breeding',
                     game_password: passwordHash
                 } )
             ] );
