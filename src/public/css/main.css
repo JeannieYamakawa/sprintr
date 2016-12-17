@@ -240,7 +240,7 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
     border-radius: 5px;
     margin: 25px !important;
     cursor: pointer;
-    padding: 7px;
+    padding: 20px;
 }
 
 .dashboardCard:hover {
