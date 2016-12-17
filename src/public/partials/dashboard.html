@@ -6,12 +6,15 @@
     <div ng-click="singleGameClicked(game.game_id)"class="column dashboardCard" ng-repeat="game in view.games">
       <h3>{{game.name}}</h3>
       <ul>
-        <li><img class="dashboardRankingIcon" src="../images/gold.jpg" /> {{ game.first_place.username }}</li>
+        <!-- <li><img class="dashboardRankingIcon" src="../images/gold.jpg" /> {{ game.first_place.username }}</li>
         <li><img class="dashboardRankingIcon" src="../images/silver.jpg" /> {{ game.second_place.username }} </li>
-        <li><img class="dashboardRankingIcon" src="../images/bronze.jpg" /> {{ game.third_place.username }} </li>
+        <li><img class="dashboardRankingIcon" src="../images/bronze.jpg" /> {{ game.third_place.username }} </li> -->
+        <li><p><strong>1st - </strong>{{ game.first_place.username }}</p> </li>
+        <li><p><strong>2nd - </strong>{{ game.second_place.username }}</p> </li>
+        <li><p><strong>3rd - </strong>{{ game.third_place.username }}</p> </li>
       </ul>
       <p>Ends: {{ game.end_time | date: 'MMM d, y' }}</p>
-      <p>Game Number: {{ game.game_id }}</p>
+      <p>Game ID: {{ game.game_id }}</p>
     </div>
   </div>
 </div>

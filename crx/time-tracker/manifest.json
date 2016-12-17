@@ -3,11 +3,11 @@
     "version": "0.1",
     "description": "Compete against friends to be the most productive.",
     "icons": {
-        "128": "assets/PNGLOGOsmall.png"
+        "128": "assets/smalllogo.png"
     },
     "browser_action": {
         "default_title": "Sprintr",
-        "default_icon": "assets/PNGLOGOsmall.png",
+        "default_icon": "assets/smalllogo.png",
         "default_popup": "popup.html"
     },
     "background": {

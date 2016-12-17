@@ -1,26 +1,38 @@
 body {
-    background: #eceff4 !important;
+    /*background: #eceff4 !important;*/
+    background: #FF5F6D; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #FF5F6D , #FFC371); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #FF5F6D , #FFC371); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 .container {
     width: 90%;
     margin: auto;
 }
-h1, h2, h3, h4, h5, h6, p, a, li {
+h1, h3, h4, h5, h6, p, a, li {
     font-family: 'Roboto', sans-serif !important;
     color: rgba(0, 0, 0, 0.5);
 }
+
+h2 {
+  color: #fff;
+}
+
 ul {
     list-style-type: none;
     margin-left: 0;
     padding-left: 0;
 }
 
+.black-h2 {
+    color: rgba(0, 0, 0, 0.7);
+}
 /*--------------------------------------------------------------- confirmjoin.html*/
 
 .mediumContainer {
 
     background: #fff;
-    margin: auto;
+    /*margin: auto;*/
     margin-top: 1em;
     width: 55%;
     padding: 2%;
@@ -63,6 +75,8 @@ ul {
 }
 .ui.secondary.pointing.menu {
     background: #fff;
+    border-bottom: none;
+    /*height: 7vh;*/
 }
 .ui.secondary.menu a {
     color: rgba(0, 0, 0, 0.5);
@@ -105,33 +119,81 @@ ul {
 }
 .bg {
     background-size: cover;
-    background-image: url('../images/cover1.jpg');
-    height: 100vh;
-    z-index: -1;
+    /*background-image: url('../images/cover1.jpg');*/
+    height: 50vh;
+    /*z-index: -1;*/
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    background: #FF5F6D; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #FF5F6D , #FFC371); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #FF5F6D , #FFC371); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
 }
 .bgMessage {
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-    font-size: 2.5rem;
+    font-size: 2.8em;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 0;
+}
+
+.bgMessage-small {
+  color: #fff;
+  font-size: 2em;
+  font-weight: 100;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+
+}
+
+.synopsis {
+  height: 50vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.synopsis p {
+  width: 70vw;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 1.5em;
+  margin: 0;
+  text-align: center;
+
 }
 
 /*--------------------------------------------------------------- signup.html*/
 
-.bigContainer {
+.bigContainer-smallCard {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
 }
+
+.bigContainer-bigCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
 .smallContainer {
+
     /*border: 1px solid #dce0e0;*/
     background: #fff;
-    margin: auto;
-    margin-top: 1em;
+    /*margin-top: 5vh;*/
     width: 35%;
     padding: 2%;
 }
@@ -170,15 +232,17 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
     margin: auto;
 }
 .ui.grid>.row>.column {
-    margin-top: 0.25% !important;
-    margin-bottom: 0.25% !important;
+    /*margin-top: 0.25% !important;
+    margin-bottom: 0.25% !important;*/
 }
 .dashboardCard {
     background: #fff;
     border-radius: 5px;
-    margin-right: 0.25%;
+    margin: 25px !important;
     cursor: pointer;
+    padding: 7px;
 }
+
 .dashboardCard:hover {
     border: 2px solid #eceff4;
 }
@@ -211,6 +275,7 @@ input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid-required.ng-touched.ng-valid
 .newgameButtonsDiv {
     display: flex;
 }
+
 
 /*--------------------------------------------------------------- leaderboard*/
 
