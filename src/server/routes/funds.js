@@ -27,9 +27,9 @@ router.get('/callback', function(req, res) {
 
     var userToken;
 
-    var appRootUrl; //this is what i set as the destination for a payment
-    var userRootUrl; //this is the first half of the source link for a payment
-    var userFundId; //this is the second half of the source link for a payment
+    var appRootUrl; // destination for a payment
+    var userRootUrl; //first half of the source link for a payment
+    var userFundId; //second half of the source link for a payment
 
     auth.callback(req.query).then(function(accountToken) {
 

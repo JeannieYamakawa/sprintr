@@ -1,0 +1,14 @@
+{
+    "name": "Time Tracker",
+    "version": "1.0",
+    "description": "Fun competitive productivity tracker for Chrome",
+    "permissions": [
+        "processes", "tabs", "chrome://favicon/*", "http://localhost:8000/*", "http://*/", "https://*/"
+    ],
+    "browser_action": {
+        "default_title": "Tracker Dashboard",
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+    },
+    "manifest_version": 2
+}
