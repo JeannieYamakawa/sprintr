@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt');
 var dwolla = require('dwolla-v2');
 
 var client = new dwolla.Client({
-    id: 'GFZgliT3KeVdD63qpeyqujF9WSyjy49zMk55Ipk4D13TItFG16',
-    secret: "9dkp1WIhBu25nh7rI911BspQ39Dl54xucQlhLNmObUlQUSQ7S0",
+    id: process.env.DWOLLA_KEY,
+    secret: process.env.DWOLLA_SECRET,
     environment: 'sandbox',
 });
 
