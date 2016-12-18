@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+  "node": "6.3.1"
+  },
   "scripts": {
     "test": "mocha",
     "start": "nodemon ./src/server/server.js"
