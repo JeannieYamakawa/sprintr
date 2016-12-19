@@ -26,7 +26,7 @@ Technologies:
 
 * The **Google Chrome extension development environment** was entirely new for all three of us and took some getting used to.
 
-* We wanted to render leaderboard Sprint data in charts, but the **ChartJS library could not be rendered directly with Angular**. We ended up having to use a **[3rd-party Angular chart library](https://jtblin.github.io/angular-chart.js/)**.
+* To dynamically render leaderboard Sprint data with ChartJS, we used a **[3rd-party Angular chart library](https://jtblin.github.io/angular-chart.js/)**.
 
 * We wanted to have the web portal automatically render a user's personalized dashboard when a user clicks "View Web Portal" button on the extension popup, but we discovered that the Chrome extension's local storage is a **completely different local storage** from the Chrome browser's local storage, thus creating a chasm in the saved data about who is logged in. This was the one challenge we were not able to solve in the week allotted for our project, although the user's data is both viewable and current when he/she logs into the web app. We also learned a lot about navigating Google's **[JavaScript APIs](https://developer.chrome.com/extensions/api_index)** because of this challenge.
 <hr>
