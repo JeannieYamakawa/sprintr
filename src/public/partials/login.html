@@ -1,29 +1,31 @@
 <ng-include src="'partials/navBarOutside.html'"></ng-include>
 
-<div class="bigContainer-smallCard">
-  <div class="smallContainer">
-    <h2 class="black-h2">Login Page</h2>
-    <form class="ui form" action="#" name="loginForm" ng-submit="loginForm.$valid && submitLoginForm($event)">
-      <div class="field">
-      <div class="field">
-        <input
-        type="text"
-        name="username"
-        ng-model="view.loginFormInfo.username"
-        placeholder="Username"
-        required
-        >
-      </div>
-      <div class="field">
-        <input
-        type="password"
-        name="password"
-        ng-model="view.loginFormInfo.password"
-        placeholder="Password"
-        required
-        >
-      </div>
-      <button class="ui primary basic button" type="submit">Submit</button>
-    </form>
+<div class="body-linear-background">
+  <div class="bigContainer-smallCard">
+    <div class="smallContainer">
+      <h2 class="black-h2">Login Page</h2>
+      <form class="ui form" action="#" name="loginForm" ng-submit="loginForm.$valid && submitLoginForm($event)">
+        <div class="field">
+        <div class="field">
+          <input
+          type="text"
+          name="username"
+          ng-model="view.loginFormInfo.username"
+          placeholder="Username"
+          required
+          >
+        </div>
+        <div class="field">
+          <input
+          type="password"
+          name="password"
+          ng-model="view.loginFormInfo.password"
+          placeholder="Password"
+          required
+          >
+        </div>
+        <button class="ui primary basic button" type="submit">Submit</button>
+      </form>
+    </div>
   </div>
 </div>
